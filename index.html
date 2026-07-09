@@ -1,273 +1,152 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aung Bo Bo Kyaw - Professional Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Aung Bo Bo Kyaw | Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&family=Roboto:wght@400;700&display=swap');
-
-        :root {
-            --primary: #00bcd4;
-            --secondary: #212121;
-            --text-main: #ffffff;
-            --text-dark: #b0bec5;
-            --bg-main: #121212;
-            --bg-accent: #1e1e1e;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Pyidaungsu', 'Roboto', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            margin: 0;
+            background-color: #0a0a0a;
+            color: #ededed;
             line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s;
-        }
-
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+            padding: 2rem;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width: 650px;
+            margin: 4rem auto;
         }
 
-        /* Header */
         header {
-            background-color: var(--bg-accent);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            margin-bottom: 3rem;
         }
 
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo a {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--text-dark);
-            font-weight: 700;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle, #212121 0%, #121212 100%);
-            padding-top: 80px;
-        }
-
-        .hero-content {
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 5px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--secondary);
-        }
-
-        .btn-primary:hover {
-            background-color: #00acc1;
-        }
-
-        .btn-secondary {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(0, 188, 212, 0.1);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background-color: var(--bg-accent);
-        }
-
-        .services h2 {
-            text-align: center;
+        h1 {
             font-size: 2.5rem;
-            margin-bottom: 60px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.05em;
         }
 
-        .services-grid {
+        .subtitle {
+            color: #888888;
+            font-size: 1.1rem;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        p {
+            color: #a0a0a0;
+            margin-bottom: 1rem;
+        }
+
+        .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .service-card {
-            background-color: var(--bg-main);
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+        @media (max-width: 480px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .card {
+            background: #161616;
+            border: 1px solid #262626;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #ededed;
+            transition: all 0.2s ease;
         }
 
-        .service-card i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+        .card:hover {
+            background: #222222;
+            border-color: #444444;
+            transform: translateY(-2px);
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+        .card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
         }
 
-        .service-card p {
-            color: var(--text-dark);
+        .card p {
+            font-size: 0.85rem;
+            color: #666666;
+            margin-bottom: 0;
         }
 
-        /* Footer */
         footer {
-            background-color: var(--bg-accent);
-            padding: 40px 0;
+            margin-top: 5rem;
+            border-top: 1px solid #262626;
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #666666;
             text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-content">
-            <div class="logo"><a href="#">ABK</a></div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section id="hero" class="hero">
-        <div class="container hero-content">
+    <div class="container">
+        <header>
             <h1>Aung Bo Bo Kyaw</h1>
-            <p>Modern Electronic Services & Professional Tech Solutions - Expert repair, mobile service, technical support, and online e-services.</p>
-            <div class="cta-buttons">
-                <button class="btn btn-primary">Explore Services</button>
-                <button class="btn btn-secondary">Get Free Consultation</button>
-            </div>
-        </div>
-    </section>
+            <p class="subtitle">Web Developer & Creator</p>
+        </header>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Professional Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-microchip"></i>
-                    <h3>Electronic Repair</h3>
-                    <p>Expert electronic repair and online support tailored for you.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Mobile Service</h3>
-                    <p>On-site mobile service for all your smartphone needs.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>Technical Support</h3>
-                    <p>Responsive tech support for any issue, anytime.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section>
+            <h2>About Me</h2>
+            <p>မင်္ဂလာပါဗျာ။ ကျွန်တော်ကတော့ အောင်ဘိုဘိုကျော် ဖြစ်ပါတယ်။ လက်ရှိမှာ Vercel နဲ့ GitHub တို့ကို အသုံးချပြီး ခေတ်မီပြီး အမြန်နှုန်းကောင်းမွန်တဲ့ Website တွေကို ဖန်တီးနေပါတယ်။</p>
+        </section>
 
-    <footer id="contact">
-        <div class="container footer-content">
-            <p>&copy; 2024 Aung Bo Bo Kyaw. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <section>
+            <h2>Connect & Projects</h2>
+            <div class="links-grid">
+                <a href="https://github.com" target="_blank" class="card">
+                    <h3>GitHub</h3>
+                    <p>ကျွန်တော့်ရဲ့ Code Projects များကို ကြည့်ရန်</p>
+                </a>
+                <a href="#" class="card">
+                    <h3>My Resume</h3>
+                    <p>ကျွန်တော့်ရဲ့ CV ဖတ်ရှုရန်</p>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="card">
+                    <h3>Facebook</h3>
+                    <p>လူမှုကွန်ရက်မှတစ်ဆင့် ဆက်သွယ်ရန်</p>
+                </a>
+                <a href="mailto:your-email@example.com" class="card">
+                    <h3>Email Me</h3>
+                    <p>တိုက်ရိုက် အီးမေးလ် ပို့ရန်</p>
+                </a>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <footer>
+            <p>© 2026 Aung Bo Bo Kyaw. Built with Vercel & GitHub.</p>
+        </footer>
+    </div>
 
 </body>
 </html>
