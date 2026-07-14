@@ -2,7 +2,7 @@
 <html lang="my">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NEXORA - Business Automation | Landing Page | Google Map Services</title>
     <meta name="description" content="NEXORA - အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့။ Business Automation, Landing Page ရေးဆွဲခြင်း, Google Map ဝန်ဆောင်မှုများ။">
     
@@ -19,43 +19,52 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: #fff;
             min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
         
         /* ========== နဖူးစည်း Marquee Bar ========== */
         .marquee-bar {
             width: 100%;
             background: linear-gradient(90deg, #6c5ce7, #00d2ff);
-            padding: 10px 0;
+            padding: 8px 0;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
         }
         .marquee-content {
             display: inline-block;
-            animation: marqueeScroll 35s linear infinite;
+            animation: marqueeScroll 30s linear infinite;
             white-space: nowrap;
         }
         .marquee-item {
             display: inline-block;
-            margin-right: 80px;
-            font-size: 15px;
+            margin-right: 50px;
+            font-size: 13px;
             font-weight: 500;
             color: #fff;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         .marquee-item .dot {
             display: inline-block;
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: #fff;
             border-radius: 50%;
-            margin-right: 12px;
+            margin-right: 8px;
             animation: pulse 1.5s ease-in-out infinite;
         }
         @keyframes marqueeScroll {
@@ -67,218 +76,203 @@
             50% { opacity: 0.3; }
         }
         
-        /* Header */
+        /* ========== Header ========== */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
+            padding: 12px 20px;
             background: rgba(0,0,0,0.5);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 100;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
         }
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-shrink: 0;
         }
-        .logo-placeholder {
-            width: 55px;
-            height: 55px;
-            background: rgba(255,255,255,0.08);
-            border: 2px dashed rgba(0,210,255,0.5);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: rgba(255,255,255,0.5);
-            text-align: center;
-            transition: all 0.3s;
-            overflow: hidden;
-        }
-        .logo-placeholder img {
-            width: 100%;
-            height: 100%;
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
             object-fit: cover;
-            border-radius: 14px;
+            border: 2px solid rgba(0,210,255,0.4);
+            flex-shrink: 0;
         }
         .brand-name {
-            font-size: 30px;
+            font-size: 24px;
             font-weight: 800;
             background: linear-gradient(90deg, #00d2ff, #6c5ce7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 4px;
+            background-clip: text;
+            letter-spacing: 3px;
+            white-space: nowrap;
         }
         nav {
             display: flex;
-            gap: 25px;
+            gap: 8px;
+            flex-shrink: 0;
         }
         nav a {
             color: #ccc;
             text-decoration: none;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 13px;
             transition: all 0.3s;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 10px;
+            border-radius: 16px;
+            white-space: nowrap;
         }
         nav a:hover {
             color: #fff;
             background: rgba(0,210,255,0.15);
         }
         
-        /* ========== Floating Contact Icons (ညာဘက်အောက်ခြေ) ========== */
+        /* ========== Floating Contact Icons ========== */
         .floating-icons {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 15px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 999;
         }
         .floating-icon {
-            width: 55px;
-            height: 55px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
+            font-size: 22px;
             color: #fff;
             text-decoration: none;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
             transition: all 0.3s;
             position: relative;
         }
-        .floating-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        .floating-icon:active {
+            transform: scale(0.9);
         }
         .floating-icon .tooltip {
-            position: absolute;
-            right: 70px;
-            background: rgba(0,0,0,0.85);
-            color: #fff;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
+            display: none;
         }
-        .floating-icon:hover .tooltip {
-            opacity: 1;
-        }
-        
-        /* Viber Icon */
         .viber-float {
             background: #7360f2;
         }
-        .viber-float:hover {
-            background: #5a4bd1;
-        }
-        
-        /* Email Icon */
         .email-float {
             background: #00d2ff;
         }
-        .email-float:hover {
-            background: #00b8e6;
-        }
         
-        /* Hero Section */
+        /* ========== Hero Section ========== */
         .hero {
             text-align: center;
-            padding: 70px 20px 50px;
+            padding: 50px 15px 30px;
             position: relative;
+            width: 100%;
         }
         .hero-glow {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
+            width: 300px;
+            height: 300px;
             background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, transparent 70%);
             pointer-events: none;
         }
         .hero h1 {
-            font-size: 55px;
-            margin-bottom: 20px;
+            font-size: 38px;
+            margin-bottom: 15px;
             background: linear-gradient(90deg, #00d2ff, #a29bfe, #00d2ff);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: shimmer 3s linear infinite;
+            word-break: break-word;
         }
         @keyframes shimmer {
             to { background-position: 200% center; }
         }
         .tagline {
-            font-size: 28px;
+            font-size: 20px;
             color: #fff;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
+            padding: 0 10px;
         }
         .sub-tagline {
-            font-size: 17px;
+            font-size: 14px;
             color: #aaa;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
+            padding: 0 10px;
         }
         
         /* Hero Ad Banner */
         .ad-banner {
-            max-width: 728px;
-            height: 90px;
-            margin: 0 auto 30px;
+            max-width: 100%;
+            width: 100%;
+            height: 60px;
+            margin: 0 auto 20px;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #555;
-            font-size: 13px;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        .ad-banner ins {
+            max-width: 100%;
         }
         
-        /* Section Titles */
+        /* ========== Section Titles ========== */
         .section-title {
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 15px;
+            font-size: 26px;
+            margin-bottom: 10px;
             color: #00d2ff;
+            padding: 0 15px;
         }
         .section-subtitle {
             text-align: center;
             color: #888;
-            margin-bottom: 50px;
-            font-size: 15px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            padding: 0 15px;
         }
         
-        /* Services */
+        /* ========== Services ========== */
         .services {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
-            padding: 20px 30px 60px;
+            padding: 10px 15px 40px;
+            width: 100%;
         }
         .service-card {
             background: rgba(255,255,255,0.06);
             backdrop-filter: blur(15px);
-            border-radius: 24px;
-            padding: 40px 28px;
-            width: 340px;
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 340px;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.4s;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
@@ -288,46 +282,47 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, #00d2ff, #6c5ce7);
             opacity: 0;
-            transition: opacity 0.4s;
+            transition: opacity 0.3s;
         }
-        .service-card:hover::before {
+        .service-card:active::before {
             opacity: 1;
         }
-        .service-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        .service-card:active {
+            transform: scale(0.97);
             border-color: rgba(0,210,255,0.3);
         }
         .service-icon {
-            font-size: 55px;
-            margin-bottom: 20px;
+            font-size: 45px;
+            margin-bottom: 15px;
         }
         .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
+            font-size: 18px;
+            margin-bottom: 10px;
             color: #fff;
         }
         .service-card p {
             color: #bbb;
-            font-size: 14px;
-            line-height: 1.7;
+            font-size: 13px;
+            line-height: 1.6;
         }
         
-        /* YouTube Section */
+        /* ========== YouTube Section ========== */
         .youtube-section {
             text-align: center;
-            padding: 40px 20px 30px;
+            padding: 30px 15px 20px;
+            width: 100%;
         }
         .youtube-container {
-            max-width: 720px;
+            max-width: 100%;
+            width: 100%;
             margin: 0 auto;
             position: relative;
-            padding-bottom: 42%;
+            padding-bottom: 56.25%;
             height: 0;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
         }
         .youtube-container iframe {
@@ -340,65 +335,68 @@
         
         /* Mid Ad */
         .ad-rectangle {
-            max-width: 336px;
-            height: 280px;
-            margin: 50px auto;
+            max-width: 100%;
+            width: 100%;
+            height: 250px;
+            margin: 30px auto;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #555;
-            font-size: 13px;
+            font-size: 12px;
+            overflow: hidden;
         }
         
-        /* Contact Section (အောက်ခြေ) */
+        /* ========== Contact Section ========== */
         .contact-section {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 40px 15px 30px;
+            width: 100%;
         }
         .contact-cards {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         .contact-card {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 30px 25px;
-            width: 280px;
+            border-radius: 16px;
+            padding: 25px 20px;
+            width: 100%;
+            max-width: 250px;
             text-decoration: none;
             color: #fff;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
-        .contact-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        .contact-card:active {
+            transform: scale(0.95);
         }
-        .viber-card:hover {
+        .viber-card:active {
             border-color: #7360f2;
             background: rgba(115,96,242,0.1);
         }
-        .email-card:hover {
+        .email-card:active {
             border-color: #00d2ff;
             background: rgba(0,210,255,0.1);
         }
         .contact-icon-circle {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            font-size: 24px;
         }
         .viber-icon-circle {
             background: #7360f2;
@@ -409,109 +407,239 @@
         }
         .contact-label {
             font-weight: 700;
-            font-size: 18px;
+            font-size: 16px;
         }
         .contact-value {
             color: #bbb;
-            font-size: 14px;
+            font-size: 13px;
+            word-break: break-all;
         }
         
-        /* Advertise Section */
+        /* ========== Advertise Section ========== */
         .advertise-section {
             text-align: center;
-            padding: 40px 20px 60px;
+            padding: 30px 15px 40px;
+            width: 100%;
         }
         .advertise-box {
-            max-width: 600px;
-            margin: 30px auto 0;
-            padding: 30px;
+            max-width: 100%;
+            width: 100%;
+            margin: 20px auto 0;
+            padding: 25px 15px;
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
+            border-radius: 14px;
         }
         .advertise-box p {
             color: #bbb;
-            margin-bottom: 15px;
-            font-size: 14px;
+            margin-bottom: 12px;
+            font-size: 13px;
         }
         .advertise-box a {
             color: #00d2ff;
             text-decoration: none;
             font-weight: 600;
+            word-break: break-all;
         }
         
-        /* Footer */
+        /* ========== Footer ========== */
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px 15px;
             color: #666;
-            font-size: 13px;
+            font-size: 12px;
             border-top: 1px solid rgba(255,255,255,0.08);
+            width: 100%;
         }
         footer a {
             color: #00d2ff;
             text-decoration: none;
         }
         
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* ============================================= */
+        /* ========== DESKTOP / TABLET (768px+) ========== */
+        /* ============================================= */
+        @media (min-width: 768px) {
             header {
-                flex-direction: column;
-                gap: 12px;
-                padding: 12px 15px;
+                padding: 15px 50px;
+            }
+            .logo-img {
+                width: 55px;
+                height: 55px;
+                border-radius: 14px;
+            }
+            .brand-name {
+                font-size: 30px;
+                letter-spacing: 4px;
             }
             nav {
-                gap: 8px;
+                gap: 25px;
             }
             nav a {
-                font-size: 13px;
-                padding: 6px 12px;
+                font-size: 15px;
+                padding: 8px 15px;
+                border-radius: 20px;
             }
-            .hero h1 {
-                font-size: 36px;
+            
+            .marquee-bar {
+                padding: 10px 0;
             }
-            .tagline {
-                font-size: 20px;
-            }
-            .sub-tagline {
-                font-size: 14px;
-            }
-            .services {
-                padding: 10px 15px 40px;
-            }
-            .service-card {
-                width: 100%;
-                max-width: 360px;
-            }
-            .section-title {
-                font-size: 26px;
-            }
-            .youtube-container {
-                padding-bottom: 56%;
-            }
-            .contact-cards {
-                gap: 15px;
-            }
-            .contact-card {
-                width: 90%;
-                max-width: 300px;
+            .marquee-content {
+                animation: marqueeScroll 35s linear infinite;
             }
             .marquee-item {
-                font-size: 13px;
-                margin-right: 40px;
+                font-size: 15px;
+                margin-right: 80px;
+                letter-spacing: 1px;
             }
+            .marquee-item .dot {
+                width: 8px;
+                height: 8px;
+                margin-right: 12px;
+            }
+            
+            .hero {
+                padding: 70px 20px 50px;
+            }
+            .hero-glow {
+                width: 500px;
+                height: 500px;
+            }
+            .hero h1 {
+                font-size: 55px;
+            }
+            .tagline {
+                font-size: 28px;
+            }
+            .sub-tagline {
+                font-size: 17px;
+                margin-bottom: 40px;
+            }
+            
+            .ad-banner {
+                max-width: 728px;
+                height: 90px;
+                font-size: 13px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            .section-subtitle {
+                font-size: 15px;
+                margin-bottom: 50px;
+            }
+            
+            .service-card {
+                padding: 40px 28px;
+                width: 340px;
+                border-radius: 24px;
+            }
+            .service-card:hover {
+                transform: translateY(-12px);
+                box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+                border-color: rgba(0,210,255,0.3);
+            }
+            .service-card:hover::before {
+                opacity: 1;
+            }
+            .service-icon {
+                font-size: 55px;
+                margin-bottom: 20px;
+            }
+            .service-card h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            .service-card p {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+            
+            .youtube-container {
+                max-width: 720px;
+                padding-bottom: 42%;
+            }
+            
+            .ad-rectangle {
+                max-width: 336px;
+                height: 280px;
+                margin: 50px auto;
+                font-size: 13px;
+            }
+            
+            .contact-section {
+                padding: 60px 20px 40px;
+            }
+            .contact-cards {
+                gap: 25px;
+            }
+            .contact-card {
+                padding: 30px 25px;
+                width: 280px;
+                max-width: 280px;
+                border-radius: 20px;
+            }
+            .contact-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            }
+            .contact-icon-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+            .contact-label {
+                font-size: 18px;
+            }
+            .contact-value {
+                font-size: 14px;
+            }
+            
+            .advertise-box {
+                max-width: 600px;
+                padding: 30px;
+            }
+            .advertise-box p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            footer {
+                font-size: 13px;
+                padding: 25px;
+            }
+            
             .floating-icons {
-                bottom: 20px;
-                right: 20px;
-                gap: 10px;
+                bottom: 30px;
+                right: 30px;
+                gap: 15px;
             }
             .floating-icon {
-                width: 48px;
-                height: 48px;
-                font-size: 22px;
+                width: 55px;
+                height: 55px;
+                font-size: 26px;
+            }
+            .floating-icon:hover {
+                transform: translateY(-5px) scale(1.1);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.5);
             }
             .floating-icon .tooltip {
-                display: none;
+                display: block;
+                position: absolute;
+                right: 70px;
+                background: rgba(0,0,0,0.85);
+                color: #fff;
+                padding: 8px 14px;
+                border-radius: 20px;
+                font-size: 13px;
+                white-space: nowrap;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s;
+            }
+            .floating-icon:hover .tooltip {
+                opacity: 1;
             }
         }
     </style>
@@ -529,7 +657,7 @@
             <span class="marquee-item"><span class="dot"></span>🚀 အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့</span>
             <span class="marquee-item"><span class="dot"></span>💼 လုပ်ငန်းခွင်ကို စနစ်တကျဖြစ်စေမယ့် Automation</span>
             
-            <!-- Duplicate -->
+            <!-- Duplicate for seamless loop -->
             <span class="marquee-item"><span class="dot"></span>⚙️ Business Automation ဝန်ဆောင်မှု</span>
             <span class="marquee-item"><span class="dot"></span>🌐 Landing Page ရေးဆွဲခြင်း</span>
             <span class="marquee-item"><span class="dot"></span>📍 Google Map Services</span>
@@ -554,25 +682,23 @@
         </a>
     </div>
 
-    <!-- Header -->
+    <!-- ==================== Header with Logo ==================== -->
     <header>
         <div class="logo-container">
-            <!-- Logo နေရာ -->
-            <div class="logo-placeholder" id="logoContainer">
-                <!-- Logo ပုံထည့်ရန် အောက်ပါအတိုင်း ပြောင်းပါ -->
-                <!-- <img src="logo.png" alt="NEXORA Logo"> -->
-                LOGO<br>HERE
-            </div>
+            <!-- Logo ပုံ - logo.png ကို index.html နဲ့ တစ်ဖိုလ်ဒါထဲထည့်ထားရုံပါပဲ -->
+            <img src="logo.png" 
+                 alt="NEXORA Logo" 
+                 class="logo-img">
             <div class="brand-name">NEXORA</div>
         </div>
         <nav>
-            <a href="#services">ဝန်ဆောင်မှုများ</a>
+            <a href="#services">ဝန်ဆောင်မှု</a>
             <a href="#youtube">ဗီဒီယို</a>
-            <a href="#contact">ဆက်သွယ်ရန်</a>
+            <a href="#contact">ဆက်သွယ်</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ==================== Hero Section ==================== -->
     <section class="hero">
         <div class="hero-glow"></div>
         <h1>NEXORA</h1>
@@ -582,14 +708,14 @@
         <!-- Google AdSense Banner -->
         <div class="ad-banner">
             <ins class="adsbygoogle"
-                 style="display:inline-block;width:728px;height:90px"
+                 style="display:inline-block;width:100%;height:60px"
                  data-ad-client="ca-pub-YOUR_ADSENSE_CODE"
                  data-ad-slot="YOUR_AD_SLOT"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- ==================== Services Section ==================== -->
     <section id="services">
         <h2 class="section-title">⚡ ဝန်ဆောင်မှုများ</h2>
         <p class="section-subtitle">သင့်လုပ်ငန်းအတွက် အကောင်းဆုံး ဒစ်ဂျစ်တယ်ဖြေရှင်းချက်များ</p>
@@ -615,7 +741,7 @@
         </div>
     </section>
 
-    <!-- YouTube Section -->
+    <!-- ==================== YouTube Section ==================== -->
     <section id="youtube" class="youtube-section">
         <h2 class="section-title">📺 ကျွန်ုပ်တို့၏ ဗီဒီယိုများ</h2>
         <p class="section-subtitle">NEXORA အကြောင်း ပိုမိုသိရှိရန် ကြည့်ရှုပါ</p>
@@ -632,14 +758,14 @@
         <!-- Google AdSense Rectangle -->
         <div class="ad-rectangle">
             <ins class="adsbygoogle"
-                 style="display:inline-block;width:336px;height:280px"
+                 style="display:inline-block;width:100%;height:250px"
                  data-ad-client="ca-pub-YOUR_ADSENSE_CODE"
                  data-ad-slot="YOUR_AD_SLOT_2"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ==================== Contact Section ==================== -->
     <section id="contact" class="contact-section">
         <h2 class="section-title">📞 ဆက်သွယ်ရန်</h2>
         <p class="section-subtitle">အတူတူလက်တွဲပြီး အောင်မြင်မှုဆီသို့ လှမ်းကြပါစို့</p>
@@ -663,7 +789,7 @@
         </div>
     </section>
 
-    <!-- Advertise Section -->
+    <!-- ==================== Advertise Section ==================== -->
     <section class="advertise-section">
         <h2 class="section-title">📢 ကြော်ငြာ ထည့်သွင်းလိုပါက</h2>
         <div class="advertise-box">
@@ -673,10 +799,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ==================== Footer ==================== -->
     <footer>
         <p>&copy; 2025 <a href="#">NEXORA</a>. All rights reserved.</p>
-        <p style="margin-top:8px;">အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့ 🚀 | Together We Grow, Together We Succeed</p>
+        <p style="margin-top:6px;">အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့ 🚀 | Together We Grow, Together We Succeed</p>
     </footer>
 
 </body>
