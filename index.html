@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CODE"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8073133053463893"
      crossorigin="anonymous"></script>
     
     <style>
@@ -139,23 +139,23 @@
         .floating-icons {
             position: fixed;
             bottom: 20px;
-            right: 15px;
+            right: 10px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             z-index: 999;
         }
         .floating-icon {
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             color: #fff;
             text-decoration: none;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             transition: all 0.3s;
             position: relative;
         }
@@ -221,7 +221,8 @@
         .ad-banner {
             max-width: 100%;
             width: 100%;
-            height: 60px;
+            height: auto;
+            min-height: 60px;
             margin: 0 auto 20px;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.1);
@@ -232,6 +233,7 @@
             color: #555;
             font-size: 12px;
             overflow: hidden;
+            padding: 5px;
         }
         .ad-banner ins {
             max-width: 100%;
@@ -337,7 +339,7 @@
         .ad-rectangle {
             max-width: 100%;
             width: 100%;
-            height: 250px;
+            min-height: 250px;
             margin: 30px auto;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.1);
@@ -348,35 +350,37 @@
             color: #555;
             font-size: 12px;
             overflow: hidden;
+            padding: 5px;
         }
         
         /* ========== Contact Section ========== */
         .contact-section {
             text-align: center;
-            padding: 40px 15px 30px;
+            padding: 40px 10px 30px;
             width: 100%;
         }
         .contact-cards {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-top: 20px;
+            padding: 0 5px;
         }
         .contact-card {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 16px;
-            padding: 25px 20px;
+            padding: 20px 15px;
             width: 100%;
-            max-width: 250px;
+            max-width: 240px;
             text-decoration: none;
             color: #fff;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .contact-card:active {
             transform: scale(0.95);
@@ -390,13 +394,13 @@
             background: rgba(0,210,255,0.1);
         }
         .contact-icon-circle {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
         }
         .viber-icon-circle {
             background: #7360f2;
@@ -407,11 +411,11 @@
         }
         .contact-label {
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
         }
         .contact-value {
             color: #bbb;
-            font-size: 13px;
+            font-size: 12px;
             word-break: break-all;
         }
         
@@ -518,7 +522,7 @@
             
             .ad-banner {
                 max-width: 728px;
-                height: 90px;
+                min-height: 90px;
                 font-size: 13px;
             }
             
@@ -563,7 +567,7 @@
             
             .ad-rectangle {
                 max-width: 336px;
-                height: 280px;
+                min-height: 280px;
                 margin: 50px auto;
                 font-size: 13px;
             }
@@ -573,6 +577,7 @@
             }
             .contact-cards {
                 gap: 25px;
+                padding: 0;
             }
             .contact-card {
                 padding: 30px 25px;
@@ -612,7 +617,7 @@
             
             .floating-icons {
                 bottom: 30px;
-                right: 30px;
+                right: 20px;
                 gap: 15px;
             }
             .floating-icon {
@@ -657,7 +662,7 @@
             <span class="marquee-item"><span class="dot"></span>🚀 အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့</span>
             <span class="marquee-item"><span class="dot"></span>💼 လုပ်ငန်းခွင်ကို စနစ်တကျဖြစ်စေမယ့် Automation</span>
             
-            <!-- Duplicate for seamless loop -->
+            <!-- Duplicate -->
             <span class="marquee-item"><span class="dot"></span>⚙️ Business Automation ဝန်ဆောင်မှု</span>
             <span class="marquee-item"><span class="dot"></span>🌐 Landing Page ရေးဆွဲခြင်း</span>
             <span class="marquee-item"><span class="dot"></span>📍 Google Map Services</span>
@@ -670,25 +675,20 @@
 
     <!-- ==================== Floating Contact Icons ==================== -->
     <div class="floating-icons">
-        <!-- Viber Icon -->
         <a href="viber://chat?number=09794848575" class="floating-icon viber-float" title="Viber">
             <i class="fa-brands fa-viber"></i>
             <span class="tooltip">Viber: 09794848575</span>
         </a>
-        <!-- Email Icon -->
         <a href="mailto:admin@aungbobokyaw.com" class="floating-icon email-float" title="Email">
             <i class="fa-solid fa-envelope"></i>
             <span class="tooltip">admin@aungbobokyaw.com</span>
         </a>
     </div>
 
-    <!-- ==================== Header with Logo ==================== -->
+    <!-- Header -->
     <header>
         <div class="logo-container">
-            <!-- Logo ပုံ - logo.png ကို index.html နဲ့ တစ်ဖိုလ်ဒါထဲထည့်ထားရုံပါပဲ -->
-            <img src="logo.png" 
-                 alt="NEXORA Logo" 
-                 class="logo-img">
+            <img src="logo.png" alt="NEXORA Logo" class="logo-img">
             <div class="brand-name">NEXORA</div>
         </div>
         <nav>
@@ -698,7 +698,7 @@
         </nav>
     </header>
 
-    <!-- ==================== Hero Section ==================== -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-glow"></div>
         <h1>NEXORA</h1>
@@ -709,13 +709,13 @@
         <div class="ad-banner">
             <ins class="adsbygoogle"
                  style="display:inline-block;width:100%;height:60px"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_CODE"
+                 data-ad-client="ca-pub-8073133053463893"
                  data-ad-slot="YOUR_AD_SLOT"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </section>
 
-    <!-- ==================== Services Section ==================== -->
+    <!-- Services Section -->
     <section id="services">
         <h2 class="section-title">⚡ ဝန်ဆောင်မှုများ</h2>
         <p class="section-subtitle">သင့်လုပ်ငန်းအတွက် အကောင်းဆုံး ဒစ်ဂျစ်တယ်ဖြေရှင်းချက်များ</p>
@@ -741,7 +741,7 @@
         </div>
     </section>
 
-    <!-- ==================== YouTube Section ==================== -->
+    <!-- YouTube Section -->
     <section id="youtube" class="youtube-section">
         <h2 class="section-title">📺 ကျွန်ုပ်တို့၏ ဗီဒီယိုများ</h2>
         <p class="section-subtitle">NEXORA အကြောင်း ပိုမိုသိရှိရန် ကြည့်ရှုပါ</p>
@@ -759,13 +759,13 @@
         <div class="ad-rectangle">
             <ins class="adsbygoogle"
                  style="display:inline-block;width:100%;height:250px"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_CODE"
+                 data-ad-client="ca-pub-8073133053463893"
                  data-ad-slot="YOUR_AD_SLOT_2"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </section>
 
-    <!-- ==================== Contact Section ==================== -->
+    <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <h2 class="section-title">📞 ဆက်သွယ်ရန်</h2>
         <p class="section-subtitle">အတူတူလက်တွဲပြီး အောင်မြင်မှုဆီသို့ လှမ်းကြပါစို့</p>
@@ -789,7 +789,7 @@
         </div>
     </section>
 
-    <!-- ==================== Advertise Section ==================== -->
+    <!-- Advertise Section -->
     <section class="advertise-section">
         <h2 class="section-title">📢 ကြော်ငြာ ထည့်သွင်းလိုပါက</h2>
         <div class="advertise-box">
@@ -799,7 +799,7 @@
         </div>
     </section>
 
-    <!-- ==================== Footer ==================== -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 <a href="#">NEXORA</a>. All rights reserved.</p>
         <p style="margin-top:6px;">အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့ 🚀 | Together We Grow, Together We Succeed</p>
