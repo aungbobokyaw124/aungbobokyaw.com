@@ -1,151 +1,429 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aung Bo Bo Kyaw | Portfolio</title>
+    <title>Aung Bo Bo Kyaw | Digital Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            --bg-main: #08070a;
+            --bg-card: #121118;
+            --accent: #c4ff4d;
+            --accent-rgb: 196, 255, 77;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: rgba(255, 255, 255, 0.05);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #0a0a0a;
-            color: #ededed;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif;
             line-height: 1.6;
-            padding: 2rem;
+            overflow-x: hidden;
         }
 
+        /* Ambient Background Glows */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glow-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.04) 0%, transparent 70%);
+            bottom: 20%;
+            left: -200px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 22px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: var(--bg-main);
+            box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4);
+        }
+
+        /* Main Container */
         .container {
-            max-width: 650px;
-            margin: 4rem auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
+        /* Hero Section */
         header {
-            margin-bottom: 3rem;
+            padding: 100px 0 80px 0;
+            text-align: center;
+        }
+
+        .badge {
+            background: rgba(var(--accent-rgb), 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 25px;
+            border: 1px solid rgba(var(--accent-rgb), 0.15);
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 64px;
             font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.05em;
+            line-height: 1.15;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .subtitle {
-            color: #888888;
-            font-size: 1.1rem;
+        h1 span {
+            color: var(--accent);
         }
 
-        section {
-            margin-bottom: 2.5rem;
+        .lead {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 40px auto;
         }
 
-        h2 {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        p {
-            color: #a0a0a0;
-            margin-bottom: 1rem;
-        }
-
-        .links-grid {
+        /* Services Grid */
+        .services-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        @media (max-width: 480px) {
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 100px;
         }
 
         .card {
-            background: #161616;
-            border: 1px solid #262626;
-            padding: 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #ededed;
-            transition: all 0.2s ease;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            background: #222222;
-            border-color: #444444;
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            border-color: rgba(var(--accent-rgb), 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
         }
 
         .card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
 
         .card p {
-            font-size: 0.85rem;
-            color: #666666;
-            margin-bottom: 0;
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 25px;
+            flex-grow: 1;
         }
 
-        footer {
-            margin-top: 5rem;
-            border-top: 1px solid #262626;
-            padding-top: 1.5rem;
-            font-size: 0.85rem;
-            color: #666666;
+        .features-list {
+            list-style: none;
+            border-top: 1px solid var(--border);
+            padding-top: 25px;
+        }
+
+        .features-list li {
+            font-size: 14px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li i {
+            color: var(--accent);
+            font-size: 12px;
+        }
+
+        /* Ads & Sponsorship Section */
+        .ads-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #171520 100%);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 60px;
             text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ads-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(var(--accent-rgb), 0.02));
+            pointer-events: none;
+        }
+
+        .ads-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .ads-section p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+        }
+
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .ad-slot {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .ad-slot:hover {
+            border-color: var(--accent);
+            color: var(--text-main);
+        }
+
+        /* Contact Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-box h4 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--accent);
+            color: var(--bg-main);
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(var(--accent-rgb), 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(var(--accent-rgb), 0.4);
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 42px;
+                letter-spacing: -1px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .ads-grid {
+                grid-template-columns: 1fr;
+            }
+            .ads-section {
+                padding: 40px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <div class="glow"></div>
+    <div class="glow-2"></div>
+
+    <nav>
+        <a href="#" class="logo">aungbobokyaw<span>.com</span></a>
+        <a href="#contact" class="nav-btn">အလုပ်အပ်ရန်</a>
+    </nav>
+
     <div class="container">
+        
         <header>
-            <h1>Aung Bo Bo Kyaw</h1>
-            <p class="subtitle">Web Developer & Creator</p>
+            <div class="badge">Next-Gen Tech Operations</div>
+            <h1>သင့်လုပ်ငန်းကို <span>နည်းပညာမြှင့်တင်ပြီး</span> ရောင်းအားကို အလိုအလျောက်မောင်းနှင်ပါ။</h1>
+            <p class="lead">လူအင်အားနှင့် အချိန်ကုန်မှုများကို ၉၀% ထိ လျှော့ချပြီး ဝင်ငွေတိုးစေမည့် လုပ်ငန်းသုံး Tech Solutions များနှင့် Automation စနစ်များ တည်ဆောက်ပေးသည်။</p>
         </header>
 
-        <section>
-            <h2>About Me</h2>
-            <p>မင်္ဂလာပါဗျာ။ ကျွန်တော်ကတော့ အောင်ဘိုဘိုကျော် ဖြစ်ပါတယ်။ လက်ရှိမှာ Vercel နဲ့ GitHub တို့ကို အသုံးချပြီး ခေတ်မီပြီး အမြန်နှုန်းကောင်းမွန်တဲ့ Website တွေကို ဖန်တီးနေပါတယ်။</p>
+        <section class="services-grid">
+            
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
+                <h3>Business Automation</h3>
+                <p>Google Workspace (Sheets, Forms, Gmail) များကို Apps Script ဖြင့် ချိတ်ဆက်ပြီး လက်ဖြင့်လုပ်ရသော အလုပ်များကို Auto လုပ်ဆောင်ပေးခြင်း။</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Auto PDF Invoice ပို့စနစ်</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Sheets to Telegram/Viber Alert</li>
+                    <li><i class="fa-solid fa-circle-check"></i> လူမှားယွင်းမှုစရိတ် 0% ဖြစ်စေရမည်</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+                <h3>Landing Page Setup</h3>
+                <p>TikTok နှင့် Facebook Ads များမှ ဝင်လာသော မပြတ်သားသည့် Traffic များကို အရောင်းအဖြစ် ပြောင်းလဲပေးမည့် အလွန်မြန်ဆန်သော တစ်မျက်နှာစာ Website များ။</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> High-Converting Copywriting</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Google Tech Ecosystem အသုံးပြုခြင်း</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Hosting ဖိုး၊ Domain ဖိုး သက်သာခြင်း</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h3>Google Map SEO</h3>
+                <p>ဒေသတွင်း ရှာဖွေမှုများတွင် သင့်လုပ်ငန်း သို့မဟုတ် ဆိုင်နေရာကို Map ပေါ်၌ ထိပ်ဆုံးမှ ရှာတွေ့နိုင်အောင် Local SEO စနစ်တကျ ပြုပြင်ပြင်ဆင်ပေးခြင်း။</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Google My Business Setup</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Review & Reputation Management</li>
+                    <li><i class="fa-solid fa-circle-check"></i> ဆိုင်သို့ တိုက်ရိုက်လမ်းညွှန်မှု မြင့်တက်စေခြင်း</li>
+                </ul>
+            </div>
+
         </section>
 
-        <section>
-            <h2>Connect & Projects</h2>
-            <div class="links-grid">
-                <a href="https://github.com" target="_blank" class="card">
-                    <h3>GitHub</h3>
-                    <p>ကျွန်တော့်ရဲ့ Code Projects များကို ကြည့်ရန်</p>
-                </a>
-                <a href="#" class="card">
-                    <h3>My Resume</h3>
-                    <p>ကျွန်တော့်ရဲ့ CV ဖတ်ရှုရန်</p>
-                </a>
-                <a href="https://facebook.com" target="_blank" class="card">
-                    <h3>Facebook</h3>
-                    <p>လူမှုကွန်ရက်မှတစ်ဆင့် ဆက်သွယ်ရန်</p>
-                </a>
-                <a href="mailto:your-email@example.com" class="card">
-                    <h3>Email Me</h3>
-                    <p>တိုက်ရိုက် အီးမေးလ် ပို့ရန်</p>
-                </a>
+        <section class="ads-section">
+            <h2>📢 Advertise With Us</h2>
+            <p>နည်းပညာစိတ်ဝင်စားသူများ၊ လုပ်ငန်းရှင်များနှင့် Developer များ ဝင်ရောက်ကြည့်ရှုသည့် ဤနေရာတွင် သင့်ထုတ်ကုန် သို့မဟုတ် ဝန်ဆောင်မှုကို ထည့်သွင်းကြော်ငြာပါ။</p>
+            <div class="ads-grid">
+                <div class="ad-slot">
+                    <i class="fa-solid fa-rectangle-ad" style="display:block; font-size: 20px; margin-bottom:10px; color:var(--accent);"></i>
+                    Prime Banner Slot Available
+                </div>
+                <div class="ad-slot">
+                    <i class="fa-solid fa-handshake" style="display:block; font-size: 20px; margin-bottom:10px; color:var(--accent);"></i>
+                    Sponsored Content / Partners
+                </div>
             </div>
         </section>
 
-        <footer>
-            <p>© 2026 Aung Bo Bo Kyaw. Built with Vercel & GitHub.</p>
+        <footer id="contact">
+            <div class="cta-box">
+                <h4>လုပ်ငန်းတိုးတက်ဖို့ တွေဝေမနေပါနဲ့။</h4>
+                <a href="mailto:your-email@gmail.com" class="contact-link">
+                    ယနေ့ပဲ ဆွေးနွေးတိုင်ပင်ရန် <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <p class="footer-note">© 2026 aungbobokyaw.com. All Rights Reserved. Powered by Google Ecosystem.</p>
+            </div>
         </footer>
+
     </div>
 
 </body>
