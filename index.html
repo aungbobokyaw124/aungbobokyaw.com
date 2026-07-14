@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXORA - Business Automation | Landing Page | Google Map Services</title>
-    <meta name="description" content="NEXORA provides Business Automation, Landing Page Setup, and Google Map Services. Together We Grow, Together We Succeed.">
+    <meta name="description" content="NEXORA - အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့။ Business Automation, Landing Page ရေးဆွဲခြင်း, Google Map ဝန်ဆောင်မှုများ။">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CODE"
@@ -21,6 +24,47 @@
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: #fff;
             min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* ========== နဖူးစည်း Marquee Bar ========== */
+        .marquee-bar {
+            width: 100%;
+            background: linear-gradient(90deg, #6c5ce7, #00d2ff);
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marqueeScroll 35s linear infinite;
+            white-space: nowrap;
+        }
+        .marquee-item {
+            display: inline-block;
+            margin-right: 80px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .marquee-item .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            margin-right: 12px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
         
         /* Header */
@@ -28,12 +72,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
+            padding: 15px 50px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .logo-container {
             display: flex;
@@ -41,127 +86,249 @@
             gap: 15px;
         }
         .logo-placeholder {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.1);
-            border: 2px dashed rgba(255,255,255,0.4);
-            border-radius: 12px;
+            width: 55px;
+            height: 55px;
+            background: rgba(255,255,255,0.08);
+            border: 2px dashed rgba(0,210,255,0.5);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            color: rgba(255,255,255,0.6);
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
             text-align: center;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
         }
         .brand-name {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            font-size: 30px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00d2ff, #6c5ce7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+        }
+        nav {
+            display: flex;
+            gap: 25px;
         }
         nav a {
-            color: #fff;
+            color: #ccc;
             text-decoration: none;
-            margin-left: 30px;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 15px;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 20px;
         }
         nav a:hover {
-            color: #00d2ff;
+            color: #fff;
+            background: rgba(0,210,255,0.15);
+        }
+        
+        /* ========== Floating Contact Icons (ညာဘက်အောက်ခြေ) ========== */
+        .floating-icons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+        .floating-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: all 0.3s;
+            position: relative;
+        }
+        .floating-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        }
+        .floating-icon .tooltip {
+            position: absolute;
+            right: 70px;
+            background: rgba(0,0,0,0.85);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .floating-icon:hover .tooltip {
+            opacity: 1;
+        }
+        
+        /* Viber Icon */
+        .viber-float {
+            background: #7360f2;
+        }
+        .viber-float:hover {
+            background: #5a4bd1;
+        }
+        
+        /* Email Icon */
+        .email-float {
+            background: #00d2ff;
+        }
+        .email-float:hover {
+            background: #00b8e6;
         }
         
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 80px 20px 60px;
+            padding: 70px 20px 50px;
+            position: relative;
+        }
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
         .hero h1 {
-            font-size: 48px;
+            font-size: 55px;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #00d2ff, #3a7bd5, #00d2ff);
+            background: linear-gradient(90deg, #00d2ff, #a29bfe, #00d2ff);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+            to { background-position: 200% center; }
         }
         .tagline {
-            font-size: 22px;
-            color: #ccc;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
-        .tagline span {
-            display: block;
-            font-size: 18px;
-            color: #888;
-            margin-top: 5px;
+        .sub-tagline {
+            font-size: 17px;
+            color: #aaa;
+            margin-bottom: 40px;
         }
         
-        /* Ad Space - Top Banner */
+        /* Hero Ad Banner */
         .ad-banner {
             max-width: 728px;
             height: 90px;
-            margin: 0 auto 40px;
-            background: rgba(255,255,255,0.05);
-            border: 1px dashed rgba(255,255,255,0.2);
+            margin: 0 auto 30px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-size: 14px;
+            color: #555;
+            font-size: 13px;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #00d2ff;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 50px;
+            font-size: 15px;
         }
         
         /* Services */
         .services {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
-            padding: 20px 50px 60px;
+            padding: 20px 30px 60px;
         }
         .service-card {
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            width: 320px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 40px 28px;
+            width: 340px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00d2ff, #6c5ce7);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .service-card:hover::before {
+            opacity: 1;
         }
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,210,255,0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            border-color: rgba(0,210,255,0.3);
         }
         .service-icon {
-            font-size: 50px;
+            font-size: 55px;
             margin-bottom: 20px;
         }
         .service-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #00d2ff;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #fff;
         }
         .service-card p {
             color: #bbb;
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.7;
         }
         
         /* YouTube Section */
         .youtube-section {
             text-align: center;
-            padding: 40px 20px;
-        }
-        .youtube-section h2 {
-            margin-bottom: 30px;
-            color: #00d2ff;
+            padding: 40px 20px 30px;
         }
         .youtube-container {
-            max-width: 700px;
+            max-width: 720px;
             margin: 0 auto;
             position: relative;
-            padding-bottom: 40%;
+            padding-bottom: 42%;
             height: 0;
+            border-radius: 16px;
+            overflow: hidden;
         }
         .youtube-container iframe {
             position: absolute;
@@ -169,77 +336,117 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 15px;
         }
         
-        /* Ad Space - Middle */
+        /* Mid Ad */
         .ad-rectangle {
             max-width: 336px;
             height: 280px;
-            margin: 40px auto;
-            background: rgba(255,255,255,0.05);
-            border: 1px dashed rgba(255,255,255,0.2);
+            margin: 50px auto;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: #555;
+            font-size: 13px;
+        }
+        
+        /* Contact Section (အောက်ခြေ) */
+        .contact-section {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+        .contact-cards {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .contact-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 30px 25px;
+            width: 280px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .viber-card:hover {
+            border-color: #7360f2;
+            background: rgba(115,96,242,0.1);
+        }
+        .email-card:hover {
+            border-color: #00d2ff;
+            background: rgba(0,210,255,0.1);
+        }
+        .contact-icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        .viber-icon-circle {
+            background: #7360f2;
+        }
+        .email-icon-circle {
+            background: rgba(0,210,255,0.3);
+            border: 2px solid #00d2ff;
+        }
+        .contact-label {
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .contact-value {
+            color: #bbb;
             font-size: 14px;
         }
         
-        /* Contact */
-        .contact-section {
+        /* Advertise Section */
+        .advertise-section {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px 60px;
         }
-        .contact-section h2 {
-            margin-bottom: 30px;
+        .advertise-box {
+            max-width: 600px;
+            margin: 30px auto 0;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+        }
+        .advertise-box p {
+            color: #bbb;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .advertise-box a {
             color: #00d2ff;
-        }
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .contact-btn {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 30px;
-            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s;
-        }
-        .viber-btn {
-            background: #7360f2;
-            color: #fff;
-        }
-        .viber-btn:hover {
-            background: #5a4bd1;
-            transform: scale(1.05);
-        }
-        .email-btn {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .email-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.05);
-        }
-        .contact-icon {
-            font-size: 24px;
         }
         
         /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             color: #666;
-            font-size: 14px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
         footer a {
             color: #00d2ff;
@@ -250,99 +457,172 @@
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
+                gap: 12px;
+                padding: 12px 15px;
+            }
+            nav {
+                gap: 8px;
             }
             nav a {
-                margin: 0 10px;
-                font-size: 14px;
+                font-size: 13px;
+                padding: 6px 12px;
             }
             .hero h1 {
-                font-size: 32px;
+                font-size: 36px;
+            }
+            .tagline {
+                font-size: 20px;
+            }
+            .sub-tagline {
+                font-size: 14px;
             }
             .services {
-                padding: 20px;
+                padding: 10px 15px 40px;
             }
             .service-card {
                 width: 100%;
-                max-width: 350px;
+                max-width: 360px;
+            }
+            .section-title {
+                font-size: 26px;
             }
             .youtube-container {
                 padding-bottom: 56%;
+            }
+            .contact-cards {
+                gap: 15px;
+            }
+            .contact-card {
+                width: 90%;
+                max-width: 300px;
+            }
+            .marquee-item {
+                font-size: 13px;
+                margin-right: 40px;
+            }
+            .floating-icons {
+                bottom: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+            .floating-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+            .floating-icon .tooltip {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- ==================== နဖူးစည်း Marquee ==================== -->
+    <div class="marquee-bar">
+        <div class="marquee-content">
+            <span class="marquee-item"><span class="dot"></span>⚙️ Business Automation ဝန်ဆောင်မှု</span>
+            <span class="marquee-item"><span class="dot"></span>🌐 Landing Page ရေးဆွဲခြင်း</span>
+            <span class="marquee-item"><span class="dot"></span>📍 Google Map Services</span>
+            <span class="marquee-item"><span class="dot"></span>📞 Viber: 09794848575</span>
+            <span class="marquee-item"><span class="dot"></span>📧 admin@aungbobokyaw.com</span>
+            <span class="marquee-item"><span class="dot"></span>🚀 အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့</span>
+            <span class="marquee-item"><span class="dot"></span>💼 လုပ်ငန်းခွင်ကို စနစ်တကျဖြစ်စေမယ့် Automation</span>
+            
+            <!-- Duplicate -->
+            <span class="marquee-item"><span class="dot"></span>⚙️ Business Automation ဝန်ဆောင်မှု</span>
+            <span class="marquee-item"><span class="dot"></span>🌐 Landing Page ရေးဆွဲခြင်း</span>
+            <span class="marquee-item"><span class="dot"></span>📍 Google Map Services</span>
+            <span class="marquee-item"><span class="dot"></span>📞 Viber: 09794848575</span>
+            <span class="marquee-item"><span class="dot"></span>📧 admin@aungbobokyaw.com</span>
+            <span class="marquee-item"><span class="dot"></span>🚀 အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့</span>
+            <span class="marquee-item"><span class="dot"></span>💼 လုပ်ငန်းခွင်ကို စနစ်တကျဖြစ်စေမယ့် Automation</span>
+        </div>
+    </div>
+
+    <!-- ==================== Floating Contact Icons ==================== -->
+    <div class="floating-icons">
+        <!-- Viber Icon -->
+        <a href="viber://chat?number=09794848575" class="floating-icon viber-float" title="Viber">
+            <i class="fa-brands fa-viber"></i>
+            <span class="tooltip">Viber: 09794848575</span>
+        </a>
+        <!-- Email Icon -->
+        <a href="mailto:admin@aungbobokyaw.com" class="floating-icon email-float" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+            <span class="tooltip">admin@aungbobokyaw.com</span>
+        </a>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="logo-container">
-            <!-- Logo Placeholder - Your Logo Image Here -->
-            <div class="logo-placeholder">
-                <!-- Replace with: <img src="your-logo.png" alt="NEXORA Logo" style="width:60px;height:60px;"> -->
+            <!-- Logo နေရာ -->
+            <div class="logo-placeholder" id="logoContainer">
+                <!-- Logo ပုံထည့်ရန် အောက်ပါအတိုင်း ပြောင်းပါ -->
+                <!-- <img src="your-logo.png" alt="NEXORA Logo"> -->
                 LOGO<br>HERE
             </div>
             <div class="brand-name">NEXORA</div>
         </div>
         <nav>
-            <a href="#services">Services</a>
-            <a href="#youtube">YouTube</a>
-            <a href="#contact">Contact</a>
+            <a href="#services">ဝန်ဆောင်မှုများ</a>
+            <a href="#youtube">ဗီဒီယို</a>
+            <a href="#contact">ဆက်သွယ်ရန်</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-glow"></div>
         <h1>NEXORA</h1>
-        <p class="tagline">
-            Together We Grow Together We Succeed
-            <span>Your Partner in Digital Transformation</span>
-        </p>
+        <p class="tagline">အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့</p>
+        <p class="sub-tagline">Together We Grow, Together We Succeed 🚀</p>
         
         <!-- Google AdSense Banner -->
         <div class="ad-banner">
-            <!-- Google AdSense Ad Unit (728x90) -->
             <ins class="adsbygoogle"
                  style="display:inline-block;width:728px;height:90px"
                  data-ad-client="ca-pub-YOUR_ADSENSE_CODE"
                  data-ad-slot="YOUR_AD_SLOT"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            <span style="color:#666;font-size:12px;">Advertisement</span>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
-        <!-- Business Automation -->
-        <div class="service-card">
-            <div class="service-icon">⚙️</div>
-            <h3>Business Automation</h3>
-            <p>Streamline your workflow with smart automation solutions. Save time, reduce errors, and scale your business efficiently.</p>
-        </div>
+    <section id="services">
+        <h2 class="section-title">⚡ ဝန်ဆောင်မှုများ</h2>
+        <p class="section-subtitle">သင့်လုပ်ငန်းအတွက် အကောင်းဆုံး ဒစ်ဂျစ်တယ်ဖြေရှင်းချက်များ</p>
         
-        <!-- Landing Page Setup -->
-        <div class="service-card">
-            <div class="service-icon">🚀</div>
-            <h3>Landing Page Setup</h3>
-            <p>High-converting landing pages designed to capture leads and drive sales. Fast, responsive, and SEO-optimized.</p>
-        </div>
-        
-        <!-- Google Map Services -->
-        <div class="service-card">
-            <div class="service-icon">📍</div>
-            <h3>Google Map Services</h3>
-            <p>Boost your local visibility with Google Maps optimization. Get found by customers near you instantly.</p>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Business Automation</h3>
+                <p>လုပ်ငန်းခွင်ကို စနစ်တကျဖြစ်စေမယ့် Automation စနစ်များ။ ထပ်တလဲလဲ အလုပ်တွေကို စက်နဲ့အစားထိုးပြီး အချိန်ကုန် လူပင်ပန်း သက်သာစေပါတယ်။</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Landing Page Setup</h3>
+                <p>ဖမ်းစားနိုင်တဲ့ Landing Page တွေ ဖန်တီးပေးပါတယ်။ ဖောက်သည်တွေကို ဆွဲဆောင်ပြီး အရောင်းတိုးစေမယ့် လှပမြန်ဆန်တဲ့ စာမျက်နှာများ။</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📍</div>
+                <h3>Google Map Services</h3>
+                <p>Google Map မှာ သင့်လုပ်ငန်းကို လူတွေ အလွယ်တကူ ရှာတွေ့စေဖို့ မှန်ကန်တဲ့နေရာသတ်မှတ်ခြင်းနဲ့ လူကြည့်များအောင် ပြုလုပ်ပေးပါတယ်။</p>
+            </div>
         </div>
     </section>
 
     <!-- YouTube Section -->
     <section id="youtube" class="youtube-section">
-        <h2>📺 Watch Our Videos</h2>
+        <h2 class="section-title">📺 ကျွန်ုပ်တို့၏ ဗီဒီယိုများ</h2>
+        <p class="section-subtitle">NEXORA အကြောင်း ပိုမိုသိရှိရန် ကြည့်ရှုပါ</p>
+        
         <div class="youtube-container">
-            <!-- Replace with your YouTube embed link -->
             <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-                    title="NEXORA YouTube Video" 
+                    title="NEXORA YouTube" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
@@ -351,38 +631,52 @@
         
         <!-- Google AdSense Rectangle -->
         <div class="ad-rectangle">
-            <!-- Google AdSense Ad Unit (336x280) -->
             <ins class="adsbygoogle"
                  style="display:inline-block;width:336px;height:280px"
                  data-ad-client="ca-pub-YOUR_ADSENSE_CODE"
                  data-ad-slot="YOUR_AD_SLOT_2"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            <span style="color:#666;font-size:12px;">Advertisement</span>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
-        <h2>📞 Let's Work Together</h2>
-        <div class="contact-buttons">
-            <!-- Viber Contact -->
-            <a href="viber://chat?number=09794848575" class="contact-btn viber-btn">
-                <span class="contact-icon">💬</span>
-                Viber: 09794848575
+        <h2 class="section-title">📞 ဆက်သွယ်ရန်</h2>
+        <p class="section-subtitle">အတူတူလက်တွဲပြီး အောင်မြင်မှုဆီသို့ လှမ်းကြပါစို့</p>
+        
+        <div class="contact-cards">
+            <a href="viber://chat?number=09794848575" class="contact-card viber-card">
+                <div class="contact-icon-circle viber-icon-circle">
+                    <i class="fa-brands fa-viber"></i>
+                </div>
+                <span class="contact-label">Viber</span>
+                <span class="contact-value">09794848575</span>
             </a>
-            <!-- Email Contact -->
-            <a href="mailto:admin@aungbobokyaw.com" class="contact-btn email-btn">
-                <span class="contact-icon">📧</span>
-                admin@aungbobokyaw.com
+            
+            <a href="mailto:admin@aungbobokyaw.com" class="contact-card email-card">
+                <div class="contact-icon-circle email-icon-circle">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <span class="contact-label">Email</span>
+                <span class="contact-value">admin@aungbobokyaw.com</span>
             </a>
+        </div>
+    </section>
+
+    <!-- Advertise Section -->
+    <section class="advertise-section">
+        <h2 class="section-title">📢 ကြော်ငြာ ထည့်သွင်းလိုပါက</h2>
+        <div class="advertise-box">
+            <p>သင့်လုပ်ငန်းအတွက် NEXORA Website တွင် ကြော်ငြာထည့်သွင်းလိုပါက ဆက်သွယ်ပါ။</p>
+            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:admin@aungbobokyaw.com">admin@aungbobokyaw.com</a></p>
+            <p><i class="fa-brands fa-viber"></i> <a href="viber://chat?number=09794848575">09794848575 (Viber)</a></p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 <a href="#">NEXORA</a>. All rights reserved. | 
-        <a href="mailto:admin@aungbobokyaw.com">admin@aungbobokyaw.com</a></p>
-        <p style="margin-top:8px;">Together We Grow, Together We Succeed 🚀</p>
+        <p>&copy; 2025 <a href="#">NEXORA</a>. All rights reserved.</p>
+        <p style="margin-top:8px;">အတူတူလက်တွဲ အောင်မြင်မှုဆီသို့ 🚀 | Together We Grow, Together We Succeed</p>
     </footer>
 
 </body>
