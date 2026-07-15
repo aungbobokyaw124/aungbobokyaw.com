@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NEXORA provides Business Automation, Landing Pages, Google Business Solutions, AI Resources and Digital Knowledge. Together We Grow, Together We Succeed.">
-    <meta name="keywords" content="Business Automation, Landing Page, Google Business, AI, Digital Solutions">
+    <meta name="description" content="Professional Business Automation, Landing Pages, Google Business Solutions, and Digital Agency Services in Myanmar.">
     <title>Services & Pricing Plans - NEXORA</title>
 
     <style>
@@ -31,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* PREMIUM PRELOADER */
+        /* PREMIUM TYPEWRITER PRELOADER CSS */
         #preloader {
             position: fixed;
             top: 0;
@@ -46,46 +45,25 @@
         }
 
         .loader-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .loader-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #00b878, #081b36);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 184, 120, 0.3);
-            transform: scale(0); 
+            display: inline-block;
+            position: relative;
         }
 
         .loader-text {
-            color: white;
-            font-size: 28px;
-            letter-spacing: 2px;
-            opacity: 0;
-            margin-bottom: 12px;
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            border-right: 3px solid #00b878;
+            padding-right: 8px;
+            display: block;
         }
 
         .loader-text span {
             color: #00b878;
-        }
-
-        .loader-slogan {
-            color: #8899aa;
-            font-size: 15px;
-            font-weight: 500;
-            min-height: 20px;
-            letter-spacing: 0.5px;
-            border-right: 2px solid transparent;
-            display: inline-block;
         }
 
         /* TICKER / MARQUEE */
@@ -209,7 +187,7 @@
             display: block;
         }
 
-        /* SOLUTIONS HERO */
+        /* HERO SECTION */
         .solutions-hero {
             padding: 60px 25px 40px;
             text-align: center;
@@ -228,11 +206,22 @@
             font-size: 16px;
             color: var(--gray);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 15px;
             opacity: 0;
         }
 
-        /* SERVICES NAVIGATION FILTER */
+        .badge-mmk {
+            display: inline-block;
+            background: #e1f7ee;
+            color: #00875a;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            opacity: 0;
+        }
+
+        /* SERVICES FILTER */
         .service-filter {
             display: flex;
             justify-content: center;
@@ -255,9 +244,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 3px 10px rgba(0,0,0,0.02);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .filter-btn.active, .filter-btn:hover {
@@ -266,7 +252,7 @@
             border-color: var(--primary);
         }
 
-        /* SOLUTIONS CONTENT CONTAINER */
+        /* SERVICES CONTAINER */
         .services-container {
             max-width: 1100px;
             margin: 0 auto;
@@ -388,29 +374,39 @@
             font-weight: 900;
         }
 
-        .plan-btn {
+        /* DYNAMIC 2-STEP BUTTON CSS */
+        .order-btn {
             display: block;
+            width: 100%;
             text-align: center;
-            background: var(--primary);
-            color: white;
+            background: transparent;
+            color: var(--green);
+            border: 2px solid var(--green);
             padding: 14px;
             border-radius: 30px;
-            text-decoration: none;
             font-weight: 700;
             font-size: 14px;
-            transition: background 0.3s ease;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .price-card.popular .plan-btn {
-            background: var(--green);
+        .order-btn:hover {
+            background: rgba(0, 184, 120, 0.05);
         }
 
-        .price-card.popular .plan-btn:hover {
-            background: #009e66;
+        /* 1st Click Active State */
+        .order-btn.order-active {
+            background: var(--green) !important;
+            color: white !important;
+            border-color: var(--green) !important;
+            box-shadow: 0 0 15px rgba(0, 184, 120, 0.6);
+            animation: buttonGlow 1.5s infinite alternate;
         }
 
-        .plan-btn:hover {
-            background: #0d284f;
+        @keyframes buttonGlow {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 184, 120, 0.5); }
+            100% { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 184, 120, 0.8); }
         }
 
         /* FAQ SECTION */
@@ -476,45 +472,6 @@
             line-height: 1.5;
         }
 
-        /* FIXED VIBER BUTTON */
-        .viber-btn {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            background: #7360f2;
-            color: white;
-            height: 50px;
-            padding: 0 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 15px;
-            animation: pulse 2s infinite;
-            transition: transform 0.2s ease;
-        }
-
-        .viber-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .viber-btn svg {
-            width: 22px;
-            height: 22px;
-            fill: white;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
-            50% { box-shadow: 0 8px 30px rgba(115, 96, 242, .7); }
-            100% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
-        }
-
         /* FOOTER */
         footer {
             background: #081b36;
@@ -537,7 +494,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* MOBILE RESPONSIVE */
+        /* RESPONSIVE DESIGN */
         @media(max-width:900px) {
             .pricing-grid {
                 grid-template-columns: 1fr;
@@ -549,6 +506,7 @@
             .brand h1 { font-size: 20px; }
             .service-main-title { font-size: 22px; }
             .filter-btn { padding: 10px 16px; font-size: 13px; }
+            .loader-text { font-size: 24px; }
         }
     </style>
 </head>
@@ -557,21 +515,12 @@
 
     <div id="preloader">
         <div class="loader-content">
-            <div class="loader-logo">
-                <img src="logo.png" alt="NEXORA Logo">
-            </div>
-            <h1 class="loader-text">NEX<span>ORA</span></h1>
-            <div class="loader-slogan"></div>
+            <h1 class="loader-text">Service & <span>Pricing</span></h1>
         </div>
     </div>
 
     <div class="ticker-wrap">
         <div class="ticker">
-            <span>သင့်လုပ်ငန်းအတွက် <em>Smart Digital Solutions</em></span>
-            <span><em>Website & Landing Page</em> ဖန်တီးခြင်း</span>
-            <span><em>Business Automation</em> စနစ်တည်ဆောက်ခြင်း</span>
-            <span><em>Google Maps/Business</em> မြင်သာမှု တိုးတက်စေခြင်း</span>
-            <span><em>AI</em> နှင့် <em>Digital Knowledge</em> မျှဝေခြင်း</span>
             <span>သင့်လုပ်ငန်းအတွက် <em>Smart Digital Solutions</em></span>
             <span><em>Website & Landing Page</em> ဖန်တီးခြင်း</span>
             <span><em>Business Automation</em> စနစ်တည်ဆောက်ခြင်း</span>
@@ -600,8 +549,9 @@
     </header>
 
     <section class="solutions-hero">
-        <h2>Services & Pricing Plans</h2>
-        <p>Choose the perfect digital solution for your business. All prices are one-time payments (except Social Media packages which are billed monthly).</p>
+        <h2>Our Services & Pricing Plans</h2>
+        <p>Choose the perfect digital solution for your business.</p>
+        <div class="badge-mmk">💼 All prices in MMK</div>
     </section>
 
     <div class="service-filter">
@@ -619,7 +569,7 @@
         <section id="landing" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">🌐 Landing Page Design & Development</h2>
-                <p class="service-desc">Professional, high-converting landing pages designed to turn visitors into customers. Perfect for product launches, lead generation, and marketing campaigns.</p>
+                <p class="service-desc">Professional, high-converting landing pages designed to turn visitors into customers.</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
@@ -635,10 +585,10 @@
                             <li>Delivery: 3-5 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Landing Page - Basic" data-price="150000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
-                    <span class="badge">Most Popular</span>
+                    <span class="badge">⭐ Most Popular</span>
                     <div>
                         <div class="plan-name">Standard Package</div>
                         <div class="plan-price">350,000 <span>MMK</span></div>
@@ -646,15 +596,15 @@
                             <li>3-Page Design (Main + Thank You + 404)</li>
                             <li>Mobile Responsive Design</li>
                             <li>Custom Graphics & Icons</li>
-                            <li>Basic SEO Setup (Meta Tags, Open Graph)</li>
+                            <li>Basic SEO Setup</li>
                             <li>Smooth Animations & Transitions</li>
                             <li>Contact Form with Validation</li>
-                            <li>Social Media Links Integration</li>
+                            <li>Social Media Links</li>
                             <li>2 Rounds of Revisions</li>
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Landing Page - Standard" data-price="350000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -663,17 +613,16 @@
                         <ul class="features-list">
                             <li>Up to 5 Pages Design</li>
                             <li>Advanced Mobile Optimization</li>
-                            <li>Advanced SEO Setup (Schema Markup, Sitemap)</li>
+                            <li>Advanced SEO Setup (Schema, Sitemap)</li>
                             <li>A/B Testing Setup (2 Variants)</li>
-                            <li>Google Analytics Integration</li>
-                            <li>Facebook Pixel Integration</li>
+                            <li>Google Analytics + Facebook Pixel</li>
                             <li>Performance Optimization</li>
                             <li>Unlimited Revisions</li>
                             <li>Delivery: 14-21 Days</li>
                             <li>1 Month Free Support</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Landing Page - Premium" data-price="600000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -681,7 +630,7 @@
         <section id="telegram" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">🤖 Telegram Bot Development</h2>
-                <p class="service-desc">Custom Telegram bots to automate your business operations. From simple command bots to full-featured mini apps with payment integration.</p>
+                <p class="service-desc">Custom Telegram bots to automate your business operations.</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
@@ -692,51 +641,50 @@
                             <li>Up to 5 Custom Commands</li>
                             <li>Simple Menu Navigation</li>
                             <li>Text & Button Responses</li>
-                            <li>1 Language Support (English or Myanmar)</li>
+                            <li>1 Language (English or Myanmar)</li>
                             <li>Basic Error Handling</li>
                             <li>Delivery: 5-7 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Telegram Bot - Basic" data-price="200000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
-                    <span class="badge">Most Popular</span>
+                    <span class="badge">⭐ Most Popular</span>
                     <div>
                         <div class="plan-name">Standard Package</div>
                         <div class="plan-price">500,000 <span>MMK</span></div>
                         <ul class="features-list">
                             <li>Up to 20 Custom Commands</li>
                             <li>Interactive Menu System</li>
-                            <li>Database Integration (Google Sheets / Firebase)</li>
-                            <li>Payment Gateway Integration (KBZ Pay / Wave Pay)</li>
+                            <li>Database Integration</li>
+                            <li>Payment Gateway (KBZ Pay / Wave Pay)</li>
                             <li>User Registration & Profile</li>
-                            <li>Admin Panel for Management</li>
+                            <li>Admin Panel</li>
                             <li>Broadcast Message Feature</li>
                             <li>2 Languages Support</li>
                             <li>Delivery: 14-21 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Telegram Bot - Standard" data-price="500000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
                         <div class="plan-name">Premium Package</div>
                         <div class="plan-price">1,200,000 <span>MMK</span></div>
                         <ul class="features-list">
-                            <li>Unlimited Custom Commands</li>
+                            <li>Unlimited Commands</li>
                             <li>Full Mini App Experience</li>
-                            <li>Advanced Database (PostgreSQL / MongoDB)</li>
+                            <li>Advanced Database</li>
                             <li>Multiple Payment Gateways</li>
-                            <li>API Integration with External Services</li>
+                            <li>API Integration</li>
                             <li>User Analytics Dashboard</li>
-                            <li>Multi-language Support (3+ Languages)</li>
-                            <li>File/Media Management System</li>
+                            <li>Multi-language (3+ Languages)</li>
                             <li>Custom Admin Dashboard</li>
                             <li>Delivery: 30-45 Days</li>
                             <li>2 Months Free Support</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Telegram Bot - Premium" data-price="1200000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -744,7 +692,7 @@
         <section id="gsheet" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">📊 Google Sheet Automation</h2>
-                <p class="service-desc">Turn your spreadsheets into powerful automated systems. From simple formulas to complete business management dashboards.</p>
+                <p class="service-desc">Turn your spreadsheets into powerful automated systems.</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
@@ -760,10 +708,10 @@
                             <li>Delivery: 2-3 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Google Sheet - Basic" data-price="100000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
-                    <span class="badge">Most Popular</span>
+                    <span class="badge">⭐ Most Popular</span>
                     <div>
                         <div class="plan-name">Standard Package</div>
                         <div class="plan-price">250,000 <span>MMK</span></div>
@@ -771,33 +719,32 @@
                             <li>Custom Apps Script Functions</li>
                             <li>Automated Data Processing</li>
                             <li>Interactive Dashboard Setup</li>
-                            <li>Auto Email Reports Generation</li>
+                            <li>Auto Email Reports</li>
                             <li>Data Import/Export Automation</li>
                             <li>Charts & Visualization</li>
-                            <li>User Access Control (Basic)</li>
+                            <li>Basic User Access Control</li>
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Google Sheet - Standard" data-price="250000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
                         <div class="plan-name">Premium Package</div>
                         <div class="plan-price">500,000 <span>MMK</span></div>
                         <ul class="features-list">
-                            <li>Full Business System Setup (CRM, Inventory, Accounting)</li>
+                            <li>Full Business System (CRM, Inventory, Accounting)</li>
                             <li>Complex Apps Script Development</li>
                             <li>External API Integration</li>
                             <li>Multi-user Access with Permissions</li>
                             <li>Automated Backup System</li>
                             <li>Real-time Data Sync</li>
-                            <li>Custom Menu & UI</li>
                             <li>Training & Documentation</li>
                             <li>Delivery: 14-21 Days</li>
                             <li>1 Month Free Support</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Google Sheet - Premium" data-price="500000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -805,7 +752,7 @@
         <section id="website" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">💻 Business Website Development</h2>
-                <p class="service-desc">Professional multi-page websites for your business, company, or organization. Built with modern CMS for easy content management.</p>
+                <p class="service-desc">Professional multi-page websites with modern CMS.</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
@@ -822,16 +769,16 @@
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Business Website - Basic" data-price="300000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
-                    <span class="badge">Most Popular</span>
+                    <span class="badge">⭐ Most Popular</span>
                     <div>
                         <div class="plan-name">Standard Package</div>
                         <div class="plan-price">700,000 <span>MMK</span></div>
                         <ul class="features-list">
                             <li>Up to 10 Pages</li>
-                            <li>Custom Design (Figma/Canva)</li>
+                            <li>Custom Design</li>
                             <li>WordPress CMS Setup</li>
                             <li>Blog with Categories</li>
                             <li>Advanced SEO (Yoast/RankMath)</li>
@@ -842,7 +789,7 @@
                             <li>Delivery: 14-21 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Business Website - Standard" data-price="700000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -851,19 +798,18 @@
                         <ul class="features-list">
                             <li>Unlimited Pages</li>
                             <li>Custom CMS or WordPress Advanced</li>
-                            <li>E-commerce Functionality (up to 50 products)</li>
+                            <li>E-commerce (up to 50 products)</li>
                             <li>Payment Gateway Integration</li>
                             <li>Membership/Login System</li>
                             <li>Advanced Security Setup</li>
-                            <li>Speed Optimization</li>
-                            <li>CDN Setup</li>
+                            <li>Speed Optimization + CDN</li>
                             <li>Monthly Backup System</li>
                             <li>Unlimited Revisions</li>
                             <li>Delivery: 30-45 Days</li>
                             <li>2 Months Free Support</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Business Website - Premium" data-price="1500000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -871,46 +817,46 @@
         <section id="social" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">🎨 Social Media Content Design</h2>
-                <p class="service-desc">Eye-catching social media content that engages your audience. Monthly subscription packages for consistent brand presence.</p>
+                <p class="service-desc">Eye-catching social media content for consistent brand presence. (Monthly Subscription)</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
                     <div>
                         <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">150,000 <span>MMK / Mo.</span></div>
+                        <div class="plan-price">150,000 <span>MMK/Mo</span></div>
                         <ul class="features-list">
                             <li>10 Static Posts per Month</li>
                             <li>Facebook & Instagram Optimized</li>
-                            <li>Basic Brand Colors Applied</li>
+                            <li>Basic Brand Colors</li>
                             <li>Stock Images (Free)</li>
                             <li>1 Revision per Post</li>
                             <li>Delivery: 2-3 Days per Batch</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Social Media Content - Basic" data-price="150000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
-                    <span class="badge">Most Popular</span>
+                    <span class="badge">⭐ Most Popular</span>
                     <div>
                         <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">300,000 <span>MMK / Mo.</span></div>
+                        <div class="plan-price">300,000 <span>MMK/Mo</span></div>
                         <ul class="features-list">
                             <li>20 Static Posts per Month</li>
                             <li>4 Story Designs per Month</li>
-                            <li>Static & Simple Motion Graphics</li>
-                            <li>Brand Kit Setup (Colors, Fonts, Logo Usage)</li>
+                            <li>Static + Simple Motion Graphics</li>
+                            <li>Brand Kit Setup</li>
                             <li>Custom Graphics Creation</li>
                             <li>Content Calendar</li>
                             <li>2 Revisions per Post</li>
                             <li>Delivery: Weekly Batches</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Social Media Content - Standard" data-price="300000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
                         <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">500,000 <span>MMK / Mo.</span></div>
+                        <div class="plan-price">500,000 <span>MMK/Mo</span></div>
                         <ul class="features-list">
                             <li>30 Static Posts per Month</li>
                             <li>8 Story Designs per Month</li>
@@ -924,7 +870,7 @@
                             <li>Priority Support</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Social Media Content - Premium" data-price="500000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -932,7 +878,7 @@
         <section id="workflow" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">⚙️ Workflow Automation Setup</h2>
-                <p class="service-desc">Connect your apps and automate repetitive tasks. From simple notifications to complex multi-step workflows.</p>
+                <p class="service-desc">Connect your apps and automate repetitive tasks.</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
@@ -948,10 +894,10 @@
                             <li>Delivery: 3-5 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Workflow Automation - Basic" data-price="150000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
-                    <span class="badge">Most Popular</span>
+                    <span class="badge">⭐ Most Popular</span>
                     <div>
                         <div class="plan-name">Standard Package</div>
                         <div class="plan-price">350,000 <span>MMK</span></div>
@@ -965,7 +911,7 @@
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Workflow Automation - Standard" data-price="350000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -984,7 +930,7 @@
                             <li>1 Month Free Support</li>
                         </ul>
                     </div>
-                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                    <button class="order-btn" data-package="Workflow Automation - Premium" data-price="600000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -997,32 +943,32 @@
             
             <div class="faq-item">
                 <div class="faq-question">❓ Which package is right for my business?</div>
-                <div class="faq-answer">If you're just starting out, Basic packages are perfect. For growing businesses, Standard packages offer the best value. Premium packages are ideal for established businesses needing advanced features.</div>
+                <div class="faq-answer">Basic for startups, Standard for growing businesses (best value), Premium for established companies needing advanced features.</div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">❓ Can I upgrade my package later?</div>
-                <div class="faq-answer">Yes! You can upgrade from Basic to Standard or Premium at any time. You only pay the difference in price.</div>
+                <div class="faq-answer">Yes! Upgrade anytime and only pay the price difference.</div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">❓ What is the payment process?</div>
-                <div class="faq-answer">We require 50% advance payment to start the project, and the remaining 50% upon completion. We accept KBZ Pay, Wave Pay, and bank transfers.</div>
+                <div class="faq-answer">50% advance to start, 50% upon completion. We accept KBZ Pay, Wave Pay, and bank transfers.</div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">❓ How long does delivery take?</div>
-                <div class="faq-answer">Delivery times vary by package. Basic: 2-7 days, Standard: 7-21 days, Premium: 14-45 days. Exact timeline is provided in your quotation.</div>
+                <div class="faq-answer">Basic: 2-7 days, Standard: 7-21 days, Premium: 14-45 days depending on service.</div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">❓ Do you offer revisions?</div>
-                <div class="faq-answer">Yes! Basic includes 1 revision, Standard includes 2 revisions, and Premium includes unlimited revisions. Additional revisions beyond the package limit may incur extra charges.</div>
+                <div class="faq-answer">Basic: 1 revision, Standard: 2 revisions, Premium: Unlimited revisions.</div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">❓ Can I get a custom package?</div>
-                <div class="faq-answer">Absolutely! If our standard packages don't fit your needs, contact us for a custom quotation tailored to your specific requirements.</div>
+                <div class="faq-answer">Yes! Contact us for a custom quotation tailored to your needs.</div>
             </div>
         </div>
     </section>
@@ -1031,24 +977,16 @@
         <div class="notes-card">
             <h3>📝 Important Notes</h3>
             <ul class="notes-list">
-                <li>All prices are in Myanmar Kyat (MMK).</li>
-                <li>Domain and hosting costs are NOT included in Website packages.</li>
-                <li>Social Media Design is a monthly subscription service.</li>
+                <li>All prices in Myanmar Kyat (MMK).</li>
+                <li>Domain & hosting NOT included in Website packages.</li>
+                <li>Social Media Design is monthly subscription.</li>
                 <li>All other services are one-time payments.</li>
-                <li>Maintenance services available at 10-15% of project cost per month.</li>
-                <li>Custom packages available upon request.</li>
-                <li>Prices are subject to change without prior notice.</li>
-                <li>Quotations are valid for 7 days only.</li>
+                <li>Maintenance: 10-15% of project cost/month.</li>
+                <li>Prices subject to change.</li>
+                <li>Quotations valid for 7 days.</li>
             </ul>
         </div>
     </section>
-
-    <a href="https://viber.me/959794848575" class="viber-btn" target="_blank">
-        <svg viewBox="0 0 24 24">
-            <path d="M19.92 11.24a4.12 4.12 0 0 0-1.09-2.73 4.16 4.16 0 0 0-2.74-1.1h-.22c-.62 0-1.03.35-1.03.86 0 .47.36.83.91.85h.2c1.78.06 2.32.61 2.38 2.39v.2c.02.55.38.91.85.91.51 0 .86-.41.86-1.03v-.35zm2.93.02c.01-1.57-.38-2.95-1.19-4.14a8.288 8.288 0 0 0-3.95-3.08A8.69 8.69 0 0 0 14.53 3.5h-.26c-.63 0-1.02.37-1.02.87 0 .48.37.84.92.86h.18c4 .17 5.17 1.33 5.34 5.34v.18c.02.55.38.92.86.92.5 0 .87-.39.87-1.02v-.37v.01zm-7.6 4.88c-.62-.51-1.34-1.04-2.12-1.63-.44-.33-.6-.88-.36-1.38.31-.63.78-1.57.85-1.74.22-.53.07-1.12-.39-1.46L11 8.22c-.44-.33-1.03-.31-1.44.06-.51.46-1.4 1.35-1.51 2.22-.24 1.95.53 4.29 2.34 6.84 2.1 2.97 4.54 4.39 6.57 4.17.88-.1 1.68-1.07 2.11-1.6.34-.43.32-1.02-.04-1.43l-1.73-1.67c-.33-.47-.93-.61-1.45-.37-.16.07-1.03.52-1.62.83-.55.28-1.15.08-1.48-.36l-.01.01z"/>
-        </svg>
-        💬 Chat
-    </a>
 
     <footer>
         <h3>NEXORA</h3>
@@ -1059,41 +997,43 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        gsap.registerPlugin(ScrollTrigger);
 
+        // 1. DYNAMIC TYPEWRITER PRELOADER ANIMATION
         window.addEventListener('load', () => {
             const masterTl = gsap.timeline();
 
-            // PRELOADER TIMELINE
-            masterTl.to(".loader-logo", { scale: 1, duration: 0.7, ease: "back.out(1.7)" })
-                    .to(".loader-text", { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
-                    .to(".loader-slogan", { 
-                        text: "Together We Grow, Together We Succeed", 
-                        duration: 1.8, 
-                        ease: "none",
-                        style: { borderRight: "2px solid #00b878" }
-                    })
-                    .to(".loader-slogan", { borderRightColor: "transparent", repeat: 3, duration: 0.25, ease: "steps(1)" })
-                    .to("#preloader", { 
-                        yPercent: -100, 
-                        duration: 0.9, 
-                        ease: "power4.inOut" 
-                    })
-                    // HERO & FILTER REVEAL
-                    .to(".solutions-hero h2", { opacity: 1, y: 0, duration: 0.8, ease: "power4.out" }, "-=0.2")
-                    .to(".solutions-hero p", { opacity: 1, y: 0, duration: 0.6 }, "-=0.6")
-                    .to(".service-filter", { opacity: 1, y: 0, duration: 0.6 }, "-=0.5");
+            masterTl.to(".loader-text", {
+                width: "100%", 
+                duration: 1.5,
+                ease: "steps(25)"
+            })
+            .to(".loader-text", {
+                borderRightColor: "transparent",
+                repeat: 5,
+                duration: 0.15,
+                yoyo: true,
+                ease: "power1.inOut"
+            })
+            .to("#preloader", { 
+                yPercent: -100, 
+                duration: 0.8, 
+                ease: "power4.inOut" 
+            })
+            .to(".solutions-hero h2", { opacity: 1, y: 0, duration: 0.8, ease: "power4.out" }, "-=0.2")
+            .to(".solutions-hero p", { opacity: 1, y: 0, duration: 0.6 }, "-=0.6")
+            .to(".badge-mmk", { opacity: 1, y: 0, duration: 0.4 }, "-=0.4")
+            .to(".service-filter", { opacity: 1, y: 0, duration: 0.6 }, "-=0.3");
         });
 
-        // PRICE CARDS SCROLL TRIGGER
+        // 2. SCROLL TRIGGER ANIMATION FOR CARDS
         document.querySelectorAll('.service-section').forEach((section) => {
             gsap.to(section.querySelectorAll('.price-card'), {
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 80%",
+                    start: "top 85%",
                     toggleActions: "play none none none"
                 },
                 opacity: 1,
@@ -1104,13 +1044,12 @@
             });
         });
 
-        // FILTER FUNCTIONALITY
+        // 3. LIVE TAB FILTERING SYSTEM
         const filterBtns = document.querySelectorAll('.filter-btn');
         const serviceSections = document.querySelectorAll('.service-section');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Active Button styling
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
@@ -1119,7 +1058,6 @@
                 serviceSections.forEach(section => {
                     if (target === 'all' || section.id === target) {
                         section.style.display = 'block';
-                        // Refresh ScrollTrigger to recalculate layout
                         ScrollTrigger.refresh();
                     } else {
                         section.style.display = 'none';
@@ -1127,6 +1065,40 @@
                 });
             });
         });
+
+        // 4. TWO-STEP ORDER BUTTON FUNCTIONALITY
+        function handleOrderClick(btn) {
+            const currentText = btn.textContent.trim();
+            const tier = btn.getAttribute('data-tier'); // e.g., Basic, Standard, Premium
+
+            // ပထမအကြိမ် နှိပ်လိုက်သောအခါ
+            if (currentText.startsWith('Choose')) {
+                // တခြား နှိပ်ထားမိသမျှ ခလုတ်အားလုံးကို မူလအခြေအနေသို့ ပြန်ပြောင်းပေးခြင်း
+                document.querySelectorAll('.order-btn').forEach(otherBtn => {
+                    if (otherBtn !== btn && otherBtn.classList.contains('order-active')) {
+                        const oldTier = otherBtn.getAttribute('data-tier');
+                        otherBtn.textContent = 'Choose ' + oldTier;
+                        otherBtn.classList.remove('order-active');
+                    }
+                });
+
+                // လက်ရှိခလုတ်ကို ORDER အဖြစ်ပြောင်းလဲပြီး Animation/Design သွင်းခြင်း
+                btn.textContent = 'ORDER';
+                btn.classList.add('order-active');
+            } 
+            // ဒုတိယအကြိမ် ORDER စာသားပေါ်နေချိန် နှိပ်လိုက်သောအခါ
+            else if (currentText === 'ORDER') {
+                const packageName = btn.getAttribute('data-package');
+                const packagePrice = btn.getAttribute('data-price');
+
+                // အချက်အလက်များကို form.html က ယူသုံးနိုင်ရန် localStorage တွင် သိမ်းဆည်းခြင်း
+                localStorage.setItem('nexora_package', packageName);
+                localStorage.setItem('nexora_price', packagePrice);
+
+                // Form စာမျက်နှာသို့ လမ်းကြောင်းလွှဲပေးခြင်း
+                window.location.href = 'form.html';
+            }
+        }
     </script>
 
 </body>
