@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA | Knowledge Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Myanmar:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #081b36;
+            --green: #00b878;
+            --white: #ffffff;
+            --bg: #f6f9fc;
+            --text: #222;
+            --gray: #667085;
+            --light-gray: #e8ecf1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* HEADER & BRANDING */
+        header {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #00b878, #081b36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand h1 {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .brand span {
+            color: var(--green);
+        }
+
+        .dropdown-menu-trigger {
+            font-size: 28px;
+            color: var(--primary);
+            cursor: pointer;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            border-radius: 14px;
+            padding: 12px 0;
+            z-index: 20;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 22px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--bg);
+            color: var(--green);
+            padding-left: 26px;
+        }
+
+        .dropdown-menu-trigger:hover .dropdown-content {
+            display: block;
+        }
+
+        /* HERO SECTION */
+        .hub-hero {
+            background: white;
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .hub-hero h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .hub-hero h3 {
+            font-size: 18px;
+            color: var(--green);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hub-hero p {
+            font-size: 15px;
+            color: var(--gray);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* TOPIC FILTERS BUTTONS */
+        .filter-container {
+            position: sticky;
+            top: 81px;
+            background: rgba(246, 249, 252, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 900;
+            border-bottom: 1px solid rgba(8, 27, 54, 0.05);
+        }
+
+        .topic-filter-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .topic-btn {
+            background: white;
+            border: 2px solid var(--green);
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px rgba(0, 184, 120, 0.05);
+        }
+
+        .topic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 184, 120, 0.15);
+        }
+
+        .topic-btn.active {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 184, 120, 0.3);
+        }
+
+        /* ARTICLES CONTENT CONTAINER */
+        .articles-container {
+            max-width: 850px;
+            margin: 30px auto 60px;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .article-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .article-section.active-section {
+            display: block;
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* INDIVIDUAL ARTICLE CARD */
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(8, 27, 54, 0.03);
+            margin-bottom: 35px;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .article-cover-wrap {
+            width: 100%;
+            height: 350px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #e2e8f0;
+            margin-bottom: 25px;
+        }
+
+        .article-cover-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-card h4 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-left: 4px solid var(--green);
+            padding-left: 12px;
+            line-height: 1.4;
+        }
+
+        .article-body-text {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        /* CUSTOM IN-ARTICLE STYLING ELEMENT */
+        .article-body-text table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .article-body-text th, .article-body-text td {
+            border: 1px solid var(--light-gray);
+            padding: 10px 15px;
+            text-align: left;
+        }
+
+        .article-body-text th {
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* BOTTOM CTA SECTION */
+        .hub-cta-section {
+            background: linear-gradient(135deg, #081b36, #0d2b56);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hub-cta-section h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .cta-btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-btn.primary-green {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 184, 120, 0.2);
+        }
+
+        .cta-btn.primary-green:hover {
+            background: #009e66;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.outline-white {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .cta-btn.outline-white:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #06152a;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hub-hero h2 { font-size: 28px; }
+            .filter-container { top: 81px; }
+            .topic-filter-wrap {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .topic-btn {
+                padding: 10px 12px;
+                font-size: 13px;
+                text-align: center;
+            }
+            .article-card { padding: 20px; }
+            .article-cover-wrap { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="logo">
+                <img src="logo.png" alt="NEXORA Logo">
+            </div>
+            <h1>NEX<span>ORA</span></h1>
+        </div>
+        <div class="dropdown-menu-trigger">
+            ☰
+            <div class="dropdown-content">
+                <a href="index.html">🏠 Home</a>
+                <a href="explore.html">🌐 Services</a>
+                <a href="form.html">📋 Order Now</a>
+                <a href="payment.html">💳 Payment</a>
+                <a href="contact-us.html">📞 Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hub-hero">
+        <h2>📚 Knowledge Hub</h2>
+        <h3>သင့်လုပ်ငန်းအတွက် အသုံးဝင်မယ့် နည်းပညာဆိုင်ရာ ဗဟုသုတများ</h3>
+        <p>NEXORA မှ စုစည်းထားသော Digital Solutions ဆိုင်ရာ အခြေခံဗဟုသုတများ၊ လမ်းညွှန်ချက်များနှင့် အကြံပြုချက်များကို လေ့လာနိုင်ပါသည်။</p>
+    </section>
+
+    <div class="filter-container" id="filter-bar">
+        <div class="topic-filter-wrap">
+            <button class="topic-btn active" onclick="switchTab('web-design', this)">🌐 Web Design</button>
+            <button class="topic-btn" onclick="switchTab('telegram-bot', this)">🤖 Telegram Bot</button>
+            <button class="topic-btn" onclick="switchTab('automation', this)">📊 Automation</button>
+            <button class="topic-btn" onclick="switchTab('social-media', this)">🎨 Social Media</button>
+            <button class="topic-btn" onclick="switchTab('business-tips', this)">💡 Business Tips</button>
+            <button class="topic-btn" onclick="switchTab('nexora-updates', this)">🚀 NEXORA Updates</button>
+        </div>
+    </div>
+
+    <main class="articles-container" id="articles-anchor">
+
+        <section id="web-design" class="article-section active-section">
+            
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="landing.png" alt="Landing Page Design">
+                </div>
+                <h4>Landing Page ဆိုတာ ဘာလဲ?</h4>
+                <div class="article-body-text">
+                    Landing Page ဆိုတာ Website Visitor တွေကို သတ်မှတ်ထားတဲ့ လုပ်ဆောင်ချက်တစ်ခု (Action) ပြုလုပ်ဖို့ ဒီဇိုင်းထုတ်ထားတဲ့ သီးသန့် Web Page တစ်ခုဖြစ်ပါတယ်။
+
+                    ဥပမာ:
+                    • Product တစ်ခုကို ဝယ်ယူဖို့
+                    • Form တစ်ခုကို ဖြည့်ဖို့
+                    • Service တစ်ခုအတွက် Register လုပ်ဖို့
+                    • Free Trial စာရင်းသွင်းဖို့
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Landing Page</th>
+                                <th>Website</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ရည်ရွယ်ချက် တစ်ခုတည်း</td>
+                                <td>ရည်ရွယ်ချက် အမျိုးမျိုး</td>
+                            </tr>
+                            <tr>
+                                <td>Page တစ်ခုတည်း</td>
+                                <td>Page အများအပြား</td>
+                            </tr>
+                            <tr>
+                                <td>Menu Navigation မပါဝင်ပါ</td>
+                                <td>Menu Navigation ပါဝင်ပါသည်</td>
+                            </tr>
+                            <tr>
+                                <td>Conversion Focus</td>
+                                <td>Information Focus</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <strong>ဘာကြောင့် Landing Page လိုအပ်လဲ?</strong>
+
+                    ၁။ Focus ရှိခြင်း - Visitor တွေကို အာရုံမပြားစေဘဲ Action တစ်ခုတည်းကိုပဲ အာရုံစိုက်စေပါတယ်။
+                    ၂။ Conversion Rate မြင့်ခြင်း - ရည်ရွယ်ချက်တစ်ခုတည်းအတွက် ဒီဇိုင်းထုတ်ထားတာကြောင့် Website ထက် Conversion Rate ပိုမြင့်ပါတယ်။
+                    ၃။ Advertising အတွက် သင့်တော်ခြင်း - Facebook Ads, Google Ads တွေကနေ လာတဲ့ Traffic ကို Landing Page နဲ့ ချိတ်တာက ပိုပြီး အကျိုးရှိပါတယ်။
+                    ၄။ မြန်ဆန်ခြင်း - Page တစ်ခုတည်းဖြစ်တာကြောင့် Load Speed မြန်ပြီး User Experience ကောင်းပါတယ်။
+
+                    <strong>NEXORA မှာ ဘာတွေလုပ်ပေးလဲ?</strong>
+
+                    NEXORA မှာ သင့်လုပ်ငန်းအတွက် High-Converting Landing Page တွေကို Custom Design, Mobile Responsive, Fast Loading, SEO Optimized နှင့် Contact Form ပါဝင်တဲ့ စနစ်တွေနဲ့ တည်ဆောက်ပေးနေပါတယ်။
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="business.png" alt="Business Website Setup">
+                </div>
+                <h4>Business Website မှာ ဘာတွေပါသင့်လဲ?</h4>
+                <div class="article-body-text">
+                    သင့်လုပ်ငန်းအတွက် Website တစ်ခုတည်ဆောက်တော့မယ်ဆိုရင် အောက်ပါအချက်တွေ ပါဝင်ဖို့ အရေးကြီးပါတယ်။
+
+                    <strong>၁။ Home Page (ပင်မစာမျက်နှာ)</strong>
+                    Website ရဲ့ ပထမဆုံး အထင်ကရ စာမျက်နှာဖြစ်ပြီး လုပ်ငန်းရဲ့ အကျဉ်းချုပ်၊ ဘယ်လို Service တွေ ပေးလဲဆိုတာနဲ့ Visitor တွေကို ဆွဲဆောင်မယ့် Hero Section ပါဝင်ရပါမယ်။
+
+                    <strong>၂။ About Us (ကျွန်ုပ်တို့အကြောင်း)</strong>
+                    လုပ်ငန်းရဲ့ သမိုင်းကြောင်း၊ Mission & Vision၊ Team Members များနှင့် ဘာကြောင့် သင့်လုပ်ငန်းကို ရွေးချယ်သင့်လဲ ဆိုတဲ့အချက်တွေ ပါဝင်ပါတယ်။
+
+                    <strong>၃။ Services / Products (ဝန်ဆောင်မှုများ)</strong>
+                    ပေးနေတဲ့ Service တွေရဲ့ အသေးစိတ်၊ Product တွေဆိုရင် ဈေးနှုန်းနဲ့ ဓာတ်ပုံ ရှင်းလင်းစွာပြသဖို့ လိုအပ်ပါတယ်။
+
+                    <strong>၄။ Contact Us (ဆက်သွယ်ရန်)</strong>
+                    ဖုန်းနံပါတ်၊ Email၊ လိပ်စာ၊ Google Maps Location၊ Contact Form၊ Social Media Links နှင့် Viber / Telegram Link များ ထည့်သွင်းရပါမယ်။
+
+                    <strong>၅။ Blog / News (သတင်းများ)</strong>
+                    လုပ်ငန်းနဲ့ ဆိုင်တဲ့ ဆောင်းပါးများ၊ Promotion အစီအစဉ်များနှင့် Industry News များကို ဖော်ပြပေးနိုင်ပါတယ်။
+
+                    <strong>၆။ Mobile Responsive ဖြစ်ဖို့</strong>
+                    ယနေ့ခေတ်မှာ Visitor ၇၀% ကျော်က ဖုန်းကနေ Website ကို ဝင်ကြည့်တာဖြစ်ပါတယ်။ ဒါကြောင့် ဖုန်း၊ Tablet၊ Computer အားလုံးမှာ ကြည့်လို့ကောင်းအောင် Mobile Responsive Design ဖြစ်ဖို့ အရေးကြီးပါတယ်။
+
+                    <strong>၇။ SEO (Search Engine Optimization)</strong>
+                    Google မှာ ရှာလို့တွေ့ဖို့ SEO Setup လုပ်ထားဖို့ လိုပါတယ်။
+
+                    NEXORA မှာ ဒီအချက်အားလုံးပါဝင်တဲ့ Business Website တွေကို Basic (၃၀၀,၀၀၀ ကျပ်) ကနေစပြီး တည်ဆောက်ပေးနေပါတယ်။
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="seo.png" alt="SEO Basics Guide">
+                </div>
+                <h4>SEO ဆိုတာ ဘာလဲ? Beginner's Guide</h4>
+                <div class="article-body-text">
+                    SEO (Search Engine Optimization) ဆိုတာ သင့် Website ကို Google ရဲ့ Search Result တွေမှာ အပေါ်ဆုံးရောက်အောင် ပြုလုပ်တဲ့ နည်းလမ်းတွေကို ဆိုလိုပါတယ်။
+
+                    <strong>SEO ရဲ့ အရေးပါပုံ</strong>
+                    • အခမဲ့ Traffic - SEO ကောင်းရင် Google ကနေ Organic Traffic တွေ အခမဲ့ရပါတယ်။
+                    • ယုံကြည်မှုရှိခြင်း - Search Result ရဲ့ အပေါ်ဆုံးမှာ ပေါ်တဲ့ Website တွေကို လူတွေက ပိုယုံကြည်ကြပါတယ်။
+                    • ရေရှည်အကျိုး - Ads လိုမဟုတ်ဘဲ ရေရှည်မှာ Traffic ဆက်ရနေပါတယ်။
+
+                    <strong>SEO အမျိုးအစားများ</strong>
+
+                    <strong>၁။ On-Page SEO - သင့် Website ထဲမှာ လုပ်ရတဲ့ SEO</strong>
+                    Title & Meta Description, Heading Tags (H1, H2, H3), Image Alt Text, URL Structure နှင့် Content Quality တို့ဖြစ်ပါတယ်။
+
+                    <strong>၂။ Off-Page SEO - သင့် Website အပြင်မှာ လုပ်ရတဲ့ SEO</strong>
+                    Backlinks (တခြား Website ကနေ Link ချိတ်တာ)၊ Social Media Sharing နှင့် Google Business Profile တို့ ပါဝင်ပါတယ်။
+
+                    <strong>၃။ Technical SEO - Website ရဲ့ နည်းပညာပိုင်း</strong>
+                    Site Speed, Mobile Friendly, SSL Certificate (HTTPS), Sitemap နှင့် Schema Markup တို့ကို ပြင်ဆင်ရမှာဖြစ်ပါတယ်။
+
+                    NEXORA မှာ SEO ကို Landing Page (Standard & Premium)၊ Business Website (Standard & Premium) နှင့် Google Business Profile Setup များတွင် ထည့်သွင်းပြုလုပ်ပေးနေပါသည်။
+                </div>
+            </article>
+
+        </section>
+
+        <section id="telegram-bot" class="article-section">
+            
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="telegram.png" alt="Telegram Bot Operations">
+                </div>
+                <h4>Telegram Bot ဆိုတာ ဘာလဲ?</h4>
+                <div class="article-body-text">
+                    Telegram Bot ဆိုတာ Telegram App ထဲမှာ အလိုအလျောက် အလုပ်လုပ်ပေးတဲ့ Program တစ်ခုဖြစ်ပါတယ်။ သင့်လုပ်ငန်းအတွက် Customer Support, Order System, Payment System စတာတွေကို 24/7 အလုပ်လုပ်စေနိုင်ပါတယ်။
+
+                    <strong>Telegram Bot နဲ့ ဘာတွေလုပ်လို့ရလဲ?</strong>
+
+                    <strong>၁။ Customer Support Bot</strong>
+                    FAQ တွေကို အလိုအလျောက် ဖြေပေးခြင်း၊ Customer တွေရဲ့ မေးခွန်းတွေကို 24/7 ဖြေကြားပေးခြင်းနှင့် လိုအပ်လျှင် Admin ထံ လွှဲပြောင်းပေးခြင်း။
+
+                    <strong>၂။ E-commerce Bot</strong>
+                    Product တွေကို ပြသခြင်း၊ Order တင်ခြင်း၊ KBZ Pay, Wave Pay တို့ဖြင့် Payment လက်ခံခြင်းနှင့် Order Tracking ပြုလုပ်ခြင်း။
+
+                    <strong>၃။ Subscription Bot</strong>
+                    Member တွေကို စာရင်းသွင်းခြင်းနှင့် Auto Broadcast Message များဖြင့် Content များကို အချိန်မှန် ပို့ပေးခြင်း။
+
+                    <strong>၄။ Mini App Bot</strong>
+                    Telegram ထဲမှာပဲ Full Web App တစ်ခုလို အလုပ်လုပ်နိုင်ပြီး Booking System, Quiz သို့မဟုတ် Game စနစ်များ ပါဝင်နိုင်ခြင်း။
+
+                    <strong>ဘာကြောင့် Telegram Bot သုံးသင့်လဲ?</strong>
+                    • ၂၄ နာရီ အလုပ်လုပ်နိုင် - လူမဟုတ်တဲ့အတွက် တစ်ချိန်လုံး Online ရှိနေခြင်း။
+                    • ကုန်ကျစရိတ်သက်သာ - ဝန်ထမ်းတစ်ယောက်ထက် စရိတ်ပိုမိုသက်သာခြင်း။
+                    • မြန်ဆန် - Customer များကို ချက်ချင်း တုံ့ပြန်မှုပေးနိုင်ခြင်း။
+
+                    NEXORA မှာ Telegram Bot တွေကို Basic (၂၀၀,၀၀၀ ကျပ်) ကနေစပြီး တည်ဆောက်ပေးနေပါတယ်။
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="ecommerce_bot.png" alt="E-commerce Bot Strategy">
+                </div>
+                <h4>E-commerce Bot နဲ့ ရောင်းအားတိုးနည်း</h4>
+                <div class="article-body-text">
+                    Telegram E-commerce Bot ဆိုတာ သင့်ဆိုင်ကို Telegram ပေါ်မှာ အလိုအလျောက် ဖွင့်ထားသလိုပါပဲ။ Customer တွေ Product ကြည့်လို့ရ၊ Order တင်လို့ရ၊ ငွေပေးချေလို့ရပါတယ်။
+
+                    <strong>E-commerce Bot ရဲ့ အားသာချက်များ</strong>
+
+                    ၁။ Product Catalog - Product ဓာတ်ပုံ၊ ဈေးနှုန်း၊ အသေးစိတ် တွေကို Category အလိုက် စနစ်တကျ ပြသနိုင်ပါတယ်။
+                    ၂။ Order System - Customer တွေ ကိုယ်တိုင် Order တင်နိုင်ပြီး Order Number စနစ်များ ပါဝင်ပါတယ်။
+                    ၃။ Payment Integration - KBZ Pay, Wave Pay တို့နဲ့ ချိတ်ဆက်ပြီး ငွေပေးချေမှုကို အလိုအလျောက် အတည်ပြုပေးနိုင်ပါတယ်။
+                    ၄။ Order Notification - Order အသစ်တင်တိုင်း Admin ဆီကို Notification ရောက်ရှိသလို Customer ဆီကိုလည်း Status ပြန်ပို့ပေးပါတယ်။
+                    ၅။ Customer Management - ဝယ်ယူမှုမှတ်တမ်းများ သိမ်းဆည်းထားပြီး Promotion များ ပြန်လည် ပေးပို့နိုင်ပါတယ်။
+
+                    NEXORA မှာ E-commerce Bot ကို Standard Package (၅၀၀,၀၀၀ ကျပ်) နဲ့ တည်ဆောက်ပေးပါတယ်။ Payment Gateway, Admin Panel, Product Management အားလုံး ပြည့်စုံစွာ ပါဝင်ပါတယ်။
+                </div>
+            </article>
+
+        </section>
+
+        <section id="automation" class="article-section">
+            
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="automation.png" alt="Business Automation">
+                </div>
+                <h4>Business Automation ဆိုတာဘာလဲ?</h4>
+                <div class="article-body-text">
+                    Business Automation ဆိုတာ သင့်လုပ်ငန်းရဲ့ နေ့စဉ်လုပ်ဆောင်နေကျ အလုပ်တွေကို Software နဲ့ အလိုအလျောက် လုပ်စေတာကို ဆိုလိုပါတယ်။
+
+                    <strong>ဘယ်လိုအလုပ်တွေကို Automate လုပ်လို့ရလဲ?</strong>
+
+                    ၁။ Data Entry Automation - Form ဖြည့်တာတွေကို Google Sheet ထဲ Auto ရောက်ရှိစေပြီး Invoice, Receipt တွေပါ အလိုအလျောက် ထုတ်ပေးခြင်း။
+                    ၂။ Customer Communication - Email Auto Reply သို့မဟုတ် မှာယူမှု အတည်ပြုချက် Message များ အလိုအလျောက် ပေးပို့ခြင်း။
+                    ၃။ Social Media Management - Post တွေကို အချိန်မှန် Auto တင်ခြင်းနှင့် Comment/Message Auto Reply စနစ်များ။
+                    ၄။ Inventory Management - Stock နည်းလာလျှင်သော်လည်းကောင်း၊ သက်တမ်းကုန်ဆုံးမည့်ရက်များကို ကြိုတင် Alert လုပ်ပေးခြင်း။
+                    ၅။ Financial Automation - နေ့စဉ်/လစဉ် Sales Report များနှင့် ကုန်ကျစရိတ် တွက်ချက်မှုများကို အလိုအလျောက် ပြုလုပ်ခြင်း။
+
+                    <strong>Automation ရဲ့ အကျိုးကျေးဇူးများ</strong>
+                    ✅ အချိန်ကုန်သက်သာ - တစ်ခါ Setup လုပ်ပြီးရင် အလိုအလျောက် အလုပ်လုပ်ပါတယ်။
+                    ✅ အမှားနည်း - လူကိုယ်တိုင်လုပ်တာထက် အမှားအယွင်း ကင်းစင်စေပါတယ်။
+                    ✅ ကုန်ကျစရိတ်သက်သာ - ဝန်ထမ်းအပိုခန့်အပ်ရန် မလိုတော့ပါ။
+
+                    NEXORA မှာ Google Sheet Automation နဲ့ Workflow Automation Service တွေကို ကျွမ်းကျင်စွာ ဆောင်ရွက်ပေးနေပါတယ်။
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="sheet.png" alt="Google Sheet Custom Systems">
+                </div>
+                <h4>Google Sheet ကို လုပ်ငန်းသုံးနည်း</h4>
+                <div class="article-body-text">
+                    Google Sheet ကို ရုံးသုံးစာရင်းဇယား တစ်ခုထက်ပိုပြီး လုပ်ငန်းသုံး System တစ်ခုအနေနဲ့ အသုံးပြုနိုင်ပါတယ်။
+
+                    <strong>လုပ်ငန်းသုံး Google Sheet နမူနာများ</strong>
+
+                    • CRM System: Customer အချက်အလက်များ သိမ်းဆည်းခြင်းနှင့် Follow-up လုပ်ရန် Auto Reminder စနစ်များ။
+                    • Inventory Management: Stock In/Out စာရင်းများနှင့် လစဉ် Stock အစီရင်ခံစာများ။
+                    • Sales Dashboard: ရောင်းအားစာရင်းများကို ရှင်းလင်းပြတ်သားသော Chart များနှင့်တကွ Profit & Loss တွက်ချက်ခြင်း။
+                    • Employee Attendance & Payroll: ဝန်ထမ်းတက်ရောက်မှုနှင့် လစာ၊ ခွင့်ရက် တွက်ချက်ခြင်း။
+
+                    <strong>NEXORA ရဲ့ Google Sheet Automation Service ဈေးနှုန်းများ</strong>
+                    • Basic (၁၀၀,၀၀၀ ကျပ်) - Formula Setup, Data Entry Auto
+                    • Standard (၂၅၀,၀၀၀ ကျပ်) - Dashboard, Auto Email, Charts
+                    • Premium (၅၀၀,၀၀၀ ကျပ်) - Full Business System, API Integration
+                </div>
+            </article>
+
+        </section>
+
+        <section id="social-media" class="article-section">
+            
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="social.png" alt="Social Media Strategy">
+                </div>
+                <h4>Facebook Page အတွက် Professional Post ဖန်တီးနည်း</h4>
+                <div class="article-body-text">
+                    Social Media မှာ Professional ကျတဲ့ Post တွေ တင်တာက သင့် Brand ရဲ့ Image ကို မြှင့်တင်ပေးပါတယ်။
+
+                    <strong>Professional Post တစ်ခုမှာ ပါဝင်သင့်တဲ့အချက်များ</strong>
+
+                    ၁။ Eye-catching Visual - Brand Color နဲ့ ကိုက်ညီတဲ့ High Quality Graphic Layout များ။
+                    ၂။ Clear Message - စာတိုတိုနဲ့ ထိမိအောင် ရေးသားပြီး Emoji ကို သင့်တင့်စွာ သုံးစွဲခြင်း။
+                    ၃။ Call to Action (CTA) - "အခုပဲ ဆက်သွယ်လိုက်ပါ" သို့မဟုတ် "Link ကိုနှိပ်ပါ" စသည့် တွန်းအားပေးစာလုံးများ ထည့်သွင်းခြင်း။
+                    ၄။ Hashtag Strategy - လုပ်ငန်းနှင့် ကိုက်ညီမည့် ခေတ်မှီ Hashtag များ အသုံးပြုခြင်း။
+                    ၅။ Consistent Branding - တစ်သမတ်တည်းဖြစ်သော Logo, Font နှင့် အရောင်များကို သုံးစွဲခြင်း။
+
+                    <strong>Post Design နည်းပညာအကြံပြုချက်</strong>
+                    • Size - Facebook Square Post: 1080 x 1080 px
+                    • White Space - စာသားနှင့် ပုံများကို ကြည့်ရရှင်းလင်းအောင် နေရာချန်လှပ်ခြင်း။
+
+                    NEXORA မှာ Social Media Content Design ကို တစ်လ ၁၅၀,၀၀၀ ကျပ်ကနေ စပြီး ဝန်ဆောင်မှုပေးနေပါတယ်။
+                </div>
+            </article>
+
+        </section>
+
+        <section id="business-tips" class="article-section">
+            
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="business_tips.png" alt="Online Business Setup">
+                </div>
+                <h4>Online ပေါ်မှာ လုပ်ငန်းစဖို့ အဆင့် (၅) ဆင့်</h4>
+                <div class="article-body-text">
+                    <strong>အဆင့် ၁: လုပ်ငန်းကို သတ်မှတ်ပါ</strong>
+                    ဘယ် Product/Service ရောင်းမလဲ၊ ဘယ်သူတွေက Target Customer လဲဆိုတာ အရင်ဆုံး သတ်မှတ်ရပါမယ်။
+
+                    <strong>အဆင့် ၂: Online Presence တည်ဆောက်ပါ</strong>
+                    Facebook Page, Website/Landing Page နှင့် Google Business Profile တို့ကို တည်ဆောက်ဖွင့်လှစ်ရပါမယ်။
+
+                    <strong>အဆင့် ၃: Payment System စီစဉ်ပါ</strong>
+                    KBZ Pay / Wave Pay Account နှင့် စနစ်တကျရှိသော Payment QR Code များ ပြင်ဆင်ထားပါ။
+
+                    <strong>အဆင့် ၄: Marketing စတင်ပါ</strong>
+                    Page ပေါ်တွင် ဗဟုသုတဖြစ်ဖွယ် Content များ တင်ခြင်းနှင့် Facebook Ads များ အသုံးပြု၍ ထိရောက်စွာ ကြော်ငြာပါ။
+
+                    <strong>အဆင့် ၅: Automate လုပ်ပါ</strong>
+                    လုပ်ငန်းလည်ပတ်မှု ပိုမိုမြန်ဆန်လာစေရန် Order Form များကို Google Sheet ထဲ အလိုအလျောက် သိမ်းဆည်းခြင်းနှင့် Customer Auto Reply စနစ်များ သုံးစွဲပါ။
+
+                    NEXORA မှာ ဤအဆင့် (၅) ဆင့်လုံး အောင်မြင်စေရန်အတွက် Web Design, Bot Development, Sheet Automation နှင့် Content Design ဝန်ဆောင်မှုများဖြင့် အပြည့်အဝ ကူညီပေးနေပါသည်။
+                </div>
+            </article>
+
+        </section>
+
+        <section id="nexora-updates" class="article-section">
+            
+            <article class="article-card">
+                <div class="article-cover-wrap">
+                    <img src="nexora_updates.png" alt="NEXORA All Services">
+                </div>
+                <h4>NEXORA ရဲ့ Service များ</h4>
+                <div class="article-body-text">
+                    NEXORA ဟာ သင့်လုပ်ငန်းအတွက် အောက်ပါ Digital Solutions တွေကို အကောင်းဆုံး ပေးအပ်လျက်ရှိပါတယ်။
+
+                    <strong>ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ</strong>
+
+                    ၁။ 🌐 Landing Page Design
+                    High-Converting Landing Page တွေကို Basic (၁၅၀,၀၀၀ ကျပ်) ကနေ စတင်တည်ဆောက်ပေးပါတယ်။
+
+                    ၂။ 🤖 Telegram Bot Development
+                    လုပ်ငန်းသုံး Telegram Bot တွေကို Basic (၂၀၀,၀၀၀ ကျပ်) ကနေ စတင်တည်ဆောက်ပေးပါတယ်။
+
+                    ၃။ 📊 Google Sheet Automation
+                    လုပ်ငန်းသုံး Spreadsheet System တွေကို Basic (၁၀၀,၀၀၀ ကျပ်) ကနေ စတင်တည်ဆောက်ပေးပါတယ်။
+
+                    ４။ 💻 Business Website
+                    Professional Business Website တွေကို Basic (၃၀၀,၀၀၀ ကျပ်) ကနေ စတင်တည်ဆောက်ပေးပါတယ်။
+
+                    ၅။ 🎨 Social Media Design
+                    Social Media Content တွေကို Basic (၁၅၀,၀၀၀ ကျပ်/လ) ကနေ စတင်ဖန်တီးပေးပါတယ်။
+
+                    ၆။ ⚙️ Workflow Automation
+                    Cross-platform Automation တွေကို Basic (၁၅၀,၀၀၀ ကျပ်) ကနေ စတင်တည်ဆောက်ပေးပါတယ်။
+
+                    ---
+                    NEXORA | Together We Grow, Together We Succeed
+
+                    📞 Viber: 09 794 848 575
+                    📧 Telegram: @nexora_contact
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <section class="hub-cta-section">
+        <h3>သင့်လုပ်ငန်းအတွက် ဘယ် Service က သင့်တော်လဲ မသိသေးဘူးလား?</h3>
+        <div class="cta-btn-group">
+            <a href="explore.html" class="cta-btn primary-green">See Our Services →</a>
+            <a href="contact-us.html" class="cta-btn outline-white">Contact Us →</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 NEXORA. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function switchTab(sectionId, btnElement) {
+            // 1. Remove 'active' class from all topic filter buttons
+            document.querySelectorAll('.topic-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 2. Add 'active' class to the clicked button
+            btnElement.classList.add('active');
+
+            // 3. Hide all article sections
+            document.querySelectorAll('.article-section').forEach(section => {
+                section.classList.remove('active-section');
+            });
+
+            // 4. Show target section with built-in CSS fade-in animation
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active-section');
+            }
+
+            // 5. Scroll to the top of articles wrapper section smoothly
+            const filterBar = document.getElementById('filter-bar');
+            const offset = filterBar.offsetTop - 10;
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
