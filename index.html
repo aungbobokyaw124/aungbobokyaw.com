@@ -218,6 +218,37 @@
             letter-spacing: 1px;
         }
 
+        /* YOUTUBE SECTION */
+        .youtube-section {
+            padding: 45px 25px;
+            text-align: center;
+        }
+
+        .youtube-section .section-title {
+            text-align: center;
+            font-size: 30px;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .youtube-container {
+            max-width: 750px;
+            margin: 0 auto;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+            background: white;
+            padding: 8px;
+        }
+
+        .youtube-container iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 16px;
+            border: none;
+            display: block;
+        }
+
         /* SECTIONS */
         .section {
             padding: 45px 25px;
@@ -264,12 +295,14 @@
             line-height: 1.6;
         }
 
-        /* PARTNER PLATFORMS */
+        /* PARTNER SLIDER */
         .partner-section {
             background: white;
-            padding: 40px 25px;
+            padding: 35px 0;
             text-align: center;
             border-top: 1px solid #e8ecf1;
+            border-bottom: 1px solid #e8ecf1;
+            overflow: hidden;
         }
 
         .partner-section h3 {
@@ -277,18 +310,28 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 28px;
+            margin-bottom: 22px;
             font-weight: 600;
         }
 
-        .partner-logos {
+        .partner-slider-track {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 28px;
-            max-width: 750px;
-            margin: 0 auto;
+            gap: 36px;
+            width: max-content;
+            animation: partnerSlide 35s linear infinite;
+        }
+
+        .partner-slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes partnerSlide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .partner-logo {
@@ -296,12 +339,8 @@
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            transition: .3s;
-            text-decoration: none;
-        }
-
-        .partner-logo:hover {
-            transform: translateY(-4px);
+            flex-shrink: 0;
+            width: 85px;
         }
 
         .partner-logo .p-icon {
@@ -321,6 +360,7 @@
             color: var(--gray);
             font-weight: 600;
             letter-spacing: 0.3px;
+            white-space: nowrap;
         }
 
         .p-chatgpt { background: #10a37f; }
@@ -413,14 +453,22 @@
                 font-size: 13px;
             }
 
-            .partner-logos {
-                gap: 18px;
+            .partner-logo {
+                width: 65px;
             }
 
             .partner-logo .p-icon {
-                width: 40px;
-                height: 40px;
+                width: 38px;
+                height: 38px;
                 font-size: 16px;
+            }
+
+            .partner-slider-track {
+                gap: 22px;
+            }
+
+            .youtube-container {
+                margin: 0 10px;
             }
         }
     </style>
@@ -563,6 +611,19 @@
         </div>
     </section>
 
+    <!-- YOUTUBE SECTION -->
+    <section class="youtube-section">
+        <h2 class="section-title">📺 Watch & Learn</h2>
+        <div class="youtube-container">
+            <iframe 
+                src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                title="NEXORA YouTube Video" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
     <!-- ABOUT BRAND -->
     <section class="section">
         <h2 class="section-title">About NEXORA</h2>
@@ -599,10 +660,48 @@
         <small>Reach your target audience with NEXORA</small>
     </div>
 
-    <!-- PARTNER PLATFORMS -->
+    <!-- PARTNER SLIDER -->
     <section class="partner-section">
         <h3>Powered by Leading Platforms</h3>
-        <div class="partner-logos">
+        <div class="partner-slider-track">
+            <!-- Set 1 -->
+            <div class="partner-logo">
+                <div class="p-icon p-chatgpt">⚡</div>
+                <span>ChatGPT</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-deepseek">DS</div>
+                <span>DeepSeek</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-gemini">✦</div>
+                <span>Gemini</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-google">G</div>
+                <span>Google</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-vercel">▲</div>
+                <span>Vercel</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-github">⌥</div>
+                <span>GitHub</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-claude">C</div>
+                <span>Claude</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-notion">N</div>
+                <span>Notion</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-canva">C</div>
+                <span>Canva</span>
+            </div>
+            <!-- Set 2 (Duplicate for seamless loop) -->
             <div class="partner-logo">
                 <div class="p-icon p-chatgpt">⚡</div>
                 <span>ChatGPT</span>
