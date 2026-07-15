@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form - NEXORA</title>
+    <style>
+        :root {
+            --primary: #081b36;
+            --green: #00b878;
+            --white: #ffffff;
+            --bg: #f6f9fc;
+            --text: #222;
+            --gray: #667085;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #00b878, #081b36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand h1 {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .brand span {
+            color: var(--green);
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* FORM SECTION */
+        .form-section {
+            flex: 1;
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border: 1px solid #e8ecf1;
+        }
+
+        .form-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive iframe */
+        .form-container iframe {
+            width: 100%;
+            height: 1619px; /* Default Desktop height */
+            display: block;
+            border: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #081b36;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .form-section {
+                padding: 15px 10px;
+            }
+            .form-container iframe {
+                height: 1800px; /* Mobile View Height Adjustment */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="logo">
+                <img src="logo.png" alt="NEXORA Logo">
+            </div>
+            <h1>NEX<span>ORA</span></h1>
+        </div>
+        <a href="explore.html" class="back-btn">← Back to Services</a>
+    </header>
+
+    <section class="form-section">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>📋 Order Form</h2>
+                <p>ကျေးဇူးပြု၍ အချက်အလက်များကို ပြည့်စုံစွာ ဖြည့်စွက်ပေးပါခင်ဗျာ။</p>
+            </div>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfrj22Js8m3mFD2sNFZnL28GN8qpGR0plNmwxXXvtw3cBHpLA/viewform?embedded=true" width="100%" height="1619" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 NEXORA. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
