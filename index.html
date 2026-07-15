@@ -43,7 +43,7 @@
         .ticker-wrap .ticker {
             display: inline-block;
             white-space: nowrap;
-            animation: tickerMove 40s linear infinite;
+            animation: tickerMove 60s linear infinite;
         }
 
         @keyframes tickerMove {
@@ -264,6 +264,75 @@
             line-height: 1.6;
         }
 
+        /* PARTNER PLATFORMS */
+        .partner-section {
+            background: white;
+            padding: 40px 25px;
+            text-align: center;
+            border-top: 1px solid #e8ecf1;
+        }
+
+        .partner-section h3 {
+            color: var(--gray);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+            font-weight: 600;
+        }
+
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .partner-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: .3s;
+            text-decoration: none;
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-4px);
+        }
+
+        .partner-logo .p-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .partner-logo span {
+            font-size: 11px;
+            color: var(--gray);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .p-chatgpt { background: #10a37f; }
+        .p-deepseek { background: #4d6bfe; }
+        .p-gemini { background: #4285f4; }
+        .p-google { background: #ea4335; }
+        .p-vercel { background: #000000; }
+        .p-github { background: #24292e; }
+        .p-claude { background: #d97757; }
+        .p-notion { background: #000000; }
+        .p-canva { background: #00c4cc; }
+
         /* VIBER BUTTON */
         .viber-btn {
             position: fixed;
@@ -342,6 +411,16 @@
             .viber-btn {
                 padding: 14px 18px;
                 font-size: 13px;
+            }
+
+            .partner-logos {
+                gap: 18px;
+            }
+
+            .partner-logo .p-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
             }
         }
     </style>
@@ -519,6 +598,49 @@
         📢 Your Ad Here<br>
         <small>Reach your target audience with NEXORA</small>
     </div>
+
+    <!-- PARTNER PLATFORMS -->
+    <section class="partner-section">
+        <h3>Powered by Leading Platforms</h3>
+        <div class="partner-logos">
+            <div class="partner-logo">
+                <div class="p-icon p-chatgpt">⚡</div>
+                <span>ChatGPT</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-deepseek">DS</div>
+                <span>DeepSeek</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-gemini">✦</div>
+                <span>Gemini</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-google">G</div>
+                <span>Google</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-vercel">▲</div>
+                <span>Vercel</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-github">⌥</div>
+                <span>GitHub</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-claude">C</div>
+                <span>Claude</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-notion">N</div>
+                <span>Notion</span>
+            </div>
+            <div class="partner-logo">
+                <div class="p-icon p-canva">C</div>
+                <span>Canva</span>
+            </div>
+        </div>
+    </section>
 
     <!-- VIBER BUTTON -->
     <a href="https://viber.me/959794848575" class="viber-btn" target="_blank">
