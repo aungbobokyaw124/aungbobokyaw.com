@@ -3,558 +3,756 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXORA | Premium Digital Solutions & Automation</title>
-    <meta name="description" content="Premium Digital Solutions Agency in Myanmar. High-converting Landing Pages, Telegram Bots, and Business Workflow Automation.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0b0f19',
-                        cardBg: '#111827',
-                        accentGreen: '#00b878',
-                        premiumPurple: '#8b5cf6',
-                        goldHighlight: '#F59E0B'
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Myanmar:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="description" content="NEXORA provides Business Automation, Landing Pages, Google Business Solutions, AI Resources and Digital Knowledge. Together We Grow, Together We Succeed.">
+    <meta name="keywords" content="Business Automation, Landing Page, Google Business, AI, Digital Solutions">
+    <title>NEXORA | Smart Digital Solutions</title>
 
     <style>
-        body {
-            font-family: 'Inter', 'Noto Sans Myanmar', sans-serif;
-            background-color: #0b0f19;
+        :root {
+            --primary: #081b36;
+            --green: #00b878;
+            --white: #ffffff;
+            --bg: #f6f9fc;
+            --text: #222;
+            --gray: #667085;
         }
-        /* Glowing Preloader */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* PREMIUM PRELOADER & TYPING STYLES */
         #preloader {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #0b0f19;
-            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #081b36;
+            z-index: 99999;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .spinner {
-            width: 50px; height: 50px;
-            border: 3px solid rgba(0, 184, 120, 0.1);
-            border-radius: 50%;
-            border-top-color: #00b878;
-            animation: spin 1s ease-in-out infinite;
+
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        /* Smooth Accordion Transition */
-        .detail-content {
-            max-height: 0;
+
+        .loader-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #00b878, #081b36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 184, 120, 0.3);
+            transform: scale(0); 
+        }
+
+        .loader-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .loader-text {
+            color: white;
+            font-size: 28px;
+            letter-spacing: 2px;
+            opacity: 0;
+            margin-bottom: 12px;
+        }
+
+        .loader-text span {
+            color: #00b878;
+        }
+
+        /* Typing Target Area */
+        .loader-slogan {
+            color: #8899aa;
+            font-size: 15px;
+            font-weight: 500;
+            min-height: 20px;
+            letter-spacing: 0.5px;
+            border-right: 2px solid transparent;
+            display: inline-block;
+        }
+
+        /* TICKER / MARQUEE */
+        .ticker-wrap {
+            background: var(--primary);
+            color: var(--green);
+            padding: 12px 0;
+            overflow: hidden;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-wrap .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 20px;
+            animation: tickerMove 40s linear infinite;
+        }
+
+        .ticker span {
+            margin-right: 60px;
+            display: inline-block;
+        }
+
+        @keyframes tickerMove {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* HEADER & DROPDOWN */
+        header {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #00b878, #081b36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand h1 {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .brand span {
+            color: var(--green);
+        }
+
+        .menu {
+            font-size: 28px;
+            color: var(--primary);
+            cursor: pointer;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            border-radius: 14px;
+            padding: 12px 0;
+            z-index: 20;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 22px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg);
+            color: var(--green);
+            padding-left: 26px;
+        }
+
+        .menu:hover .dropdown {
+            display: block;
+        }
+
+        /* HERO - INITIAL OPACITY FOR GSAP FADE-IN */
+        .hero {
+            padding: 80px 25px 60px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(0, 184, 120, .15), transparent 40%);
+        }
+
+        .hero h2, .hero .hero-question, .hero p, .hero .hero-closing, .hero-buttons {
+            opacity: 0; 
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            line-height: 1.5;
+            color: var(--primary);
+        }
+
+        .hero h2 span {
+            color: var(--green);
+        }
+
+        .hero .hero-question {
+            margin-top: 24px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .hero p {
+            margin-top: 18px;
+            line-height: 2;
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .hero-closing {
+            margin-top: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 35px;
+            text-decoration: none;
+            margin: 8px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-main {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 184, 120, 0.3);
+        }
+
+        .btn-line {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        /* AD SPACE */
+        .ad-space {
+            max-width: 728px;
+            margin: 40px auto;
+            background: white;
+            border: 2px dashed var(--gray);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* SECTIONS - INITIAL OPACITY FOR GSAP SCROLL */
+        .section {
+            padding: 45px 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            opacity: 0; 
+            background: white;
+            padding: 25px 18px;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+            transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* YOUTUBE SECTION */
+        .youtube-section {
+            padding: 45px 25px;
+            text-align: center;
+        }
+
+        .youtube-container {
+            max-width: 750px;
+            margin: 0 auto;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+            background: white;
+            padding: 8px;
+        }
+
+        .youtube-container iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 16px;
+            border: none;
+            display: block;
+        }
+
+        /* PARTNER SLIDER */
+        .partner-section {
+            background: white;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #e8ecf1;
+            border-bottom: 1px solid #e8ecf1;
+            overflow: hidden;
+        }
+
+        .partner-section h3 {
+            color: var(--gray);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .partner-slider-container {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .partner-slider-track {
+            display: flex;
+            gap: 60px;
+            width: max-content;
+            animation: partnerSlide 25s linear infinite;
+        }
+
+        @keyframes partnerSlide {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        .partner-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            width: 100px;
+        }
+
+        .partner-logo svg {
+            width: 42px;
+            height: 42px;
+            transition: transform 0.3s ease;
+        }
+
+        .partner-logo:hover svg {
+            transform: scale(1.1);
+        }
+
+        .partner-logo span {
+            font-size: 12px;
+            color: var(--gray);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        /* FIXED VIBER BUTTON */
+        .viber-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #7360f2;
+            color: white;
+            height: 50px;
+            padding: 0 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 15px;
+            animation: pulse 2s infinite;
+            transition: transform 0.2s ease;
+        }
+
+        .viber-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .viber-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
+            50% { box-shadow: 0 8px 30px rgba(115, 96, 242, .7); }
+            100% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
+        }
+
+        /* FOOTER */
+        footer {
+            background: #081b36;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        footer .founder {
+            margin-top: 15px;
+            color: var(--green);
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media(max-width:700px) {
+            .hero h2 { font-size: 26px; }
+            .hero p { font-size: 15px; }
+            .service-grid { grid-template-columns: 1fr; }
+            .brand h1 { font-size: 20px; }
+            .ad-space { margin: 20px 15px; }
+            .partner-logo { width: 80px; }
+            .partner-logo svg { width: 36px; height: 36px; }
+            .partner-slider-track { gap: 40px; }
         }
     </style>
 </head>
-<body class="text-gray-100 overflow-x-hidden">
+
+<body>
 
     <div id="preloader">
-        <div class="spinner mb-4"></div>
-        <h2 class="text-emerald-400 font-extrabold tracking-widest text-xl animate-pulse">NEXORA</h2>
-        <p class="text-xs text-gray-500 mt-2">Loading premium digital ecosystem...</p>
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="logo.png" alt="NEXORA Logo">
+            </div>
+            <h1 class="loader-text">NEX<span>ORA</span></h1>
+            <div class="loader-slogan"></div>
+        </div>
     </div>
 
-    <header class="border-b border-gray-800 bg-darkBg/95 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#00b878] to-[#8b5cf6] flex items-center justify-center">
-                    <span class="font-extrabold text-xl text-white">N</span>
-                </div>
-                <span class="font-extrabold text-xl tracking-wider">NEX<span class="text-emerald-400">ORA</span></span>
-            </a>
-            
-            <div class="relative group">
-                <button class="bg-gray-900 border border-gray-800 px-4 py-2 rounded-xl flex items-center gap-2 hover:border-emerald-500 transition">
-                    <i data-lucide="menu" class="w-4 h-4 text-emerald-400"></i> Menu
-                </button>
-                <div class="absolute right-0 mt-2 w-56 bg-cardBg border border-gray-800 rounded-xl shadow-2xl p-2 hidden group-hover:block z-50">
-                    <a href="index.html" class="flex items-center gap-2 px-4 py-2.5 rounded-lg hover:bg-gray-800 text-sm text-emerald-400 font-semibold"><i data-lucide="home" class="w-4 h-4"></i> Home</a>
-                    <a href="knowledge-hub.html" class="flex items-center gap-2 px-4 py-2.5 rounded-lg hover:bg-gray-800 text-sm text-gray-300"><i data-lucide="book-open" class="w-4 h-4"></i> Knowledge Hub</a>
-                    <a href="digital-store.html" class="flex items-center gap-2 px-4 py-2.5 rounded-lg hover:bg-gray-800 text-sm text-gray-300"><i data-lucide="shopping-bag" class="w-4 h-4"></i> Digital Store</a>
-                    <a href="about.html" class="flex items-center gap-2 px-4 py-2.5 rounded-lg hover:bg-gray-800 text-sm text-gray-300"><i data-lucide="info" class="w-4 h-4"></i> About NEXORA</a>
-                    <a href="contact.html" class="flex items-center gap-2 px-4 py-2.5 rounded-lg hover:bg-gray-800 text-sm text-gray-300"><i data-lucide="mail" class="w-4 h-4"></i> Contact Us</a>
-                </div>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span>🚀 NEXORA | သင့်လုပ်ငန်းအတွက် Smart Digital Solutions</span>
+            <span>✅ Website & Landing Page ဖန်တီးခြင်း</span>
+            <span>✅ Business Automation စနစ်တည်ဆောက်ခြင်း</span>
+            <span>✅ Google Maps/Business မြင်သာမှု တိုးတက်စေခြင်း</span>
+            <span>✅ AI နှင့် Digital Knowledge မျှဝေခြင်း</span>
+            <span>🚀 NEXORA | သင့်လုပ်ငန်းအတွက် Smart Digital Solutions</span>
+            <span>✅ Website & Landing Page ဖန်တီးခြင်း</span>
+            <span>✅ Business Automation စနစ်တည်ဆောက်ခြင်း</span>
+            <span>✅ Google Maps/Business မြင်သာမှု တိုးတက်စေခြင်း</span>
+            <span>✅ AI နှင့် Digital Knowledge မျှဝေခြင်း</span>
+        </div>
+    </div>
+
+    <header>
+        <div class="brand">
+            <div class="logo">
+                <img src="logo.png" alt="NEXORA Logo">
+            </div>
+            <h1>NEX<span>ORA</span></h1>
+        </div>
+        <div class="menu">
+            ☰
+            <div class="dropdown">
+                <a href="index.html">🏠 Home</a>
+                <a href="solutions.html">⚙️ Our Solutions</a>
+                <a href="knowledge-hub.html">📚 Knowledge Hub</a>
+                <a href="digital-store.html">🛒 Digital Store</a>
+                <a href="about.html">ℹ️ About NEXORA</a>
+                <a href="contact.html">📞 Contact</a>
             </div>
         </div>
     </header>
 
-    <section class="relative py-20 px-6 max-w-5xl mx-auto text-center" id="hero-section">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-emerald-600/10 blur-[100px] rounded-full -z-10"></div>
-        
-        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-6">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Empowering Modern Businesses
-        </span>
-        
-        <h1 class="hero-title text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-            Creative Digital Agency & <br>
-            <span class="bg-gradient-to-r from-emerald-400 via-emerald-300 to-purple-400 bg-clip-text text-transparent">Workflow Automation</span>
-        </h1>
-        <p class="hero-subtitle text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed mb-8">
-            လုပ်ငန်းသုံး Auto-Systems များ၊ Telegram Bots များနှင့် High-Converting Websites များကို အဆင့်မြင့်ဆုံးနည်းပညာများဖြင့် ဖန်တီးပေးလျက်ရှိပါသည်။
+    <section class="hero">
+        <h2>
+            🚀 <span>NEXORA</span> | သင့်လုပ်ငန်းအတွက်<br>Smart Digital Solutions
+        </h2>
+        <p class="hero-question">
+            💡 သင့်လုပ်ငန်းကို Online ပေါ်မှာ ပိုမိုတိုးတက်ချင်ပါသလား?
         </p>
+        <p>
+            NEXORA မှ Website ပြုလုပ်ပေးခြင်း၊ ရောင်းအားတိုးစေမည့် Landing Page ဖန်တီးပေးခြင်း၊ အလုပ်များကို အလိုအလျောက်လုပ်ဆောင်နိုင်မည့် Business Automation စနစ်များ တည်ဆောက်ပေးခြင်း၊ Google Maps နှင့် Google Search တွင် သင့်လုပ်ငန်းကို လူများပိုမိုတွေ့ရှိနိုင်အောင် ကူညီပေးခြင်းများကို ဆောင်ရွက်ပေးနေပါသည်။
+        </p>
+        <p class="hero-closing">
+            နည်းပညာကို အသုံးချပြီး ပိုမိုလွယ်ကူသော အနာဂတ်ကို တည်ဆောက်ကြပါစို့။
+        </p>
+        <div class="hero-buttons">
+            <a href="explore.html" class="btn btn-main">Explore Services</a>
+            <a href="knowledge.html" class="btn btn-line">Knowledge Hub</a>
+        </div>
     </section>
 
-    <div class="max-w-6xl mx-auto px-6 mb-12 flex flex-wrap justify-center gap-3" id="filter-container">
-        <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold bg-emerald-500 text-darkBg transition" onclick="filterCategory('all')">All Services</button>
-        <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold bg-gray-900 border border-gray-800 hover:border-emerald-500/50 text-gray-300 transition" onclick="filterCategory('web')">Websites</button>
-        <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold bg-gray-900 border border-gray-800 hover:border-emerald-500/50 text-gray-300 transition" onclick="filterCategory('bot')">Bots</button>
-        <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold bg-gray-900 border border-gray-800 hover:border-emerald-500/50 text-gray-300 transition" onclick="filterCategory('automation')">Automation</button>
-        <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold bg-gray-900 border border-gray-800 hover:border-emerald-500/50 text-gray-300 transition" onclick="filterCategory('design')">Media & Design</button>
+    <div class="ad-space">
+        📢 Advertisement Space Available<br>
+        <small>Contact us to place your ad here</small>
     </div>
 
-    <section class="max-w-6xl mx-auto px-6 pb-24 space-y-12" id="solutions-section">
-
-        <div class="service-section bg-cardBg border border-gray-800 p-8 rounded-3xl" data-cat="web">
-            <div class="flex items-center gap-4 mb-8 border-b border-gray-800 pb-5">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-2xl">🌐</div>
-                <div>
-                    <h3 class="text-xl font-bold">Landing Page Design & Development</h3>
-                    <p class="text-xs text-gray-400">High-Converting Landing Page များ ဒီဇိုင်းဆွဲခြင်းနှင့် တည်ဆောက်ပေးခြင်း</p>
-                </div>
+    <section class="section solutions-section">
+        <h2 class="section-title">Our Solutions</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="icon">⚙️</div>
+                <h3>Business Automation</h3>
+                <p>Automate tasks, organize workflow and improve business efficiency.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Basic</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">150,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 1-Page Custom Design</li>
-                            <li>• Mobile Responsive Setup</li>
-                            <li>• Contact Form Integrated</li>
-                            <li>• 1 Page Revision</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border-2 border-emerald-500/30 rounded-2xl p-6 flex flex-col justify-between relative">
-                    <span class="absolute -top-3 right-4 px-3 py-1 bg-emerald-500 text-darkBg text-[10px] font-extrabold rounded-full uppercase">Popular</span>
-                    <div>
-                        <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Standard</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">350,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 3-Page Design Custom Layout</li>
-                            <li>• Custom Branding Graphics</li>
-                            <li>• Basic SEO Setup</li>
-                            <li>• GSAP & CSS Animations</li>
-                            <li>• 2 Revisions</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">600,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Up to 5-Page Website</li>
-                            <li>• Advanced SEO Architecture</li>
-                            <li>• A/B Testing Integration</li>
-                            <li>• Analytics/Pixels Configured</li>
-                            <li>• Unlimited Revisions</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="service-card">
+                <div class="icon">🌐</div>
+                <h3>Website & Landing Page</h3>
+                <p>Modern responsive websites designed for your business growth.</p>
             </div>
-        </div>
-
-        <div class="service-section bg-cardBg border border-gray-800 p-8 rounded-3xl" data-cat="bot">
-            <div class="flex items-center gap-4 mb-8 border-b border-gray-800 pb-5">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-2xl">🤖</div>
-                <div>
-                    <h3 class="text-xl font-bold">Telegram Bot Development</h3>
-                    <p class="text-xs text-gray-400">လုပ်ငန်းသုံး Telegram Bot များ (Customer Support, Order Taking, Mini App) တည်ဆောက်ပေးခြင်း</p>
-                </div>
+            <div class="service-card">
+                <div class="icon">📍</div>
+                <h3>Google Business</h3>
+                <p>Improve your visibility on Google Search and Maps.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Basic</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">200,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Simple Command Bot (Up to 5 Commands)</li>
-                            <li>• Interactive Keyboard Menu</li>
-                            <li>• Single Language Configuration</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border-2 border-emerald-500/30 rounded-2xl p-6 flex flex-col justify-between relative">
-                    <span class="absolute -top-3 right-4 px-3 py-1 bg-emerald-500 text-darkBg text-[10px] font-extrabold rounded-full uppercase">Popular</span>
-                    <div>
-                        <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Standard</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">500,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Advanced Bot (20+ Custom Commands)</li>
-                            <li>• Real-time Database System</li>
-                            <li>• Local Pay Integrations (Kpay/Wave)</li>
-                            <li>• Interactive Admin Panel</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">1,200,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Telegram Mini App (Advanced WebApp UI)</li>
-                            <li>• Dynamic Multi-language System</li>
-                            <li>• Third-party API Connections</li>
-                            <li>• Customized Admin Management Dashboard</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="service-card">
+                <div class="icon">🧠</div>
+                <h3>AI & Knowledge</h3>
+                <p>Practical guides, AI tools and digital resources.</p>
             </div>
-        </div>
-
-        <div class="service-section bg-cardBg border border-gray-800 p-8 rounded-3xl" data-cat="automation">
-            <div class="flex items-center gap-4 mb-8 border-b border-gray-800 pb-5">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-2xl">📊</div>
-                <div>
-                    <h3 class="text-xl font-bold">Google Sheet Automation</h3>
-                    <p class="text-xs text-gray-400">Spreadsheet များကို Formulas, Apps Script, API များဖြင့် Auto လုပ်ဆောင်ပေးခြင်း</p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Basic</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">100,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Custom Formula System Setup</li>
-                            <li>• Data Entry Templates Construction</li>
-                            <li>• Basic File Restructuring</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-emerald-500/30 border-2 rounded-2xl p-6 flex flex-col justify-between relative">
-                    <span class="absolute -top-3 right-4 px-3 py-1 bg-emerald-500 text-darkBg text-[10px] font-extrabold rounded-full uppercase">Popular</span>
-                    <div>
-                        <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Standard</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">250,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Apps Script Automations</li>
-                            <li>• Visual Dashboard & Clean Reports</li>
-                            <li>• Automatic Email & PDF Generation</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">500,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Full Scale Google Sheet CRM/Inventory</li>
-                            <li>• Live API/Webhook Integrations</li>
-                            <li>• Multi-user System & Access Control</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section bg-cardBg border border-gray-800 p-8 rounded-3xl" data-cat="web">
-            <div class="flex items-center gap-4 mb-8 border-b border-gray-800 pb-5">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-2xl">💻</div>
-                <div>
-                    <h3 class="text-xl font-bold">Business Website Development</h3>
-                    <p class="text-xs text-gray-400">ကုမ္ပဏီ သို့မဟုတ် ဆိုင်များအတွက် စနစ်ကျသော Multi-page Website များ တည်ဆောက်ပေးခြင်း</p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Basic</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">300,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 5 Pages Template Layouts</li>
-                            <li>• Clean Mobile Responsive Structure</li>
-                            <li>• Active Contact Form Setup</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-emerald-500/30 border-2 rounded-2xl p-6 flex flex-col justify-between relative">
-                    <span class="absolute -top-3 right-4 px-3 py-1 bg-emerald-500 text-darkBg text-[10px] font-extrabold rounded-full uppercase">Popular</span>
-                    <div>
-                        <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Standard</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">700,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 10 Pages Dynamic System</li>
-                            <li>• WordPress CMS Integration</li>
-                            <li>• General On-Page SEO System</li>
-                            <li>• Dynamic Blog Setup</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">1,500,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• Unlimited Pages Custom-Coded Site</li>
-                            <li>• Custom Managed CMS Backend</li>
-                            <li>• Secure E-Commerce Integration</li>
-                            <li>• Premium Security Setup</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section bg-cardBg border border-gray-800 p-8 rounded-3xl" data-cat="design">
-            <div class="flex items-center gap-4 mb-8 border-b border-gray-800 pb-5">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-2xl">🎨</div>
-                <div>
-                    <h3 class="text-xl font-bold">Social Media Content Design</h3>
-                    <p class="text-xs text-gray-400">Facebook, Instagram အတွက် Post/Story/Cover ဒီဇိုင်းများ ဖန်တီးပေးခြင်း</p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Basic</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">150,000 <span class="text-xs text-gray-500">Ks/mo</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 10 Custom Post Designs per month</li>
-                            <li>• Static Visual Graphics</li>
-                            <li>• Includes 1 Design Revision Cycle</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-emerald-500/30 border-2 rounded-2xl p-6 flex flex-col justify-between relative">
-                    <span class="absolute -top-3 right-4 px-3 py-1 bg-emerald-500 text-darkBg text-[10px] font-extrabold rounded-full uppercase">Popular</span>
-                    <div>
-                        <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Standard</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">300,000 <span class="text-xs text-gray-500">Ks/mo</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 20 Posts + 4 Stories per month</li>
-                            <li>• High-quality Static + Motion Layouts</li>
-                            <li>• Full Custom Brand Kit Integration</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">500,000 <span class="text-xs text-gray-500">Ks/mo</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 30 Posts + 8 Stories + 2 Video Reels</li>
-                            <li>• Absolute Visual Identity Strategy</li>
-                            <li>• Unlimited Design Revisions</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section bg-cardBg border border-gray-800 p-8 rounded-3xl" data-cat="automation">
-            <div class="flex items-center gap-4 mb-8 border-b border-gray-800 pb-5">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-2xl">⚡</div>
-                <div>
-                    <h3 class="text-xl font-bold">Workflow Automation Setup</h3>
-                    <p class="text-xs text-gray-400">Zapier / Make.com / n8n သုံး၍ Platform များအားလုံး ချိတ်ဆက်ပေးခြင်း</p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Basic</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">150,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 1 Automation Active System</li>
-                            <li>• Connections of up to 3 Active Apps</li>
-                            <li>• Precision Error-Free System Testing</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-emerald-500/30 border-2 rounded-2xl p-6 flex flex-col justify-between relative">
-                    <span class="absolute -top-3 right-4 px-3 py-1 bg-emerald-500 text-darkBg text-[10px] font-extrabold rounded-full uppercase">Popular</span>
-                    <div>
-                        <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Standard</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">350,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 3 Live Automated Workflows</li>
-                            <li>• Integrations across 5+ Custom Applications</li>
-                            <li>• Continuous Error-Handling Management</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-gray-950/60 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium</h4>
-                        <div class="text-2xl font-extrabold text-white my-3">600,000 <span class="text-xs text-gray-500">Ks</span></div>
-                    </div>
-                    <button class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-xs font-bold rounded-lg border border-gray-800 transition" onclick="toggleDetails(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
-                    <div class="detail-content">
-                        <ul class="text-xs text-gray-400 space-y-2 mt-4 pt-4 border-t border-gray-800/60">
-                            <li>• 5+ Highly Complex Dynamic Workflows</li>
-                            <li>• Custom System API & Webhook Creation</li>
-                            <li>• System Documentation & Training</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="max-w-4xl mx-auto px-6 pb-24">
-        <div class="bg-gray-900/60 border-l-4 border-emerald-500 p-6 rounded-r-2xl text-xs space-y-2 text-gray-400 leading-relaxed">
-            <h4 class="text-sm font-bold text-white mb-2">💡 ဝန်ဆောင်မှုဆိုင်ရာ ထပ်ဆောင်းအချက်အလက်များ</h4>
-            <p>• <strong>Maintenance support:</strong> Premium Package များအားလုံးတွင် ၁ လ အခမဲ့ နည်းပညာပံ့ပိုးမှု ပါဝင်ပြီး နောက်ပိုင်းတွင် လစဉ်ကြေး ၁၀% - ၁၅% ဖြင့် ဆက်လက်လည်ပတ်နိုင်ပါသည်။</p>
-            <p>• <strong>Custom Setup:</strong> ဤစျေးနှုန်းအစီအစဉ်များအပြင် သင့်လုပ်ငန်းလိုအပ်ချက်အရ Custom စနစ်များကိုလည်း သီးခြားရေးဆွဲပေးပါသည်။</p>
         </div>
     </section>
 
-    <footer class="border-t border-gray-900 bg-gray-950 py-16 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <span class="font-extrabold text-xl tracking-wider">NEX<span class="text-emerald-400">ORA</span></span>
-                <p class="text-xs text-gray-500 mt-2">Together We Grow. Together We Succeed.</p>
-                <p class="text-xs text-emerald-400 font-semibold mt-4">Founded by Aung Bo Bo Kyaw</p>
+    <section class="section knowledge-section">
+        <h2 class="section-title">Knowledge Hub</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="icon">🏠</div>
+                <h3>Smart Home Guide</h3>
+                <p>Home appliance usage, safety tips and maintenance knowledge.</p>
             </div>
-            
-            <div class="flex gap-4">
-                <a href="https://viber.me/959794848575" target="_blank" class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center hover:border-emerald-500 hover:text-emerald-400 transition" title="Viber">
-                    <i data-lucide="phone" class="w-5 h-5"></i>
-                </a>
-                <a href="https://t.me/yourusername" target="_blank" class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center hover:border-emerald-500 hover:text-emerald-400 transition" title="Telegram">
-                    <i data-lucide="send" class="w-5 h-5"></i>
-                </a>
-                <a href="https://tiktok.com/@yourusername" target="_blank" class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center hover:border-emerald-500 hover:text-emerald-400 transition" title="TikTok">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.97 1.2 2.37 1.93 3.86 2.14V9.92a7.9 7.9 0 0 1-5.11-1.74v7.75c0 1.56-.47 3.09-1.35 4.38-.88 1.3-2.14 2.25-3.61 2.73-1.47.48-3.05.48-4.52 0-1.47-.48-2.73-1.43-3.61-2.73a7.83 7.83 0 0 1-1.35-4.38c0-1.56.47-3.09 1.35-4.38.88-1.3 2.14-2.25 3.61-2.73 1.47-.48 3.05-.48 4.52 0 .61.2 1.19.49 1.71.87V.02z"/></svg>
-                </a>
+            <div class="service-card">
+                <div class="icon">⚡</div>
+                <h3>Electronics Guide</h3>
+                <p>Practical electronics knowledge and troubleshooting resources.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🤖</div>
+                <h3>AI Resources</h3>
+                <p>AI prompts, productivity tools and smart workflows.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">📚</div>
+                <h3>Digital Library</h3>
+                <p>Templates, guides and useful digital resources.</p>
             </div>
         </div>
-        <div class="text-center text-xs text-gray-600 mt-12 border-t border-gray-900 pt-6">
-            &copy; 2026 NEXORA. All Rights Reserved.
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Digital Store</h2>
+        <div class="service-card" style="opacity: 1; text-align: center; max-width: 600px; margin: 0 auto;">
+            <h3>Coming Soon</h3>
+            <p>Premium digital products, templates, AI resources and knowledge packages.</p>
         </div>
+    </section>
+
+    <section class="youtube-section">
+        <h2 class="section-title">📺 Watch & Learn</h2>
+        <div class="youtube-container">
+            <iframe 
+                src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                title="NEXORA YouTube Video" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <section class="partner-section">
+        <h3>Powered by Leading Platforms</h3>
+        <div class="partner-slider-container">
+            <div class="partner-slider-track">
+                <div class="partner-logo"><svg viewBox="0 0 24 24" fill="#10a37f"><path d="M21.74 11.64c.2-.47.16-.98-.1-1.42a1.72 1.72 0 0 0-1.4-.87l-2.07-.12.44-1.25c.34-.96-.07-2-.99-2.52a2.33 2.33 0 0 0-2.67.24l-1.63 1.28.05-1.26c.04-1.01-.6-1.93-1.57-2.22a2.36 2.36 0 0 0-2.66.9L8.3 5.86 7.72 4.75a2.16 2.16 0 0 0-2.34-1.12c-.93.22-1.6.99-1.67 1.95l-.04 1.26-1.07-.67a2.31 2.31 0 0 0-2.73.34c-.66.66-.82 1.66-.39 2.48l.68 1.28-1.26-.05c-1.01-.04-1.93.6-2.22 1.57a2.36 2.36 0 0 0 .9 2.66l1.44 1.14-.68 1.28c-.46.86-.33 1.92.34 2.64a2.34 2.34 0 0 0 2.44.57l2.06-.68-.43 1.25c-.34.96.07 2 .99 2.52.4.23.85.35 1.32.35.48 0 .96-.13 1.35-.39l1.63-1.28-.05 1.26c-.04 1.01.6 1.93 1.57 2.22.31.09.62.13.93.13a2.37 2.37 0 0 0 1.73-3.78l-.58-1.1 1.07.67c.39.24.84.37 1.3.37.52 0 1.03-.16 1.43-.48.66-.66.82-1.66.39-2.48l-.68-1.28 1.26.05c1.01.04 1.93-.6 2.22-1.57.29-.97-.24-2.01-1.2-2.38l-1.44-1.14.68-1.28zM12 14.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg><span>ChatGPT</span></div>
+                <div class="partner-logo"><svg viewBox="0 0 24 24" fill="#0052ff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2v-5h2v5z"/></svg><span>DeepSeek</span></div>
+                <div class="partner-logo"><svg viewBox="0 0 24 24" fill="#1a73e8"><path d="M12 21a9 9 0 1 1 9-9 9 9 0 0 1-9 9zm0-15.43L9.86 9.86 5.57 12l4.29 2.14L12 18.43l2.14-4.29L18.43 12l-4.29-2.14z"/></svg><span>Gemini</span></div>
+                <div class="partner-logo"><svg viewBox="0 0 24 24"><path d="M21.35 11.1h-9.17v2.73h6.51c-.33 1.56-1.56 2.95-3.24 3.5v2.88h5.15c3.01-2.77 4.75-6.86 4.75-11.77 0-.61-.05-1.21-.14-1.72z" fill="#4285f4"/><path d="M12.18 20.5c2.72 0 5.01-.89 6.68-2.44l-5.15-2.88c-.76.53-1.78.88-2.97.88-2.28 0-4.21-1.51-4.9-3.57H.57v3c1.7 3.36 5.17 5.65 9.21 5.65z" fill="#34a853"/><path d="M7.28 12.49c-.17-.53-.28-1.1-.28-1.69 0-.59.1-1.16.28-1.69v-3H.57C.2 6.94 0 8.04 0 9.2c0 1.16.2 2.26.57 3.11l6.71-3.11z" fill="#fbbc05"/><path d="M12.18 6.07c1.49 0 2.82.51 3.87 1.51l2.9-2.9C17.18 2.97 14.9 2 12.18 2 8.14 2 4.67 4.29 2.97 7.65l4.31 3.27c.69-2.06 2.62-3.57 4.9-3.57z" fill="#ea4335"/></svg><span>Google</span></div>
+                <div class="partner-logo"><svg viewBox="0 0 24 24" fill="#000000"><path d="M12 2L2 22h20L12 2z"/></svg><span>Vercel</span></div>
+                <div class="partner-logo"><svg viewBox="0 0 24 24" fill="#24292e"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg><span>GitHub</span></div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://viber.me/959794848575" class="viber-btn" target="_blank">
+        <svg viewBox="0 0 24 24">
+            <path d="M19.92 11.24a4.12 4.12 0 0 0-1.09-2.73 4.16 4.16 0 0 0-2.74-1.1h-.22c-.62 0-1.03.35-1.03.86 0 .47.36.83.91.85h.2c1.78.06 2.32.61 2.38 2.39v.2c.02.55.38.91.85.91.51 0 .86-.41.86-1.03v-.35zm2.93.02c.01-1.57-.38-2.95-1.19-4.14a8.288 8.288 0 0 0-3.95-3.08A8.69 8.69 0 0 0 14.53 3.5h-.26c-.63 0-1.02.37-1.02.87 0 .48.37.84.92.86h.18c4 .17 5.17 1.33 5.34 5.34v.18c.02.55.38.92.86.92.5 0 .87-.39.87-1.02v-.37v.01zm-7.6 4.88c-.62-.51-1.34-1.04-2.12-1.63-.44-.33-.6-.88-.36-1.38.31-.63.78-1.57.85-1.74.22-.53.07-1.12-.39-1.46L11 8.22c-.44-.33-1.03-.31-1.44.06-.51.46-1.4 1.35-1.51 2.22-.24 1.95.53 4.29 2.34 6.84 2.1 2.97 4.54 4.39 6.57 4.17.88-.1 1.68-1.07 2.11-1.6.34-.43.32-1.02-.04-1.43l-1.73-1.67c-.33-.47-.93-.61-1.45-.37-.16.07-1.03.52-1.62.83-.55.28-1.15.08-1.48-.36l-.01.01z"/>
+        </svg>
+        💬 Chat
+    </a>
+
+    <footer>
+        <h3>NEXORA</h3>
+        <p>Together We Grow.<br>Together We Succeed.</p>
+        <p class="founder">Founded by Aung Bo Bo Kyaw</p>
+        <p style="margin-top:20px; font-size:13px; color:#8899aa;">© 2026 NEXORA. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script>
-        lucide.createIcons();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
-        // Loader dismissal & Intro Animations
+    <script>
+        // GSAP Plugins Activation
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        // WHEN CONTENT IS FULLY LOADED
         window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.visibility = 'hidden';
-                
-                // GSAP Animations on Load
-                gsap.from(".hero-title", { opacity: 0, y: 30, duration: 1, ease: "power3.out" });
-                gsap.from(".hero-subtitle", { opacity: 0, y: 20, duration: 1, delay: 0.2, ease: "power3.out" });
-                gsap.from("#filter-container", { opacity: 0, duration: 0.6, delay: 0.4 });
-                gsap.from(".service-section", { opacity: 0, y: 40, duration: 0.8, delay: 0.5, stagger: 0.15, ease: "power2.out" });
-            }, 500);
+            
+            const masterTl = gsap.timeline();
+
+            // 1. Loader Content Sequence
+            masterTl.to(".loader-logo", { scale: 1, duration: 0.7, ease: "back.out(1.7)" })
+                    .to(".loader-text", { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
+                    
+                    // Typing Effect for Slogan
+                    .to(".loader-slogan", { 
+                        text: "Together We Grow, Together We Succeed", 
+                        duration: 1.8, 
+                        ease: "none",
+                        style: { borderRight: "2px solid #00b878" } // Cursor Line ပေါ်စေရန်
+                    })
+                    
+                    // Blinking Cursor Dynamic Effect
+                    .to(".loader-slogan", { borderRightColor: "transparent", repeat: 3, duration: 0.25, ease: "steps(1)" })
+                    
+                    // 2. Preloader Slides Up to Reveal Content
+                    .to("#preloader", { 
+                        yPercent: -100, 
+                        duration: 0.9, 
+                        ease: "power4.inOut" 
+                    })
+                    
+                    // 3. Hero Sections Smooth Fade-in
+                    .to(".hero h2", { opacity: 1, y: 0, duration: 0.9, ease: "power4.out" }, "-=0.2")
+                    .to(".hero .hero-question", { opacity: 1, y: 0, duration: 0.7 }, "-=0.7")
+                    .to(".hero p", { opacity: 1, y: 0, duration: 0.7 }, "-=0.7")
+                    .to(".hero .hero-closing", { opacity: 1, y: 0, duration: 0.7 }, "-=0.7")
+                    .to(".hero-buttons", { opacity: 1, y: 0, duration: 0.7 }, "-=0.7");
         });
 
-        // Filter Function
-        function filterCategory(category) {
-            // Highlight Button
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-emerald-500', 'text-darkBg');
-                btn.classList.add('bg-gray-900', 'text-gray-300', 'border-gray-800');
-            });
-            event.currentTarget.classList.add('bg-emerald-500', 'text-darkBg');
-            event.currentTarget.classList.remove('bg-gray-900', 'text-gray-300');
+        // SOLUTIONS GRID SCROLLTRIGGER
+        gsap.to(".solutions-section .service-card", {
+            scrollTrigger: {
+                trigger: ".solutions-section",
+                start: "top 85%",
+                toggleActions: "play none none none"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power2.out"
+        });
 
-            // Toggle Cards Visibility
-            const sections = document.querySelectorAll('.service-section');
-            sections.forEach(sec => {
-                const cat = sec.getAttribute('data-cat');
-                if (category === 'all' || cat === category) {
-                    sec.style.display = 'block';
-                    gsap.fromTo(sec, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
-                } else {
-                    sec.style.display = 'none';
-                }
-            });
-        }
-
-        // Toggle Package Details (Accordion)
-        function toggleDetails(btn) {
-            const content = btn.nextElementSibling;
-            const isOpen = content.classList.contains('active');
-
-            // Close all detail contents under the current card grid
-            const currentGrid = btn.closest('.grid');
-            currentGrid.querySelectorAll('.detail-content').forEach(c => {
-                c.classList.remove('active');
-                c.style.maxHeight = null;
-            });
-            currentGrid.querySelectorAll('button').forEach(b => b.innerText = "အသေးစိတ်ကြည့်ရန် ▾");
-
-            if (!isOpen) {
-                content.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + "px";
-                btn.innerText = "ပိတ်မည် ▴";
-            }
-        }
+        // KNOWLEDGE GRID SCROLLTRIGGER
+        gsap.to(".knowledge-section .service-card", {
+            scrollTrigger: {
+                trigger: ".knowledge-section",
+                start: "top 85%",
+                toggleActions: "play none none none"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power2.out"
+        });
     </script>
+
 </body>
 </html>
