@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Form - NEXORA</title>
+    <title>NEXORA | Service Order Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Myanmar:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #081b36;
@@ -12,6 +16,8 @@
             --bg: #f6f9fc;
             --text: #222;
             --gray: #667085;
+            --light-gray: #e8ecf1;
+            --red: #e11d48;
         }
 
         * {
@@ -27,8 +33,10 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
+        /* HEADER & BRANDING */
         header {
             background: white;
             display: flex;
@@ -73,8 +81,7 @@
             color: var(--green);
         }
 
-        /* BACK BUTTON */
-        .back-btn {
+        .back-home-btn {
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
@@ -87,51 +94,348 @@
             transition: all 0.3s ease;
         }
 
-        .back-btn:hover {
+        .back-home-btn:hover {
             background: var(--primary);
             color: white;
         }
 
-        /* FORM SECTION */
-        .form-section {
+        /* FORM SECTION & CONTAINER */
+        .order-section {
             flex: 1;
-            padding: 40px 20px;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .form-container {
-            max-width: 750px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        .form-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 950px;
+            box-shadow: 0 20px 40px rgba(8, 27, 54, 0.05);
             overflow: hidden;
-            border: 1px solid #e8ecf1;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .form-header {
+        .form-header-banner {
+            background: var(--primary);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .form-header-banner h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .form-header-banner p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ORDER ID BOX */
+        .order-id-badge {
+            background: rgba(0, 184, 120, 0.15);
+            color: var(--green);
+            border: 1px dashed var(--green);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* GRID SYSTEM (2 Columns) */
+        .form-grid {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group label span.required {
+            color: var(--red);
+            margin-left: 3px;
+        }
+
+        /* INPUTS & TEXTAREAS */
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--light-gray);
+            border-radius: 12px;
+            background: white;
+            font-size: 14px;
+            color: var(--text);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px rgba(0, 184, 120, 0.1);
+        }
+
+        .form-control.invalid {
+            border-color: var(--red) !important;
+            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1) !important;
+        }
+
+        .error-message {
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 500;
+            display: none;
+        }
+
+        /* TEXTAREA */
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* RADIO BUTTONS STYLE */
+        .radio-options-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .radio-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1.5px solid var(--light-gray);
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .radio-box:hover {
+            border-color: var(--green);
+        }
+
+        .radio-box input[type="radio"] {
+            accent-color: var(--green);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-box span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* HIGHLIGHT STANDARD PLAN (RECOMMENDED) */
+        .radio-box.popular {
+            border-color: #ffe0b2;
+            background: #fffdfa;
+            position: relative;
+        }
+
+        .radio-box.popular::after {
+            content: "🔥 Most Popular";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #f57c00;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Selected active state dynamically controlled by JS */
+        .radio-box.checked {
+            border-color: var(--green) !important;
+            background: rgba(0, 184, 120, 0.03) !important;
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            grid-column: span 2;
+            background: var(--green);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0 10px 20px rgba(0, 184, 120, 0.2);
+        }
+
+        .submit-btn:hover {
+            background: #009e66;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 184, 120, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* SPINNER */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* SUCCESS MESSAGE COMPONENT */
+        .success-card {
+            display: none;
+            text-align: center;
+            padding: 50px 30px;
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* SUCCESS CHECKMARK ANIMATION CSS ONLY */
+        .checkmark-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(0, 184, 120, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            stroke-width: 5;
+            stroke: var(--green);
+            stroke-miterlimit: 10;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
+        }
+
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .success-card h2 {
+            font-size: 26px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .success-card p.info-text {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .success-order-id {
+            background: #f0f4f8;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        /* CONTACT BADGES */
+        .contact-box-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .contact-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-badge:hover {
+            border-color: var(--green);
+            transform: translateY(-2px);
+        }
+
+        .back-to-services-btn {
             background: var(--primary);
             color: white;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .form-header h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .form-header p {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Responsive iframe */
-        .form-container iframe {
-            width: 100%;
-            height: 1619px; /* Default Desktop height */
-            display: block;
             border: none;
+            border-radius: 30px;
+            padding: 14px 30px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .back-to-services-btn:hover {
+            background: #112d55;
+            transform: translateY(-2px);
         }
 
         /* FOOTER */
@@ -143,12 +447,37 @@
             font-size: 13px;
         }
 
-        @media (max-width: 700px) {
-            .form-section {
-                padding: 15px 10px;
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                padding: 25px 20px;
             }
-            .form-container iframe {
-                height: 1800px; /* Mobile View Height Adjustment */
+            .full-width {
+                grid-column: span 1;
+            }
+            .submit-btn {
+                grid-column: span 1;
+            }
+            .radio-options-wrap {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body, header, footer, .submit-btn, .back-home-btn {
+                display: none !important;
             }
         }
     </style>
@@ -162,16 +491,210 @@
             </div>
             <h1>NEX<span>ORA</span></h1>
         </div>
-        <a href="explore.html" class="back-btn">← Back to Services</a>
+        <a href="index.html" class="back-home-btn">🏠 Home</a>
     </header>
 
-    <section class="form-section">
-        <div class="form-container">
-            <div class="form-header">
-                <h2>📋 Order Form</h2>
-                <p>ကျေးဇူးပြု၍ အချက်အလက်များကို ပြည့်စုံစွာ ဖြည့်စွက်ပေးပါခင်ဗျာ။</p>
+    <section class="order-section">
+        <div class="form-card">
+            
+            <div id="form-body">
+                <div class="form-header-banner">
+                    <h2>📋 Service Order Form</h2>
+                    <p>အချက်အလက်များကို ဖြည့်စွက်ပြီး အပ်နှံမှုအား စတင်လိုက်ပါ</p>
+                    <div class="order-id-badge">Order ID: <span id="generated-id">NEX-YYYYMMDD-XXX</span></div>
+                </div>
+
+                <form id="nexora-order-form" novalidate>
+                    <input type="hidden" name="order_id" id="hidden_order_id">
+                    <input type="hidden" name="submission_date" id="hidden_submission_date">
+                    <input type="hidden" name="browser_info" id="hidden_browser_info">
+                    <input type="hidden" name="device_type" id="hidden_device_type">
+                    <input type="hidden" name="screen_resolution" id="hidden_screen_resolution">
+
+                    <div class="form-grid">
+                        
+                        <div class="form-group">
+                            <label for="fullName">နာမည်အပြည့်အစုံ <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="full_name" class="form-control" required placeholder="မြန်မာ သို့မဟုတ် အင်္ဂလိပ်လို ဖြည့်ပါ">
+                            <span class="error-message" id="fullName-err">နာမည်ထည့်သွင်းရန် လိုအပ်ပါသည်။</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">ဖုန်းနံပါတ် <span class="required">*</span></label>
+                            <input type="tel" id="phoneNumber" name="phone" class="form-control" required placeholder="ဥပမာ- 09794848575">
+                            <span class="error-message" id="phoneNumber-err">ဖုန်းနံပါတ်မှန်ကန်စွာ (09xxxxxxxxx) ဖြည့်သွင်းပေးပါ။</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="viberNumber">Viber နံပါတ် (Optional)</label>
+                            <input type="tel" id="viberNumber" name="viber" class="form-control" placeholder="ဆက်သွယ်ရမည့် Viber နံပါတ်">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailAddress">အီးမေးလ် (Optional)</label>
+                            <input type="email" id="emailAddress" name="email" class="form-control" placeholder="ဥပမာ- customer@gmail.com">
+                            <span class="error-message" id="emailAddress-err">အီးမေးလ်ပုံစံ မမှန်ကန်ပါ။</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessName">လုပ်ငန်းအမည် (Optional)</label>
+                            <input type="text" id="businessName" name="business_name" class="form-control" placeholder="ရှိလျှင် ဖော်ပြပေးပါ">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="township">မြို့နယ်/မြို့ <span class="required">*</span></label>
+                            <input type="text" id="township" name="township" class="form-control" required placeholder="ဥပမာ- လသာမြို့နယ်, ရန်ကုန်">
+                            <span class="error-message" id="township-err">မြို့နယ် သို့မဟုတ် မြို့ ဖြည့်သွင်းရန် လိုအပ်ပါသည်။</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="fullAddress">လိပ်စာအပြည့်အစုံ <span class="required">*</span></label>
+                            <textarea id="fullAddress" name="address" class="form-control" required placeholder="ကတ်ပြားပို့ဆောင်ရန် သို့မဟုတ် စာရွက်စာတမ်းများအတွက် လိပ်စာအပြည့်အစုံ..."></textarea>
+                            <span class="error-message" id="fullAddress-err">လိပ်စာအပြည့်အစုံ ဖြည့်သွင်းရန် လိုအပ်ပါသည်။</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="serviceCategory">လိုအပ်သော ဝန်ဆောင်မှု <span class="required">*</span></label>
+                            <select id="serviceCategory" name="service_category" class="form-control" required>
+                                <option value="" selected>ရွေးချယ်ပါ (Select Service)</option>
+                                <option value="Landing Page Design">🌐 Landing Page Design</option>
+                                <option value="Telegram Bot Development">🤖 Telegram Bot Development</option>
+                                <option value="Google Sheet Automation">📊 Google Sheet Automation</option>
+                                <option value="Business Website Development">💻 Business Website Development</option>
+                                <option value="Social Media Content Design">🎨 Social Media Content Design</option>
+                                <option value="Workflow Automation Setup">⚙️ Workflow Automation Setup</option>
+                                <option value="Not Sure / Custom Request">❓ Not Sure / Custom Request</option>
+                            </select>
+                            <span class="error-message" id="serviceCategory-err">ဝန်ဆောင်မှုတစ်ခု ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Package အမျိုးအစား <span class="required">*</span></label>
+                            <div class="radio-options-wrap">
+                                <label class="radio-box">
+                                    <input type="radio" name="package_type" value="Basic" required>
+                                    <span>Basic</span>
+                                </label>
+                                <label class="radio-box popular">
+                                    <input type="radio" name="package_type" value="Standard" required>
+                                    <span>Standard</span>
+                                </label>
+                                <label class="radio-box">
+                                    <input type="radio" name="package_type" value="Premium" required>
+                                    <span>Premium</span>
+                                </label>
+                                <label class="radio-box">
+                                    <input type="radio" name="package_type" value="Custom / Not Sure" required>
+                                    <span>Custom / Not Sure</span>
+                                </label>
+                            </div>
+                            <span class="error-message" id="packageType-err" style="margin-top: 5px;">Package အမျိုးအစားတစ်ခုခုကို ရွေးချယ်ပေးပါ။</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budgetRange">အသုံးစရိတ် ခန့်မှန်းခြေ (Optional)</label>
+                            <select id="budgetRange" name="budget_range" class="form-control">
+                                <option value="" selected>ရွေးချယ်ပါ</option>
+                                <option value="Under 200,000 MMK">Under 200,000 MMK</option>
+                                <option value="200,000 - 500,000 MMK">200,000 - 500,000 MMK</option>
+                                <option value="500,000 - 1,000,000 MMK">500,000 - 1,000,000 MMK</option>
+                                <option value="1,000,000+ MMK">1,000,000+ MMK</option>
+                                <option value="Not Sure">Not Sure</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timeline">အချိန်ကာလ <span class="required">*</span></label>
+                            <select id="timeline" name="timeline" class="form-control" required>
+                                <option value="" selected>ရွေးချယ်ပါ</option>
+                                <option value="Urgent (3 Days)">🚨 Urgent (3 Days)</option>
+                                <option value="Within 1 Week">📅 Within 1 Week</option>
+                                <option value="Within 2 Weeks">📅 Within 2 Weeks</option>
+                                <option value="Within 1 Month">📅 Within 1 Month</option>
+                                <option value="Flexible">🔄 Flexible</option>
+                            </select>
+                            <span class="error-message" id="timeline-err">အချိန်ကာလ သတ်မှတ်ပေးရန် လိုအပ်ပါသည်။</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="projectDetails">လိုအပ်ချက် အသေးစိတ် <span class="required">*</span></label>
+                            <textarea id="projectDetails" name="project_details" class="form-control" required placeholder="သင့်လုပ်ငန်းအကြောင်းနှင့် လိုအပ်သော ဝန်ဆောင်မှုအသေးစိတ်ကို ဖော်ပြပါ..."></textarea>
+                            <span class="error-message" id="projectDetails-err">အသေးစိတ် အချက်အလက်များအား ရေးပေးရန် လိုအပ်ပါသည်။</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>ဆက်သွယ်လိုသည့်နည်းလမ်း <span class="required">*</span></label>
+                            <div class="radio-options-wrap">
+                                <label class="radio-box">
+                                    <input type="radio" name="contact_method" value="Phone" required>
+                                    <span>📞 Phone</span>
+                                </label>
+                                <label class="radio-box">
+                                    <input type="radio" name="contact_method" value="Viber" required>
+                                    <span>💬 Viber</span>
+                                </label>
+                                <label class="radio-box">
+                                    <input type="radio" name="contact_method" value="Email" required>
+                                    <span>📧 Email</span>
+                                </label>
+                            </div>
+                            <span class="error-message" id="contactMethod-err" style="margin-top: 5px;">ဆက်သွယ်လိုသည့် နည်းလမ်း ရွေးချယ်ပေးပါ။</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referral">How did you hear about NEXORA? (Optional)</label>
+                            <select id="referral" name="referral" class="form-control">
+                                <option value="" selected>ရွေးချယ်ပါ</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Telegram">Telegram</option>
+                                <option value="Friend Referral">Friend Referral</option>
+                                <option value="Google Search">Google Search</option>
+                                <option value="Viber Group">Viber Group</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="additionalNotes">ထပ်မံမှတ်ချက် (Optional)</label>
+                            <textarea id="additionalNotes" name="additional_notes" class="form-control" placeholder="ထပ်ဆောင်းပြောလိုသောအရာများရှိလျှင်..."></textarea>
+                        </div>
+
+                        <div class="full-width" id="submission-error-msg" style="display: none; color: var(--red); font-weight: 600; text-align: center; margin-bottom: 10px;">
+                            ❌ Submission failed. Please try again.
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="btn-submit">
+                            <div class="spinner" id="btn-spinner"></div>
+                            <span id="btn-text">📋 Submit Order</span>
+                        </button>
+
+                    </div>
+                </form>
             </div>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfrj22Js8m3mFD2sNFZnL28GN8qpGR0plNmwxXXvtw3cBHpLA/viewform?embedded=true" width="100%" height="1619" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+            <div id="success-message" class="success-card">
+                <div class="checkmark-wrapper">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2>သင့်မှာယူမှုကို လက်ခံရရှိပါပြီ!</h2>
+                <div class="success-order-id">Order ID: <span id="success-id-text">NEX-XXXXX</span></div>
+                <p class="info-text">
+                    NEXORA အဖွဲ့သားများမှ ၂၄ နာရီအတွင်း သင့်ထံသို့ ပြန်လည်ဆက်သွယ်ပေးပါမည်။ <br>
+                    မစောင့်ဆိုင်းလိုပါက အောက်ပါ လင့်ခ်များမှတစ်ဆင့် တိုက်ရိုက် ဆက်သွယ်စုံစမ်းနိုင်ပါသည်။
+                </p>
+                <div class="contact-box-grid">
+                    <a href="https://viber.com" class="contact-badge" target="_blank">
+                        💬 Viber (09 794 848 575)
+                    </a>
+                    <a href="https://t.me/nexora_contact" class="contact-badge" target="_blank">
+                        🤖 Telegram (@nexora_contact)
+                    </a>
+                </div>
+                <a href="index.html" class="back-to-services-btn">← Back to Home</a>
+            </div>
+
         </div>
     </section>
 
@@ -179,5 +702,218 @@
         <p>© 2026 NEXORA. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        // Constants
+        const WEB_APP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+
+        // Order ID Generator (Format: NEX-YYYYMMDD-XXX)
+        function generateOrderId() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const randomThreeDigits = String(Math.floor(100 + Math.random() * 900));
+            return `NEX-${yyyy}${mm}${dd}-${randomThreeDigits}`;
+        }
+
+        // Get Metadata Tracking Information
+        function getBrowserInfo() {
+            return navigator.userAgent;
+        }
+
+        function getDeviceType() {
+            const ua = navigator.userAgent;
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+                return "Tablet";
+            }
+            if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/i.test(ua)) {
+                return "Mobile";
+            }
+            return "Desktop";
+        }
+
+        // Sanitize Input Strings
+        function sanitizeInput(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m];
+            }).trim();
+        }
+
+        // Validate Myanmar Phone Number (Formats: 09... , +959... , 959...)
+        function validateMyanmarPhone(phone) {
+            const regex = /^(09|\+959|959)\d{7,9}$/;
+            return regex.test(phone.replace(/\s+/g, ''));
+        }
+
+        // Validate Single Form Group Field
+        function validateField(field) {
+            const errId = `${field.id || field.name}-err`;
+            const errElement = document.getElementById(errId);
+            let isValid = true;
+
+            if (field.hasAttribute('required')) {
+                if (field.type === 'radio') {
+                    const radios = document.getElementsByName(field.name);
+                    const isChecked = Array.from(radios).some(r => r.checked);
+                    if (!isChecked) isValid = false;
+                } else if (!field.value.trim()) {
+                    isValid = false;
+                }
+            }
+
+            // Custom Regex Verifications
+            if (isValid && field.id === 'phoneNumber') {
+                if (!validateMyanmarPhone(field.value)) {
+                    isValid = false;
+                }
+            }
+
+            if (isValid && field.id === 'emailAddress' && field.value.trim() !== '') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value)) {
+                    isValid = false;
+                }
+            }
+
+            // Show UI feedbacks
+            if (!isValid) {
+                if (errElement) errElement.style.display = 'block';
+                if (field.type !== 'radio') field.classList.add('invalid');
+            } else {
+                if (errElement) errElement.style.display = 'none';
+                if (field.type !== 'radio') field.classList.remove('invalid');
+            }
+
+            return isValid;
+        }
+
+        // Handle Form Submission
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const fieldsToValidate = form.querySelectorAll('[required], #emailAddress');
+            let formIsValid = true;
+
+            // Trigger validations for all fields
+            fieldsToValidate.forEach(field => {
+                if (!validateField(field)) {
+                    formIsValid = false;
+                }
+            });
+
+            if (!formIsValid) {
+                // Focus the first invalid element smoothly
+                const firstInvalid = form.querySelector('.invalid');
+                if (firstInvalid) firstInvalid.focus({ preventScroll: false });
+                return;
+            }
+
+            // Elements references for processing state
+            const btnSubmit = document.getElementById('btn-submit');
+            const btnSpinner = document.getElementById('btn-spinner');
+            const btnText = document.getElementById('btn-text');
+            const globalErrorMsg = document.getElementById('submission-error-msg');
+
+            // Set Loading Button States
+            btnSubmit.disabled = true;
+            btnSpinner.style.display = 'block';
+            btnText.textContent = 'Processing Order...';
+            globalErrorMsg.style.display = 'none';
+
+            // Collect Form Values in Structured JSON
+            const formData = new FormData(form);
+            const payload = {};
+            formData.forEach((value, key) => {
+                payload[key] = sanitizeInput(value);
+            });
+
+            try {
+                // Async Fetch Post call to Google App Script API Endpoint
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Standard cross-origin setting for GAS
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                // Display Success States UI Screen Components
+                document.getElementById('form-body').style.display = 'none';
+                document.getElementById('success-id-text').textContent = payload.order_id;
+                document.getElementById('success-message').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Submission failed', error);
+                
+                // Revert Loading Button States & Show Global Red Error Msg
+                btnSubmit.disabled = false;
+                btnSpinner.style.display = 'none';
+                btnText.textContent = '📋 Submit Order';
+                globalErrorMsg.style.display = 'block';
+                globalErrorMsg.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Initialize Form Configurations
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('nexora-order-form');
+            const orderId = generateOrderId();
+
+            // Set Order ID visual elements
+            document.getElementById('generated-id').textContent = orderId;
+            document.getElementById('hidden_order_id').value = orderId;
+
+            // Gather and Inject System Trackers
+            const mmTime = new Date().toLocaleString("en-US", {timeZone: "Asia/Yangon"});
+            document.getElementById('hidden_submission_date').value = mmTime;
+            document.getElementById('hidden_browser_info').value = getBrowserInfo();
+            document.getElementById('hidden_device_type').value = getDeviceType();
+            document.getElementById('hidden_screen_resolution').value = `${window.screen.width}x${window.screen.height}`;
+
+            // Add Event Listeners for Dynamic UX Input feedbacks
+            form.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('blur', () => validateField(input));
+                input.addEventListener('input', () => {
+                    if (input.classList.contains('invalid')) validateField(input);
+                });
+            });
+
+            // Radio Button styling dynamic visual feedbacks
+            const radioBoxes = document.querySelectorAll('.radio-box');
+            radioBoxes.forEach(box => {
+                const input = box.querySelector('input[type="radio"]');
+                
+                // Set initial status of pre-selected Standard plan
+                if (input.checked) box.classList.add('checked');
+
+                box.addEventListener('click', () => {
+                    // Uncheck siblings with same name
+                    const name = input.name;
+                    document.querySelectorAll(`input[name="${name}"]`).forEach(sibling => {
+                        sibling.closest('.radio-box').classList.remove('checked');
+                    });
+                    input.checked = true;
+                    box.classList.add('checked');
+                    
+                    const errId = `${name}-err`;
+                    const errElement = document.getElementById(errId);
+                    if (errElement) errElement.style.display = 'none';
+                });
+            });
+
+            // Handle Submit Form Event
+            form.addEventListener('submit', handleSubmit);
+        });
+    </script>
 </body>
 </html>
