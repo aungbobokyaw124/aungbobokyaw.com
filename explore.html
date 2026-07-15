@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA | Our Solutions & Pricing</title>
+    <meta name="description" content="Explore NEXORA's professional digital services and transparent pricing packages. From Landing Pages to Business Automation.">
+    
+    <style>
+        :root {
+            --primary: #081b36;
+            --green: #00b878;
+            --white: #ffffff;
+            --bg: #f6f9fc;
+            --text: #222;
+            --gray: #667085;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* HEADER & DROPDOWN */
+        header {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #00b878, #081b36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand h1 {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .brand span {
+            color: var(--green);
+        }
+
+        .menu {
+            font-size: 28px;
+            color: var(--primary);
+            cursor: pointer;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            border-radius: 14px;
+            padding: 12px 0;
+            z-index: 20;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 22px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg);
+            color: var(--green);
+            padding-left: 26px;
+        }
+
+        .menu:hover .dropdown {
+            display: block;
+        }
+
+        /* PAGE HERO */
+        .solutions-hero {
+            padding: 60px 25px 40px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(0, 184, 120, .1), transparent 60%);
+        }
+
+        .solutions-hero h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .solutions-hero h2 span {
+            color: var(--green);
+        }
+
+        .solutions-hero p {
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* FILTER TABS */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 20px;
+            margin-bottom: 40px;
+            opacity: 0;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(8, 27, 54, 0.15);
+        }
+
+        /* SOLUTIONS CONTAINER */
+        .solutions-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .service-section {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #edf2f7;
+            display: block; /* For Filter interaction */
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 20px;
+        }
+
+        .service-icon {
+            font-size: 32px;
+            background: #e6f8f1;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+        }
+
+        .service-info h3 {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .service-info p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* PRICING GRID */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .pricing-card {
+            background: var(--bg);
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--green);
+            box-shadow: 0 10px 25px rgba(0, 184, 120, 0.08);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--green);
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 184, 120, 0.1);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--green);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .card-top h4 {
+            font-size: 18px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-tag {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+
+        .price-tag span {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* ACCORDION (View Details) STYLE */
+        .detail-btn {
+            background: white;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            width: 100%;
+            padding: 12px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 15px;
+        }
+
+        .detail-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .detail-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 12px;
+            margin-top: 0;
+        }
+
+        .detail-content.active {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #edf2f7;
+        }
+
+        .detail-content ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .detail-content li {
+            font-size: 13px;
+            color: #4a5568;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-content li:last-child {
+            margin-bottom: 0;
+        }
+
+        .check-icon {
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        /* NOTE BOXES */
+        .note-box {
+            background: #e6f8f1;
+            border-left: 4px solid var(--green);
+            padding: 20px;
+            border-radius: 0 16px 16px 0;
+            margin-top: 40px;
+            color: var(--primary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .note-box h4 {
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* CONTACT FLOATING CTA */
+        .bottom-cta {
+            background: var(--primary);
+            color: white;
+            padding: 60px 25px;
+            text-align: center;
+            border-radius: 24px;
+            margin-top: 60px;
+        }
+
+        .bottom-cta h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .bottom-cta p {
+            color: #a0aec0;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            background: var(--green);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0, 184, 120, 0.3);
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #081b36;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            line-height: 1.8;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        footer .founder {
+            margin-top: 15px;
+            color: var(--green);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media(max-width: 900px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .solutions-hero h2 {
+                font-size: 28px;
+            }
+            .service-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand">
+            <div class="logo">
+                <img src="logo.png" alt="NEXORA Logo">
+            </div>
+            <h1>NEX<span>ORA</span></h1>
+        </a>
+        <div class="menu">
+            ☰
+            <div class="dropdown">
+                <a href="index.html">🏠 Home</a>
+                <a href="solutions.html">⚙️ Our Solutions</a>
+                <a href="knowledge-hub.html">📚 Knowledge Hub</a>
+                <a href="digital-store.html">🛒 Digital Store</a>
+                <a href="about.html">ℹ️ About NEXORA</a>
+                <a href="contact.html">📞 Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="solutions-hero">
+        <h2>NEXORA <span>Solutions & Pricing</span></h2>
+        <p>သင့်လုပ်ငန်းအတွက် ကိုက်ညီမည့် အကောင်းဆုံးဒစ်ဂျစ်တယ်ဝန်ဆောင်မှုနှင့် စနစ်ကျသောစျေးနှုန်းများကို ရွေးချယ်နိုင်ပါသည်။</p>
+    </section>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterServices('all')">All Services</button>
+        <button class="filter-btn" onclick="filterServices('web')">Websites</button>
+        <button class="filter-btn" onclick="filterServices('bot')">Bots</button>
+        <button class="filter-btn" onclick="filterServices('automation')">Automation</button>
+        <button class="filter-btn" onclick="filterServices('design')">Media & Design</button>
+    </div>
+
+    <div class="solutions-container">
+
+        <div class="service-section" data-cat="web">
+            <div class="service-header">
+                <div class="service-icon">🌐</div>
+                <div class="service-info">
+                    <h3>Landing Page Design & Development</h3>
+                    <p>လုပ်ငန်း/Product/Service အတွက် High-Converting Landing Page များ ဒီဇိုင်းဆွဲခြင်းနှင့် တည်ဆောက်ပေးခြင်း</p>
+                </div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Basic</h4>
+                        <div class="price-tag">150,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 1-Page Custom Design</li>
+                            <li><span class="check-icon">✓</span> Full Mobile Responsive</li>
+                            <li><span class="check-icon">✓</span> Standard Contact Form</li>
+                            <li><span class="check-icon">✓</span> 1 Revision Included</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="card-top">
+                        <h4>Standard</h4>
+                        <div class="price-tag">350,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 3-Pages Design</li>
+                            <li><span class="check-icon">✓</span> Custom Brand Graphics</li>
+                            <li><span class="check-icon">✓</span> Basic SEO Setup</li>
+                            <li><span class="check-icon">✓</span> GSAP & CSS Animations</li>
+                            <li><span class="check-icon">✓</span> 2 Revisions Included</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Premium</h4>
+                        <div class="price-tag">600,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Up to 5-Pages Design</li>
+                            <li><span class="check-icon">✓</span> Advanced SEO Optimization</li>
+                            <li><span class="check-icon">✓</span> A/B Testing Setup</li>
+                            <li><span class="check-icon">✓</span> Analytics Integration</li>
+                            <li><span class="check-icon">✓</span> Unlimited Revisions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section" data-cat="bot">
+            <div class="service-header">
+                <div class="service-icon">🤖</div>
+                <div class="service-info">
+                    <h3>Telegram Bot Development</h3>
+                    <p>လုပ်ငန်းသုံး Telegram Bot များ (Customer Support, Order Taking, Mini App) တည်ဆောက်ပေးခြင်း</p>
+                </div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Basic</h4>
+                        <div class="price-tag">200,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Simple Command Bot (5 Commands)</li>
+                            <li><span class="check-icon">✓</span> Basic Interactive Menu</li>
+                            <li><span class="check-icon">✓</span> Single Language Support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="card-top">
+                        <h4>Standard</h4>
+                        <div class="price-tag">500,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Advanced Bot (20+ Commands)</li>
+                            <li><span class="check-icon">✓</span> Database System Integration</li>
+                            <li><span class="check-icon">✓</span> Local Payment Integrations</li>
+                            <li><span class="check-icon">✓</span> User-friendly Admin Panel</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Premium</h4>
+                        <div class="price-tag">1,200,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Telegram Mini App (In-App UI)</li>
+                            <li><span class="check-icon">✓</span> Multi-language System</li>
+                            <li><span class="check-icon">✓</span> Full API Integrations</li>
+                            <li><span class="check-icon">✓</span> Custom Management Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section" data-cat="automation">
+            <div class="service-header">
+                <div class="service-icon">📊</div>
+                <div class="service-info">
+                    <h3>Google Sheet Automation</h3>
+                    <p>လုပ်ငန်းသုံး Spreadsheet များကို Formula, Apps Script, API များဖြင့် Auto လုပ်ဆောင်ပေးခြင်း</p>
+                </div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Basic</h4>
+                        <div class="price-tag">100,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Custom Formula Setup</li>
+                            <li><span class="check-icon">✓</span> Data Entry Automation Templates</li>
+                            <li><span class="check-icon">✓</span> Structure & Format Tuning</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="card-top">
+                        <h4>Standard</h4>
+                        <div class="price-tag">250,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Apps Script Custom Functions</li>
+                            <li><span class="check-icon">✓</span> Clean Dashboard / Reports</li>
+                            <li><span class="check-icon">✓</span> Auto Email/PDF Generation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Premium</h4>
+                        <div class="price-tag">500,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Full Sheet CRM / Inventory System</li>
+                            <li><span class="check-icon">✓</span> External API Integrations</li>
+                            <li><span class="check-icon">✓</span> Multi-user Access Control</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section" data-cat="web">
+            <div class="service-header">
+                <div class="service-icon">💻</div>
+                <div class="service-info">
+                    <h3>Business Website Development</h3>
+                    <p>ကုမ္ပဏီ သို့မဟုတ် ဆိုင်များအတွက် စနစ်ကျသော Multi-page Website များ တည်ဆောက်ပေးခြင်း</p>
+                </div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Basic</h4>
+                        <div class="price-tag">300,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 5 Pages Setup</li>
+                            <li><span class="check-icon">✓</span> Modern Template-based Design</li>
+                            <li><span class="check-icon">✓</span> Responsive Mobile Layout</li>
+                            <li><span class="check-icon">✓</span> Standard Contact Form</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="card-top">
+                        <h4>Standard</h4>
+                        <div class="price-tag">700,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 10 Pages Dynamic Website</li>
+                            <li><span class="check-icon">✓</span> Custom CMS Setup (WordPress)</li>
+                            <li><span class="check-icon">✓</span> On-Page SEO Setup</li>
+                            <li><span class="check-icon">✓</span> Blog System Integrated</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Premium</h4>
+                        <div class="price-tag">1,500,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> Unlimited Pages</li>
+                            <li><span class="check-icon">✓</span> Custom CMS / Custom Code Backend</li>
+                            <li><span class="check-icon">✓</span> Full E-commerce System</li>
+                            <li><span class="check-icon">✓</span> Advanced Security & SEO Pack</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section" data-cat="design">
+            <div class="service-header">
+                <div class="service-icon">🎨</div>
+                <div class="service-info">
+                    <h3>Social Media Content Design</h3>
+                    <p>Facebook / Instagram များအတွက် အမြင်ဆွဲဆောင်မှုရှိသော Post / Story / Cover ဖန်တီးပေးခြင်း</p>
+                </div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Basic</h4>
+                        <div class="price-tag">150,000 <span>Ks/mo</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 10 Static Post Designs / Month</li>
+                            <li><span class="check-icon">✓</span> Post Copywriting Included</li>
+                            <li><span class="check-icon">✓</span> 1 Overall Revision</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="card-top">
+                        <h4>Standard</h4>
+                        <div class="price-tag">300,000 <span>Ks/mo</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 20 Posts + 4 Stories / Month</li>
+                            <li><span class="check-icon">✓</span> Static + Motion/Video Elements</li>
+                            <li><span class="check-icon">✓</span> Custom Brand Kit Setup</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Premium</h4>
+                        <div class="price-tag">500,000 <span>Ks/mo</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 30 Posts + 8 Stories + 2 Reels</li>
+                            <li><span class="check-icon">✓</span> Full Brand Identity Design</li>
+                            <li><span class="check-icon">✓</span> Unlimited Revisions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section" data-cat="automation">
+            <div class="service-header">
+                <div class="service-icon">⚡</div>
+                <div class="service-info">
+                    <h3>Workflow Automation Setup</h3>
+                    <p>Zapier, Make.com သုံး၍ Platform များအချင်းချင်း ချိတ်ဆက်ကာ အလုပ်များကို Auto လုပ်ဆောင်ပေးခြင်း</p>
+                </div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Basic</h4>
+                        <div class="price-tag">150,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 1 Active Automation Workflow</li>
+                            <li><span class="check-icon">✓</span> Up to 3 Apps Connections</li>
+                            <li><span class="check-icon">✓</span> Full Testing & Setup</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="card-top">
+                        <h4>Standard</h4>
+                        <div class="price-tag">350,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 3 Automation Workflows</li>
+                            <li><span class="check-icon">✓</span> Up to 5 Apps Connected</li>
+                            <li><span class="check-icon">✓</span> Auto Error-handling System</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-top">
+                        <h4>Premium</h4>
+                        <div class="price-tag">600,000 <span>Ks</span></div>
+                    </div>
+                    <button class="detail-btn" onclick="toggleAccordion(this)">အသေးစိတ်ကြည့်ရန် ▾</button>
+                    <div class="detail-content">
+                        <ul>
+                            <li><span class="check-icon">✓</span> 5+ Complex Automated Workflows</li>
+                            <li><span class="check-icon">✓</span> Custom API / Webhook Integration</li>
+                            <li><span class="check-icon">✓</span> Operations Documentation & Training</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <h4>💡 အပိုဆောင်း အချက်အလက်များ</h4>
+            <p>• <strong>Maintenance:</strong> Premium Package များတွင် ၁ လ အခမဲ့ နည်းပညာ Support ပါဝင်ပြီး၊ နောက်လများတွင် တစ်လလျှင် ဝန်ဆောင်မှုတန်ဖိုး၏ ၁၀% - ၁၅% ဖြင့် ဆက်လက်ရယူနိုင်ပါသည်။</p>
+            <p>• <strong>Domain & Hosting:</strong> Website ဝန်ဆောင်မှုများအတွက် Domain နှင့် Web Hosting စရိတ်ကို သီးသန့် ကျခံရပါမည်။</p>
+            <p>• <strong>Custom Package:</strong> ဖော်ပြပါ Package များအပြင် သင့်လုပ်ငန်းလိုအပ်ချက်အတိုင်း သီးသန့် Layout များကိုလည်း ညှိနှိုင်းဆွေးနွေး အပ်နှံနိုင်ပါသည်။</p>
+        </div>
+
+        <section class="bottom-cta">
+            <h3>သင့်လုပ်ငန်းအတွက် မည်သည့်အစီအစဉ်က အကောင်းဆုံးဖြစ်မလဲ?</h3>
+            <p>အခမဲ့ ဆွေးနွေးတိုင်ပင်ရန် သို့မဟုတ် သင့်လုပ်ငန်းလိုအပ်ချက်နှင့် အကိုက်ညီဆုံး Custom Project အပ်နှံရန် ယခုပဲ ဆက်သွယ်လိုက်ပါ။</p>
+            <a href="https://viber.me/959794848575" target="_blank" class="cta-btn">📞 Viber မှ ဆွေးနွေးမည်</a>
+        </section>
+
+    </div>
+
+    <footer>
+        <h3>NEXORA</h3>
+        <p>Together We Grow.<br>Together We Succeed.</p>
+        <p class="founder">Founded by Aung Bo Bo Kyaw</p>
+        <p style="margin-top:20px; font-size:13px; color:#8899aa;">© 2026 NEXORA. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        // GSAP INTRO ANIMATION ON PAGE LOAD
+        window.addEventListener('load', () => {
+            gsap.to(".solutions-hero h2", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
+            gsap.to(".solutions-hero p", { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: "power3.out" });
+            gsap.to(".filter-container", { opacity: 1, duration: 0.5, delay: 0.4 });
+            gsap.from(".service-section", { opacity: 0, y: 40, duration: 0.8, delay: 0.5, stagger: 0.15, ease: "power2.out" });
+        });
+
+        // FILTER SYSTEM
+        function filterServices(category) {
+            // Toggle active class on buttons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const sections = document.querySelectorAll('.service-section');
+            
+            sections.forEach(sec => {
+                const cat = sec.getAttribute('data-cat');
+                if(category === 'all' || cat === category) {
+                    sec.style.display = 'block';
+                    gsap.fromTo(sec, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+        }
+
+        // ACCORDION (TOGGLE DETAILS)
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            
+            // Check if active
+            const isActive = content.classList.contains('active');
+            
+            // Close other open details inside the SAME grid
+            const currentGrid = button.closest('.pricing-grid');
+            const openContents = currentGrid.querySelectorAll('.detail-content');
+            const openButtons = currentGrid.querySelectorAll('.detail-btn');
+            
+            openContents.forEach(c => {
+                c.classList.remove('active');
+                c.style.maxHeight = null;
+            });
+            openButtons.forEach(b => b.innerHTML = "အသေးစိတ်ကြည့်ရန် ▾");
+
+            // Toggle selected content
+            if (!isActive) {
+                content.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+                button.innerHTML = "ပိတ်မည် ▴";
+            } else {
+                content.classList.remove('active');
+                content.style.maxHeight = null;
+                button.innerHTML = "အသေးစိတ်ကြည့်ရန် ▾";
+            }
+        }
+    </script>
+</body>
+</html>
