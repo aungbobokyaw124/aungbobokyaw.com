@@ -22,6 +22,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+            scroll-behavior: smooth; /* HTML scroll dynamic smooth */
         }
 
         body {
@@ -256,7 +257,7 @@
         .services-container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 25px 80px;
+            padding: 0 25px 50px;
         }
 
         .service-section {
@@ -374,39 +375,67 @@
             font-weight: 900;
         }
 
-        /* DYNAMIC 2-STEP BUTTON CSS */
+        /* 2-STEP ORDER BUTTON CSS */
         .order-btn {
             display: block;
             width: 100%;
             text-align: center;
+            padding: 12px 24px;
+            border: 2px solid var(--green);
             background: transparent;
             color: var(--green);
-            border: 2px solid var(--green);
-            padding: 14px;
             border-radius: 30px;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
             cursor: pointer;
             outline: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .order-btn:hover {
-            background: rgba(0, 184, 120, 0.05);
+            transform: scale(1.03);
         }
 
-        /* 1st Click Active State */
-        .order-btn.order-active {
+        .order-active {
             background: var(--green) !important;
             color: white !important;
-            border-color: var(--green) !important;
-            box-shadow: 0 0 15px rgba(0, 184, 120, 0.6);
-            animation: buttonGlow 1.5s infinite alternate;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+            animation: pulse 1.5s infinite;
         }
 
-        @keyframes buttonGlow {
-            0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 184, 120, 0.5); }
-            100% { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 184, 120, 0.8); }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(0, 230, 118, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
+        }
+
+        /* EMBEDDED FORM CONTAINER */
+        .section {
+            padding: 40px 25px;
+            background: #f0f4f8;
+            scroll-margin-top: 90px;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-container iframe {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
         }
 
         /* FAQ SECTION */
@@ -501,7 +530,14 @@
             }
         }
 
-        @media(max-width:700px) {
+        @media (max-width: 700px) {
+            .form-container {
+                margin: 20px 10px;
+                padding: 10px;
+            }
+            .form-container iframe {
+                height: 1800px; /* ဖုန်းမှာ Frame မပြတ်အောင် height တိုးပေးသည် */
+            }
             .solutions-hero h2 { font-size: 28px; }
             .brand h1 { font-size: 20px; }
             .service-main-title { font-size: 22px; }
@@ -585,7 +621,7 @@
                             <li>Delivery: 3-5 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Landing Page - Basic" data-price="150000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
+                    <button class="order-btn">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
                     <span class="badge">⭐ Most Popular</span>
@@ -604,7 +640,7 @@
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Landing Page - Standard" data-price="350000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
+                    <button class="order-btn">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -622,7 +658,7 @@
                             <li>1 Month Free Support</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Landing Page - Premium" data-price="600000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
+                    <button class="order-btn">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -646,7 +682,7 @@
                             <li>Delivery: 5-7 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Telegram Bot - Basic" data-price="200000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
+                    <button class="order-btn">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
                     <span class="badge">⭐ Most Popular</span>
@@ -665,7 +701,7 @@
                             <li>Delivery: 14-21 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Telegram Bot - Standard" data-price="500000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
+                    <button class="order-btn">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -684,7 +720,7 @@
                             <li>2 Months Free Support</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Telegram Bot - Premium" data-price="1200000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
+                    <button class="order-btn">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -708,7 +744,7 @@
                             <li>Delivery: 2-3 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Google Sheet - Basic" data-price="100000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
+                    <button class="order-btn">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
                     <span class="badge">⭐ Most Popular</span>
@@ -726,7 +762,7 @@
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Google Sheet - Standard" data-price="250000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
+                    <button class="order-btn">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -744,7 +780,7 @@
                             <li>1 Month Free Support</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Google Sheet - Premium" data-price="500000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
+                    <button class="order-btn">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -769,7 +805,7 @@
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Business Website - Basic" data-price="300000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
+                    <button class="order-btn">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
                     <span class="badge">⭐ Most Popular</span>
@@ -789,7 +825,7 @@
                             <li>Delivery: 14-21 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Business Website - Standard" data-price="700000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
+                    <button class="order-btn">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -809,7 +845,7 @@
                             <li>2 Months Free Support</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Business Website - Premium" data-price="1500000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
+                    <button class="order-btn">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -823,7 +859,7 @@
                 <div class="price-card">
                     <div>
                         <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">150,000 <span>MMK/Mo</span></div>
+                        <div class="plan-price">150,000 <span>MMK/Month</span></div>
                         <ul class="features-list">
                             <li>10 Static Posts per Month</li>
                             <li>Facebook & Instagram Optimized</li>
@@ -833,13 +869,13 @@
                             <li>Delivery: 2-3 Days per Batch</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Social Media Content - Basic" data-price="150000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
+                    <button class="order-btn">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
                     <span class="badge">⭐ Most Popular</span>
                     <div>
                         <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">300,000 <span>MMK/Mo</span></div>
+                        <div class="plan-price">300,000 <span>MMK/Month</span></div>
                         <ul class="features-list">
                             <li>20 Static Posts per Month</li>
                             <li>4 Story Designs per Month</li>
@@ -851,12 +887,12 @@
                             <li>Delivery: Weekly Batches</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Social Media Content - Standard" data-price="300000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
+                    <button class="order-btn">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
                         <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">500,000 <span>MMK/Mo</span></div>
+                        <div class="plan-price">500,000 <span>MMK/Month</span></div>
                         <ul class="features-list">
                             <li>30 Static Posts per Month</li>
                             <li>8 Story Designs per Month</li>
@@ -870,7 +906,7 @@
                             <li>Priority Support</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Social Media Content - Premium" data-price="500000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
+                    <button class="order-btn">Choose Premium</button>
                 </div>
             </div>
         </section>
@@ -894,7 +930,7 @@
                             <li>Delivery: 3-5 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Workflow Automation - Basic" data-price="150000" data-tier="Basic" onclick="handleOrderClick(this)">Choose Basic</button>
+                    <button class="order-btn">Choose Basic</button>
                 </div>
                 <div class="price-card popular">
                     <span class="badge">⭐ Most Popular</span>
@@ -911,7 +947,7 @@
                             <li>Delivery: 7-10 Days</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Workflow Automation - Standard" data-price="350000" data-tier="Standard" onclick="handleOrderClick(this)">Choose Standard</button>
+                    <button class="order-btn">Choose Standard</button>
                 </div>
                 <div class="price-card">
                     <div>
@@ -930,12 +966,19 @@
                             <li>1 Month Free Support</li>
                         </ul>
                     </div>
-                    <button class="order-btn" data-package="Workflow Automation - Premium" data-price="600000" data-tier="Premium" onclick="handleOrderClick(this)">Choose Premium</button>
+                    <button class="order-btn">Choose Premium</button>
                 </div>
             </div>
         </section>
 
     </div>
+
+    <section class="section" id="order-form">
+        <div class="form-container">
+            <h2>📋 Order Form - မှာယူရန် ဖောင်ဖြည့်ပါ</h2>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfrj22Js8m3mFD2sNFZnL28GN8qpGR0plNmwxXXvtw3cBHpLA/viewform?embedded=true" width="100%" height="1619" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+    </section>
 
     <section class="faq-section">
         <div class="faq-container">
@@ -1001,7 +1044,7 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // 1. DYNAMIC TYPEWRITER PRELOADER ANIMATION
+        // 1. TYPEWRITER PRELOADER ANIMATION
         window.addEventListener('load', () => {
             const masterTl = gsap.timeline();
 
@@ -1028,7 +1071,7 @@
             .to(".service-filter", { opacity: 1, y: 0, duration: 0.6 }, "-=0.3");
         });
 
-        // 2. SCROLL TRIGGER ANIMATION FOR CARDS
+        // 2. SCROLL TRIGGER FOR CARDS
         document.querySelectorAll('.service-section').forEach((section) => {
             gsap.to(section.querySelectorAll('.price-card'), {
                 scrollTrigger: {
@@ -1044,7 +1087,7 @@
             });
         });
 
-        // 3. LIVE TAB FILTERING SYSTEM
+        // 3. LIVE FILTER TAB SYSTEM
         const filterBtns = document.querySelectorAll('.filter-btn');
         const serviceSections = document.querySelectorAll('.service-section');
 
@@ -1066,39 +1109,34 @@
             });
         });
 
-        // 4. TWO-STEP ORDER BUTTON FUNCTIONALITY
+        // 4. TWO-STEP ORDER BUTTON SYSTEM (SCROLLS TO EMBEDDED FORM)
         function handleOrderClick(btn) {
-            const currentText = btn.textContent.trim();
-            const tier = btn.getAttribute('data-tier'); // e.g., Basic, Standard, Premium
-
-            // ပထမအကြိမ် နှိပ်လိုက်သောအခါ
-            if (currentText.startsWith('Choose')) {
-                // တခြား နှိပ်ထားမိသမျှ ခလုတ်အားလုံးကို မူလအခြေအနေသို့ ပြန်ပြောင်းပေးခြင်း
-                document.querySelectorAll('.order-btn').forEach(otherBtn => {
-                    if (otherBtn !== btn && otherBtn.classList.contains('order-active')) {
-                        const oldTier = otherBtn.getAttribute('data-tier');
-                        otherBtn.textContent = 'Choose ' + oldTier;
-                        otherBtn.classList.remove('order-active');
-                    }
+            if (btn.textContent.trim().startsWith('Choose')) {
+                // အခြားခလုတ်များကို နဂိုမူလ အခြေအနေသို့ ပြန်ပြင်ခြင်း
+                document.querySelectorAll('.order-btn').forEach(b => {
+                    b.textContent = b.getAttribute('data-original');
+                    b.classList.remove('order-active');
                 });
-
-                // လက်ရှိခလုတ်ကို ORDER အဖြစ်ပြောင်းလဲပြီး Animation/Design သွင်းခြင်း
+                // နှိပ်လိုက်သော ခလုတ်ကို ORDER အဖြစ် ပြောင်းလဲခြင်း
                 btn.textContent = 'ORDER';
                 btn.classList.add('order-active');
-            } 
-            // ဒုတိယအကြိမ် ORDER စာသားပေါ်နေချိန် နှိပ်လိုက်သောအခါ
-            else if (currentText === 'ORDER') {
-                const packageName = btn.getAttribute('data-package');
-                const packagePrice = btn.getAttribute('data-price');
-
-                // အချက်အလက်များကို form.html က ယူသုံးနိုင်ရန် localStorage တွင် သိမ်းဆည်းခြင်း
-                localStorage.setItem('nexora_package', packageName);
-                localStorage.setItem('nexora_price', packagePrice);
-
-                // Form စာမျက်နှာသို့ လမ်းကြောင်းလွှဲပေးခြင်း
-                window.location.href = 'form.html';
+                
+                // Form တည်ရှိရာနေရာသို့ Smooth Scroll ဆွဲချပေးခြင်း
+                document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+            } else if (btn.textContent.trim() === 'ORDER') {
+                // ORDER ဖြစ်နေသည့်ခလုတ်ကို ထပ်နှိပ်ပါက Form ဆီသို့ တစ်ခေါက်ထပ်မံ Scroll ဆွဲချပေးခြင်း
+                document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
             }
         }
+
+        // စာမျက်နှာစတင်ချိန်တွင် Order Button များကို အလိုအလျောက် သတ်မှတ်ပြင်ဆင်ပေးခြင်း
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.order-btn').forEach(btn => {
+                btn.setAttribute('data-original', btn.textContent.trim());
+                btn.setAttribute('onclick', 'handleOrderClick(this)');
+                btn.style.cursor = 'pointer';
+            });
+        });
     </script>
 
 </body>
