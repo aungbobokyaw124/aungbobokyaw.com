@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional Business Automation, Landing Pages, Google Business Solutions, and Digital Agency Services in Myanmar.">
-    <title>Services & Pricing Plans - NEXORA</title>
-
+    <title>Services & Pricing - NEXORA</title>
     <style>
         :root {
             --primary: #081b36;
@@ -22,7 +20,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
-            scroll-behavior: smooth; /* HTML scroll dynamic smooth */
         }
 
         body {
@@ -31,7 +28,7 @@
             overflow-x: hidden;
         }
 
-        /* PREMIUM TYPEWRITER PRELOADER CSS */
+        /* 1. INITIAL PAGE LOAD PRELOADER */
         #preloader {
             position: fixed;
             top: 0;
@@ -45,6 +42,23 @@
             align-items: center;
         }
 
+        /* 2. ORDER PROCESSING DYNAMIC PRELOADER (FOR EXTERNAL REDIRECTION) */
+        #order-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(8, 27, 54, 0.98);
+            z-index: 99998;
+            display: none; /* JS က လှမ်းဖွင့်ပေးမည် */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+        }
+
         .loader-content {
             display: inline-block;
             position: relative;
@@ -52,7 +66,7 @@
 
         .loader-text {
             color: #ffffff;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
             letter-spacing: 1px;
             white-space: nowrap;
@@ -60,46 +74,10 @@
             width: 0;
             border-right: 3px solid #00b878;
             padding-right: 8px;
-            display: block;
         }
 
         .loader-text span {
             color: #00b878;
-        }
-
-        /* TICKER / MARQUEE */
-        .ticker-wrap {
-            background: var(--primary);
-            color: var(--white);
-            padding: 12px 0;
-            overflow: hidden;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-        }
-
-        .ticker-wrap .ticker {
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 20px;
-            animation: tickerMove 40s linear infinite;
-        }
-
-        .ticker span {
-            margin-right: 60px;
-            display: inline-block;
-        }
-
-        .ticker span em {
-            color: var(--yellow);
-            font-style: normal;
-        }
-
-        @keyframes tickerMove {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
         }
 
         /* HEADER & DROPDOWN */
@@ -190,48 +168,25 @@
 
         /* HERO SECTION */
         .solutions-hero {
-            padding: 60px 25px 40px;
+            padding: 50px 25px 30px;
             text-align: center;
-            background: radial-gradient(circle at top right, rgba(0, 184, 120, .15), transparent 40%);
         }
 
         .solutions-hero h2 {
-            font-size: 36px;
-            line-height: 1.4;
+            font-size: 32px;
             color: var(--primary);
-            opacity: 0;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
-        .solutions-hero p {
-            font-size: 16px;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 15px;
-            opacity: 0;
-        }
-
-        .badge-mmk {
-            display: inline-block;
-            background: #e1f7ee;
-            color: #00875a;
-            font-weight: 700;
-            font-size: 13px;
-            padding: 6px 16px;
-            border-radius: 20px;
-            opacity: 0;
-        }
-
-        /* SERVICES FILTER */
+        /* SERVICE SELECTOR TABS */
         .service-filter {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 25px;
-            opacity: 0;
+            max-width: 1000px;
+            margin: 20px auto 40px;
+            padding: 0 20px;
         }
 
         .filter-btn {
@@ -253,7 +208,7 @@
             border-color: var(--primary);
         }
 
-        /* SERVICES CONTAINER */
+        /* CONTAINER FOR SERVICES */
         .services-container {
             max-width: 1100px;
             margin: 0 auto;
@@ -261,244 +216,163 @@
         }
 
         .service-section {
-            margin-bottom: 70px;
-            scroll-margin-top: 100px;
+            display: none;
+        }
+
+        .service-section.active-service {
+            display: block;
         }
 
         .service-header-wrap {
             margin-bottom: 30px;
             border-bottom: 2px solid #e8ecf1;
             padding-bottom: 15px;
+            text-align: center;
         }
 
         .service-main-title {
-            font-size: 26px;
+            font-size: 24px;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
             margin-bottom: 10px;
         }
 
         .service-desc {
             color: var(--gray);
             font-size: 15px;
-            line-height: 1.6;
-            max-width: 800px;
         }
 
-        /* PRICING GRID */
-        .pricing-grid {
+        /* PRICING SELECTOR CARDS GRID */
+        .pricing-selector-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
-        .price-card {
+        .selector-card {
             background: white;
-            border-radius: 24px;
-            padding: 35px 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .04);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .03);
             border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .price-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+        .selector-card.popular-tab {
+            border-color: #ffe0b2;
+            background: linear-gradient(180deg, #ffffff, #fffdfa);
         }
 
-        .price-card.popular {
-            border-color: var(--green);
-        }
-
-        .badge {
-            position: absolute;
-            top: -15px;
-            right: 25px;
-            background: var(--green);
-            color: white;
+        .selector-card.popular-tab::before {
+            content: "⭐ Recommended";
+            display: block;
             font-size: 11px;
             font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 20px;
+            color: #f57c00;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .selector-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .06);
+        }
+
+        .selector-card h4 {
+            font-size: 15px;
+            color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-bottom: 8px;
         }
 
-        .plan-name {
-            font-size: 15px;
-            color: var(--gray);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .plan-price {
-            font-size: 32px;
-            color: var(--primary);
+        .selector-card .price {
+            font-size: 26px;
             font-weight: 800;
-            margin-bottom: 25px;
-        }
-
-        .plan-price span {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--gray);
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 30px;
-            flex-grow: 1;
-        }
-
-        .features-list li {
-            font-size: 14px;
-            color: #444;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            line-height: 1.5;
-        }
-
-        .features-list li::before {
-            content: "✓";
-            color: var(--green);
-            font-weight: 900;
-        }
-
-        /* 2-STEP ORDER BUTTON CSS */
-        .order-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 12px 24px;
-            border: 2px solid var(--green);
-            background: transparent;
-            color: var(--green);
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .order-btn:hover {
-            transform: scale(1.03);
-        }
-
-        .order-active {
-            background: var(--green) !important;
-            color: white !important;
-            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(0, 230, 118, 0.8); }
-            100% { box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
-        }
-
-        /* EMBEDDED FORM CONTAINER */
-        .section {
-            padding: 40px 25px;
-            background: #f0f4f8;
-            scroll-margin-top: 90px;
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-
-        .form-container h2 {
-            text-align: center;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .form-container iframe {
-            width: 100%;
-            border-radius: 12px;
-            display: block;
-        }
-
-        /* FAQ SECTION */
-        .faq-section {
-            background: white;
-            padding: 70px 25px;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid #e8ecf1;
-            padding: 24px 0;
-        }
-
-        .faq-question {
-            font-size: 18px;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .faq-answer {
-            font-size: 15px;
-            color: var(--gray);
-            line-height: 1.7;
-            padding-left: 28px;
-        }
-
-        /* IMPORTANT NOTES */
-        .notes-section {
-            padding: 60px 25px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .notes-card {
-            background: #f0f4f8;
-            border-left: 5px solid var(--primary);
-            padding: 30px;
-            border-radius: 12px;
-        }
-
-        .notes-card h3 {
             color: var(--primary);
             margin-bottom: 15px;
         }
 
-        .notes-list {
-            list-style-type: square;
-            padding-left: 20px;
+        .selector-card .price span {
+            font-size: 13px;
+            color: var(--gray);
+            font-weight: 500;
         }
 
-        .notes-list li {
+        /* SELECTOR BUTTONS (CHOOSERS) */
+        .select-btn {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--green);
+            background: transparent;
+            color: var(--green);
+            border-radius: 30px;
+            font-weight: 700;
             font-size: 14px;
-            color: #4f5b66;
-            margin-bottom: 10px;
-            line-height: 1.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* ACTIVE CHOSEN ORDER BUTTON */
+        .order-active {
+            background: var(--green) !important;
+            color: white !important;
+            box-shadow: 0 0 20px rgba(0, 184, 120, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px rgba(0, 184, 120, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(0, 184, 120, 0.7); }
+            100% { box-shadow: 0 0 15px rgba(0, 184, 120, 0.4); }
+        }
+
+        /* DETAIL PANEL (SLIDE DOWN EFFECT) */
+        .detail-panel {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02), 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid #e8ecf1;
+            display: none;
+            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-panel h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 1px solid #f0f4f8;
+            padding-bottom: 10px;
+        }
+
+        .detail-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .detail-list li {
+            font-size: 14px;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 900;
         }
 
         /* FOOTER */
@@ -510,58 +384,30 @@
             line-height: 1.8;
         }
 
-        footer h3 {
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-
-        footer .founder {
-            margin-top: 15px;
-            color: var(--green);
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media(max-width:900px) {
-            .pricing-grid {
+        @media (max-width: 900px) {
+            .pricing-selector-grid {
+                grid-template-columns: 1fr;
+            }
+            .detail-panel {
+                grid-column: span 1;
+            }
+            .detail-list {
                 grid-template-columns: 1fr;
             }
         }
-
-        @media (max-width: 700px) {
-            .form-container {
-                margin: 20px 10px;
-                padding: 10px;
-            }
-            .form-container iframe {
-                height: 1800px; /* ဖုန်းမှာ Frame မပြတ်အောင် height တိုးပေးသည် */
-            }
-            .solutions-hero h2 { font-size: 28px; }
-            .brand h1 { font-size: 20px; }
-            .service-main-title { font-size: 22px; }
-            .filter-btn { padding: 10px 16px; font-size: 13px; }
-            .loader-text { font-size: 24px; }
-        }
     </style>
 </head>
-
 <body>
 
     <div id="preloader">
         <div class="loader-content">
-            <h1 class="loader-text">Service & <span>Pricing</span></h1>
+            <h1 class="loader-text" id="init-text">Service & <span>Pricing</span></h1>
         </div>
     </div>
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <span>သင့်လုပ်ငန်းအတွက် <em>Smart Digital Solutions</em></span>
-            <span><em>Website & Landing Page</em> ဖန်တီးခြင်း</span>
-            <span><em>Business Automation</em> စနစ်တည်ဆောက်ခြင်း</span>
-            <span><em>Google Maps/Business</em> မြင်သာမှု တိုးတက်စေခြင်း</span>
-            <span><em>AI</em> နှင့် <em>Digital Knowledge</em> မျှဝေခြင်း</span>
+    <div id="order-loader">
+        <div class="loader-content">
+            <h1 class="loader-text" id="order-loading-text">NEXORA - <span>Please fill out the form</span></h1>
         </div>
     </div>
 
@@ -585,80 +431,68 @@
     </header>
 
     <section class="solutions-hero">
-        <h2>Our Services & Pricing Plans</h2>
-        <p>Choose the perfect digital solution for your business.</p>
-        <div class="badge-mmk">💼 All prices in MMK</div>
+        <h2>Choose a Service</h2>
     </section>
 
     <div class="service-filter">
-        <button class="filter-btn active" data-target="all">🌟 Show All</button>
-        <button class="filter-btn" data-target="landing">🌐 Landing Page</button>
-        <button class="filter-btn" data-target="telegram">🤖 Telegram Bot</button>
-        <button class="filter-btn" data-target="gsheet">📊 Google Sheet</button>
-        <button class="filter-btn" data-target="website">💻 Business Web</button>
-        <button class="filter-btn" data-target="social">🎨 Social Media</button>
-        <button class="filter-btn" data-target="workflow">⚙️ Workflows</button>
+        <button class="filter-btn active" onclick="switchService('landing', this)">🌐 Landing Page</button>
+        <button class="filter-btn" onclick="switchService('telegram', this)">🤖 Telegram Bot</button>
+        <button class="filter-btn" onclick="switchService('gsheet', this)">📊 Google Sheet</button>
+        <button class="filter-btn" onclick="switchService('website', this)">💻 Business Web</button>
+        <button class="filter-btn" onclick="switchService('social', this)">🎨 Social Media</button>
+        <button class="filter-btn" onclick="switchService('workflow', this)">⚙️ Workflows</button>
     </div>
 
     <div class="services-container">
 
-        <section id="landing" class="service-section">
+        <section id="landing" class="service-section active-service">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">🌐 Landing Page Design & Development</h2>
-                <p class="service-desc">Professional, high-converting landing pages designed to turn visitors into customers.</p>
+                <p class="service-desc">Professional, high-converting landing pages built to drive growth.</p>
             </div>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">150,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>1-Page Landing Page</li>
-                            <li>Mobile Responsive Design</li>
-                            <li>Contact Form Integration</li>
-                            <li>Standard Sections (Hero, Features, CTA)</li>
-                            <li>1 Round of Revision</li>
-                            <li>Delivery: 3-5 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Basic</button>
+            <div class="pricing-selector-grid">
+                <div class="selector-card" onclick="selectPlan('landing', 'basic', this)">
+                    <h4>Basic Plan</h4>
+                    <div class="price">150,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Basic</button>
                 </div>
-                <div class="price-card popular">
-                    <span class="badge">⭐ Most Popular</span>
-                    <div>
-                        <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">350,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>3-Page Design (Main + Thank You + 404)</li>
-                            <li>Mobile Responsive Design</li>
-                            <li>Custom Graphics & Icons</li>
-                            <li>Basic SEO Setup</li>
-                            <li>Smooth Animations & Transitions</li>
-                            <li>Contact Form with Validation</li>
-                            <li>Social Media Links</li>
-                            <li>2 Rounds of Revisions</li>
-                            <li>Delivery: 7-10 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Standard</button>
+                <div class="selector-card popular-tab" onclick="selectPlan('landing', 'standard', this)">
+                    <h4>Standard Plan</h4>
+                    <div class="price">350,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Standard</button>
                 </div>
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">600,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Up to 5 Pages Design</li>
-                            <li>Advanced Mobile Optimization</li>
-                            <li>Advanced SEO Setup (Schema, Sitemap)</li>
-                            <li>A/B Testing Setup (2 Variants)</li>
-                            <li>Google Analytics + Facebook Pixel</li>
-                            <li>Performance Optimization</li>
-                            <li>Unlimited Revisions</li>
-                            <li>Delivery: 14-21 Days</li>
-                            <li>1 Month Free Support</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Premium</button>
+                <div class="selector-card" onclick="selectPlan('landing', 'premium', this)">
+                    <h4>Premium Plan</h4>
+                    <div class="price">600,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Premium</button>
+                </div>
+                
+                <div id="landing-basic-detail" class="detail-panel">
+                    <h3>📦 Basic Package Details</h3>
+                    <ul class="detail-list">
+                        <li>1-Page Responsive Landing Page</li>
+                        <li>Contact Form Setup</li>
+                        <li>Basic SEO Configuration</li>
+                        <li>1 Round of Revision</li>
+                    </ul>
+                </div>
+                <div id="landing-standard-detail" class="detail-panel">
+                    <h3>📦 Standard Package Details</h3>
+                    <ul class="detail-list">
+                        <li>3-Page Design (Main + Thanks + 404)</li>
+                        <li>Interactive Animations</li>
+                        <li>Dynamic Lead Forms</li>
+                        <li>2 Rounds of Revisions</li>
+                    </ul>
+                </div>
+                <div id="landing-premium-detail" class="detail-panel">
+                    <h3>📦 Premium Package Details</h3>
+                    <ul class="detail-list">
+                        <li>Up to 5 Custom Pages</li>
+                        <li>Advanced Speed & SEO Setup</li>
+                        <li>Google Analytics & Facebook Pixel</li>
+                        <li>Unlimited Revisions</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -666,61 +500,48 @@
         <section id="telegram" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">🤖 Telegram Bot Development</h2>
-                <p class="service-desc">Custom Telegram bots to automate your business operations.</p>
+                <p class="service-desc">Integrate smart automated agents to scale operations.</p>
             </div>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">200,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Up to 5 Custom Commands</li>
-                            <li>Simple Menu Navigation</li>
-                            <li>Text & Button Responses</li>
-                            <li>1 Language (English or Myanmar)</li>
-                            <li>Basic Error Handling</li>
-                            <li>Delivery: 5-7 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Basic</button>
+            <div class="pricing-selector-grid">
+                <div class="selector-card" onclick="selectPlan('telegram', 'basic', this)">
+                    <h4>Basic Plan</h4>
+                    <div class="price">200,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Basic</button>
                 </div>
-                <div class="price-card popular">
-                    <span class="badge">⭐ Most Popular</span>
-                    <div>
-                        <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">500,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Up to 20 Custom Commands</li>
-                            <li>Interactive Menu System</li>
-                            <li>Database Integration</li>
-                            <li>Payment Gateway (KBZ Pay / Wave Pay)</li>
-                            <li>User Registration & Profile</li>
-                            <li>Admin Panel</li>
-                            <li>Broadcast Message Feature</li>
-                            <li>2 Languages Support</li>
-                            <li>Delivery: 14-21 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Standard</button>
+                <div class="selector-card popular-tab" onclick="selectPlan('telegram', 'standard', this)">
+                    <h4>Standard Plan</h4>
+                    <div class="price">500,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Standard</button>
                 </div>
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">1,200,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Unlimited Commands</li>
-                            <li>Full Mini App Experience</li>
-                            <li>Advanced Database</li>
-                            <li>Multiple Payment Gateways</li>
-                            <li>API Integration</li>
-                            <li>User Analytics Dashboard</li>
-                            <li>Multi-language (3+ Languages)</li>
-                            <li>Custom Admin Dashboard</li>
-                            <li>Delivery: 30-45 Days</li>
-                            <li>2 Months Free Support</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Premium</button>
+                <div class="selector-card" onclick="selectPlan('telegram', 'premium', this)">
+                    <h4>Premium Plan</h4>
+                    <div class="price">1,200,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Premium</button>
+                </div>
+
+                <div id="telegram-basic-detail" class="detail-panel">
+                    <h3>📦 Basic Bot Details</h3>
+                    <ul class="detail-list">
+                        <li>Up to 5 Custom Commands</li>
+                        <li>Custom Auto-Replies</li>
+                        <li>Simple Text Formats</li>
+                    </ul>
+                </div>
+                <div id="telegram-standard-detail" class="detail-panel">
+                    <h3>📦 Standard Bot Details</h3>
+                    <ul class="detail-list">
+                        <li>Database Integration</li>
+                        <li>KPay / Wave Pay Gateway Integration</li>
+                        <li>Broadcasting Tools</li>
+                    </ul>
+                </div>
+                <div id="telegram-premium-detail" class="detail-panel">
+                    <h3>📦 Premium Bot Details</h3>
+                    <ul class="detail-list">
+                        <li>Interactive Web App Experience</li>
+                        <li>Full API System Integration</li>
+                        <li>Multi-language Support</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -728,59 +549,48 @@
         <section id="gsheet" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">📊 Google Sheet Automation</h2>
-                <p class="service-desc">Turn your spreadsheets into powerful automated systems.</p>
+                <p class="service-desc">Transform raw spreadsheets into structured software databases.</p>
             </div>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">100,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Professional Template Setup</li>
-                            <li>Basic Formulas & Functions</li>
-                            <li>Data Validation Rules</li>
-                            <li>Conditional Formatting</li>
-                            <li>Simple Data Entry Forms</li>
-                            <li>Delivery: 2-3 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Basic</button>
+            <div class="pricing-selector-grid">
+                <div class="selector-card" onclick="selectPlan('gsheet', 'basic', this)">
+                    <h4>Basic Plan</h4>
+                    <div class="price">100,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Basic</button>
                 </div>
-                <div class="price-card popular">
-                    <span class="badge">⭐ Most Popular</span>
-                    <div>
-                        <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">250,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Custom Apps Script Functions</li>
-                            <li>Automated Data Processing</li>
-                            <li>Interactive Dashboard Setup</li>
-                            <li>Auto Email Reports</li>
-                            <li>Data Import/Export Automation</li>
-                            <li>Charts & Visualization</li>
-                            <li>Basic User Access Control</li>
-                            <li>Delivery: 7-10 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Standard</button>
+                <div class="selector-card popular-tab" onclick="selectPlan('gsheet', 'standard', this)">
+                    <h4>Standard Plan</h4>
+                    <div class="price">250,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Standard</button>
                 </div>
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">500,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Full Business System (CRM, Inventory, Accounting)</li>
-                            <li>Complex Apps Script Development</li>
-                            <li>External API Integration</li>
-                            <li>Multi-user Access with Permissions</li>
-                            <li>Automated Backup System</li>
-                            <li>Real-time Data Sync</li>
-                            <li>Training & Documentation</li>
-                            <li>Delivery: 14-21 Days</li>
-                            <li>1 Month Free Support</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Premium</button>
+                <div class="selector-card" onclick="selectPlan('gsheet', 'premium', this)">
+                    <h4>Premium Plan</h4>
+                    <div class="price">500,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Premium</button>
+                </div>
+
+                <div id="gsheet-basic-detail" class="detail-panel">
+                    <h3>📦 Basic Setup Details</h3>
+                    <ul class="detail-list">
+                        <li>Custom Clean Formatting</li>
+                        <li>Standard Mathematical Formulations</li>
+                        <li>Data Validation Rules</li>
+                    </ul>
+                </div>
+                <div id="gsheet-standard-detail" class="detail-panel">
+                    <h3>📦 Standard Automation Details</h3>
+                    <ul class="detail-list">
+                        <li>Google Apps Script Automations</li>
+                        <li>Interactive Dynamic Dashboards</li>
+                        <li>Automated Email Reports</li>
+                    </ul>
+                </div>
+                <div id="gsheet-premium-detail" class="detail-panel">
+                    <h3>📦 Premium Automation Details</h3>
+                    <ul class="detail-list">
+                        <li>Full Business System Architecture</li>
+                        <li>External API Sync Configs</li>
+                        <li>Multi-user Authorization Dashboard</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -788,64 +598,48 @@
         <section id="website" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">💻 Business Website Development</h2>
-                <p class="service-desc">Professional multi-page websites with modern CMS.</p>
+                <p class="service-desc">Tailor-made multi-page responsive web applications.</p>
             </div>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">300,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>5 Pages (Home, About, Services, Contact, Blog)</li>
-                            <li>Template-based Design</li>
-                            <li>Mobile Responsive</li>
-                            <li>Contact Form</li>
-                            <li>Basic SEO Setup</li>
-                            <li>Social Media Links</li>
-                            <li>Delivery: 7-10 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Basic</button>
+            <div class="pricing-selector-grid">
+                <div class="selector-card" onclick="selectPlan('website', 'basic', this)">
+                    <h4>Basic Plan</h4>
+                    <div class="price">300,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Basic</button>
                 </div>
-                <div class="price-card popular">
-                    <span class="badge">⭐ Most Popular</span>
-                    <div>
-                        <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">700,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Up to 10 Pages</li>
-                            <li>Custom Design</li>
-                            <li>WordPress CMS Setup</li>
-                            <li>Blog with Categories</li>
-                            <li>Advanced SEO (Yoast/RankMath)</li>
-                            <li>Contact Form with Anti-spam</li>
-                            <li>Google Maps Integration</li>
-                            <li>Image Gallery</li>
-                            <li>2 Rounds of Revisions</li>
-                            <li>Delivery: 14-21 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Standard</button>
+                <div class="selector-card popular-tab" onclick="selectPlan('website', 'standard', this)">
+                    <h4>Standard Plan</h4>
+                    <div class="price">700,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Standard</button>
                 </div>
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">1,500,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>Unlimited Pages</li>
-                            <li>Custom CMS or WordPress Advanced</li>
-                            <li>E-commerce (up to 50 products)</li>
-                            <li>Payment Gateway Integration</li>
-                            <li>Membership/Login System</li>
-                            <li>Advanced Security Setup</li>
-                            <li>Speed Optimization + CDN</li>
-                            <li>Monthly Backup System</li>
-                            <li>Unlimited Revisions</li>
-                            <li>Delivery: 30-45 Days</li>
-                            <li>2 Months Free Support</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Premium</button>
+                <div class="selector-card" onclick="selectPlan('website', 'premium', this)">
+                    <h4>Premium Plan</h4>
+                    <div class="price">1,500,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Premium</button>
+                </div>
+
+                <div id="website-basic-detail" class="detail-panel">
+                    <h3>📦 Basic Website Details</h3>
+                    <ul class="detail-list">
+                        <li>Up to 5 Pages</li>
+                        <li>Mobile Responsive Design</li>
+                        <li>Modern UI Theme</li>
+                    </ul>
+                </div>
+                <div id="website-standard-detail" class="detail-panel">
+                    <h3>📦 Standard Website Details</h3>
+                    <ul class="detail-list">
+                        <li>WordPress Advanced Implementation</li>
+                        <li>Custom Business Blogs & Admin Controls</li>
+                        <li>Advanced SEO Setup</li>
+                    </ul>
+                </div>
+                <div id="website-premium-detail" class="detail-panel">
+                    <h3>📦 Premium Website Details</h3>
+                    <ul class="detail-list">
+                        <li>E-commerce Integrated Platforms</li>
+                        <li>Automated Backup & Global DNS Optimization</li>
+                        <li>Full-Scale Cybersecurity configurations</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -853,60 +647,47 @@
         <section id="social" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">🎨 Social Media Content Design</h2>
-                <p class="service-desc">Eye-catching social media content for consistent brand presence. (Monthly Subscription)</p>
+                <p class="service-desc">Captivating visuals tailored for high-quality engagement.</p>
             </div>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">150,000 <span>MMK/Month</span></div>
-                        <ul class="features-list">
-                            <li>10 Static Posts per Month</li>
-                            <li>Facebook & Instagram Optimized</li>
-                            <li>Basic Brand Colors</li>
-                            <li>Stock Images (Free)</li>
-                            <li>1 Revision per Post</li>
-                            <li>Delivery: 2-3 Days per Batch</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Basic</button>
+            <div class="pricing-selector-grid">
+                <div class="selector-card" onclick="selectPlan('social', 'basic', this)">
+                    <h4>Basic Plan</h4>
+                    <div class="price">150,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Basic</button>
                 </div>
-                <div class="price-card popular">
-                    <span class="badge">⭐ Most Popular</span>
-                    <div>
-                        <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">300,000 <span>MMK/Month</span></div>
-                        <ul class="features-list">
-                            <li>20 Static Posts per Month</li>
-                            <li>4 Story Designs per Month</li>
-                            <li>Static + Simple Motion Graphics</li>
-                            <li>Brand Kit Setup</li>
-                            <li>Custom Graphics Creation</li>
-                            <li>Content Calendar</li>
-                            <li>2 Revisions per Post</li>
-                            <li>Delivery: Weekly Batches</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Standard</button>
+                <div class="selector-card popular-tab" onclick="selectPlan('social', 'standard', this)">
+                    <h4>Standard Plan</h4>
+                    <div class="price">300,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Standard</button>
                 </div>
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">500,000 <span>MMK/Month</span></div>
-                        <ul class="features-list">
-                            <li>30 Static Posts per Month</li>
-                            <li>8 Story Designs per Month</li>
-                            <li>2 Reel/Short Video Edits per Month</li>
-                            <li>Full Brand Identity Design</li>
-                            <li>Custom Illustrations</li>
-                            <li>Premium Stock Images</li>
-                            <li>Hashtag Research</li>
-                            <li>Competitor Analysis Report</li>
-                            <li>Unlimited Revisions</li>
-                            <li>Priority Support</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Premium</button>
+                <div class="selector-card" onclick="selectPlan('social', 'premium', this)">
+                    <h4>Premium Plan</h4>
+                    <div class="price">500,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Premium</button>
+                </div>
+
+                <div id="social-basic-detail" class="detail-panel">
+                    <h3>📦 Basic Content Details</h3>
+                    <ul class="detail-list">
+                        <li>10 Creative Static Posts/Month</li>
+                        <li>Facebook Size Optimizations</li>
+                    </ul>
+                </div>
+                <div id="social-standard-detail" class="detail-panel">
+                    <h3>📦 Standard Content Details</h3>
+                    <ul class="detail-list">
+                        <li>20 Premium Visual Posts/Month</li>
+                        <li>Custom Graphic Brand Elements</li>
+                        <li>Strategic Content Planning Calendar</li>
+                    </ul>
+                </div>
+                <div id="social-premium-detail" class="detail-panel">
+                    <h3>📦 Premium Content Details</h3>
+                    <ul class="detail-list">
+                        <li>30 Multi-tier Post Packs</li>
+                        <li>Advanced Motion Graphic Clips</li>
+                        <li>In-depth Hashtag Competitor Indexing</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -914,230 +695,138 @@
         <section id="workflow" class="service-section">
             <div class="service-header-wrap">
                 <h2 class="service-main-title">⚙️ Workflow Automation Setup</h2>
-                <p class="service-desc">Connect your apps and automate repetitive tasks.</p>
+                <p class="service-desc">Synchronize redundant system pipelines effortlessly.</p>
             </div>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Basic Package</div>
-                        <div class="plan-price">150,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>1 Automation Workflow</li>
-                            <li>Up to 3 Apps Connected</li>
-                            <li>Basic Triggers & Actions</li>
-                            <li>Setup & Testing</li>
-                            <li>Documentation</li>
-                            <li>Delivery: 3-5 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Basic</button>
+            <div class="pricing-selector-grid">
+                <div class="selector-card" onclick="selectPlan('workflow', 'basic', this)">
+                    <h4>Basic Plan</h4>
+                    <div class="price">150,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Basic</button>
                 </div>
-                <div class="price-card popular">
-                    <span class="badge">⭐ Most Popular</span>
-                    <div>
-                        <div class="plan-name">Standard Package</div>
-                        <div class="plan-price">350,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>3 Automation Workflows</li>
-                            <li>Up to 5+ Apps Connected</li>
-                            <li>Conditional Logic Setup</li>
-                            <li>Error Handling Configuration</li>
-                            <li>Email/Slack Notifications</li>
-                            <li>Data Mapping & Transformation</li>
-                            <li>Delivery: 7-10 Days</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Standard</button>
+                <div class="selector-card popular-tab" onclick="selectPlan('workflow', 'standard', this)">
+                    <h4>Standard Plan</h4>
+                    <div class="price">350,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Standard</button>
                 </div>
-                <div class="price-card">
-                    <div>
-                        <div class="plan-name">Premium Package</div>
-                        <div class="plan-price">600,000 <span>MMK</span></div>
-                        <ul class="features-list">
-                            <li>5+ Complex Workflows</li>
-                            <li>Custom API Integration</li>
-                            <li>Multi-step Branching Logic</li>
-                            <li>Advanced Error Handling & Retry</li>
-                            <li>Real-time Monitoring Dashboard</li>
-                            <li>Webhook Setup</li>
-                            <li>Database Integration</li>
-                            <li>Full Documentation & Training</li>
-                            <li>Delivery: 14-21 Days</li>
-                            <li>1 Month Free Support</li>
-                        </ul>
-                    </div>
-                    <button class="order-btn">Choose Premium</button>
+                <div class="selector-card" onclick="selectPlan('workflow', 'premium', this)">
+                    <h4>Premium Plan</h4>
+                    <div class="price">600,000 <span>MMK</span></div>
+                    <button class="select-btn">Choose Premium</button>
+                </div>
+
+                <div id="workflow-basic-detail" class="detail-panel">
+                    <h3>📦 Basic Integration Details</h3>
+                    <ul class="detail-list">
+                        <li>1 Dynamic Automated Pipeline</li>
+                        <li>Connect 3 Third-Party Web Apps</li>
+                    </ul>
+                </div>
+                <div id="workflow-standard-detail" class="detail-panel">
+                    <h3>📦 Standard Automation Details</h3>
+                    <ul class="detail-list">
+                        <li>3 Advanced Logic Pipeline Streams</li>
+                        <li>Error Recovery Setup</li>
+                    </ul>
+                </div>
+                <div id="workflow-premium-detail" class="detail-panel">
+                    <h3>📦 Premium Automation Details</h3>
+                    <ul class="detail-list">
+                        <li>Unlimited Deep Webhook Integrations</li>
+                        <li>Tailor-made Enterprise Database Pipeline Mapping</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
     </div>
 
-    <section class="section" id="order-form">
-        <div class="form-container">
-            <h2>📋 Order Form - မှာယူရန် ဖောင်ဖြည့်ပါ</h2>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfrj22Js8m3mFD2sNFZnL28GN8qpGR0plNmwxXXvtw3cBHpLA/viewform?embedded=true" width="100%" height="1619" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-        </div>
-    </section>
-
-    <section class="faq-section">
-        <div class="faq-container">
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 40px; font-size: 28px;">Frequently Asked Questions</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">❓ Which package is right for my business?</div>
-                <div class="faq-answer">Basic for startups, Standard for growing businesses (best value), Premium for established companies needing advanced features.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Can I upgrade my package later?</div>
-                <div class="faq-answer">Yes! Upgrade anytime and only pay the price difference.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ What is the payment process?</div>
-                <div class="faq-answer">50% advance to start, 50% upon completion. We accept KBZ Pay, Wave Pay, and bank transfers.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ How long does delivery take?</div>
-                <div class="faq-answer">Basic: 2-7 days, Standard: 7-21 days, Premium: 14-45 days depending on service.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Do you offer revisions?</div>
-                <div class="faq-answer">Basic: 1 revision, Standard: 2 revisions, Premium: Unlimited revisions.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Can I get a custom package?</div>
-                <div class="faq-answer">Yes! Contact us for a custom quotation tailored to your needs.</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="notes-section">
-        <div class="notes-card">
-            <h3>📝 Important Notes</h3>
-            <ul class="notes-list">
-                <li>All prices in Myanmar Kyat (MMK).</li>
-                <li>Domain & hosting NOT included in Website packages.</li>
-                <li>Social Media Design is monthly subscription.</li>
-                <li>All other services are one-time payments.</li>
-                <li>Maintenance: 10-15% of project cost/month.</li>
-                <li>Prices subject to change.</li>
-                <li>Quotations valid for 7 days.</li>
-            </ul>
-        </div>
-    </section>
-
     <footer>
         <h3>NEXORA</h3>
-        <p>Together We Grow.<br>Together We Succeed.</p>
-        <p class="founder">Founded by Aung Bo Bo Kyaw</p>
-        <p style="margin-top:20px; font-size:13px; color:#8899aa;">© 2026 NEXORA. All Rights Reserved.</p>
+        <p style="margin-top:10px; font-size:13px; color:#8899aa;">© 2026 NEXORA. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // 1. TYPEWRITER PRELOADER ANIMATION
+        // PAGE INITIAL LOAD ANIMATION
         window.addEventListener('load', () => {
-            const masterTl = gsap.timeline();
-
-            masterTl.to(".loader-text", {
-                width: "100%", 
-                duration: 1.5,
-                ease: "steps(25)"
-            })
-            .to(".loader-text", {
-                borderRightColor: "transparent",
-                repeat: 5,
-                duration: 0.15,
-                yoyo: true,
-                ease: "power1.inOut"
-            })
-            .to("#preloader", { 
-                yPercent: -100, 
-                duration: 0.8, 
-                ease: "power4.inOut" 
-            })
-            .to(".solutions-hero h2", { opacity: 1, y: 0, duration: 0.8, ease: "power4.out" }, "-=0.2")
-            .to(".solutions-hero p", { opacity: 1, y: 0, duration: 0.6 }, "-=0.6")
-            .to(".badge-mmk", { opacity: 1, y: 0, duration: 0.4 }, "-=0.4")
-            .to(".service-filter", { opacity: 1, y: 0, duration: 0.6 }, "-=0.3");
+            gsap.timeline()
+            .to("#init-text", { width: "100%", duration: 1.2, ease: "steps(25)" })
+            .to("#preloader", { yPercent: -100, duration: 0.6, ease: "power3.inOut" });
         });
 
-        // 2. SCROLL TRIGGER FOR CARDS
-        document.querySelectorAll('.service-section').forEach((section) => {
-            gsap.to(section.querySelectorAll('.price-card'), {
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 85%",
-                    toggleActions: "play none none none"
-                },
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: "power2.out"
+        // SERVICE TABS SWITCHING LOGIC
+        function switchService(serviceId, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.service-section').forEach(sec => {
+                sec.classList.remove('active-service');
             });
-        });
 
-        // 3. LIVE FILTER TAB SYSTEM
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const serviceSections = document.querySelectorAll('.service-section');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const target = btn.getAttribute('data-target');
-
-                serviceSections.forEach(section => {
-                    if (target === 'all' || section.id === target) {
-                        section.style.display = 'block';
-                        ScrollTrigger.refresh();
-                    } else {
-                        section.style.display = 'none';
-                    }
-                });
+            document.querySelectorAll('.select-btn').forEach(b => {
+                b.textContent = b.getAttribute('data-original') || b.textContent;
+                b.classList.remove('order-active');
             });
-        });
+            document.querySelectorAll('.detail-panel').forEach(p => p.style.display = 'none');
 
-        // 4. TWO-STEP ORDER BUTTON SYSTEM (SCROLLS TO EMBEDDED FORM)
-        function handleOrderClick(btn) {
-            if (btn.textContent.trim().startsWith('Choose')) {
-                // အခြားခလုတ်များကို နဂိုမူလ အခြေအနေသို့ ပြန်ပြင်ခြင်း
-                document.querySelectorAll('.order-btn').forEach(b => {
-                    b.textContent = b.getAttribute('data-original');
-                    b.classList.remove('order-active');
-                });
-                // နှိပ်လိုက်သော ခလုတ်ကို ORDER အဖြစ် ပြောင်းလဲခြင်း
-                btn.textContent = 'ORDER';
-                btn.classList.add('order-active');
-                
-                // Form တည်ရှိရာနေရာသို့ Smooth Scroll ဆွဲချပေးခြင်း
-                document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
-            } else if (btn.textContent.trim() === 'ORDER') {
-                // ORDER ဖြစ်နေသည့်ခလုတ်ကို ထပ်နှိပ်ပါက Form ဆီသို့ တစ်ခေါက်ထပ်မံ Scroll ဆွဲချပေးခြင်း
-                document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+            const targetSection = document.getElementById(serviceId);
+            if (targetSection) {
+                targetSection.classList.add('active-service');
             }
         }
 
-        // စာမျက်နှာစတင်ချိန်တွင် Order Button များကို အလိုအလျောက် သတ်မှတ်ပြင်ဆင်ပေးခြင်း
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.order-btn').forEach(btn => {
-                btn.setAttribute('data-original', btn.textContent.trim());
-                btn.setAttribute('onclick', 'handleOrderClick(this)');
-                btn.style.cursor = 'pointer';
-            });
-        });
-    </script>
+        // DYNAMIC CHOOSE -> DETAIL OPEN -> REDIRECT TO FORM FLOW
+        function selectPlan(serviceId, planTier, cardElement) {
+            const btn = cardElement.querySelector('.select-btn');
+            const targetDetailId = `${serviceId}-${planTier}-detail`;
+            const targetDetailPanel = document.getElementById(targetDetailId);
 
+            if (!btn.hasAttribute('data-original')) {
+                btn.setAttribute('data-original', btn.textContent.trim());
+            }
+
+            // If user clicks "ORDER", redirect to form.html with preloader
+            if (btn.textContent.trim() === 'ORDER') {
+                triggerOrderRedirection();
+                return;
+            }
+
+            const parentGrid = cardElement.closest('.pricing-selector-grid');
+            parentGrid.querySelectorAll('.select-btn').forEach(b => {
+                b.textContent = b.getAttribute('data-original') || b.textContent;
+                b.classList.remove('order-active');
+            });
+            parentGrid.querySelectorAll('.detail-panel').forEach(panel => {
+                panel.style.display = 'none';
+            });
+
+            btn.textContent = 'ORDER';
+            btn.classList.add('order-active');
+
+            if (targetDetailPanel) {
+                targetDetailPanel.style.display = 'block';
+            }
+        }
+
+        // REDIRECTS TO FORM.HTML
+        function triggerOrderRedirection() {
+            const orderLoader = document.getElementById('order-loader');
+            const orderText = document.getElementById('order-loading-text');
+            
+            orderLoader.style.display = 'flex';
+            
+            gsap.timeline()
+            .fromTo(orderText, { width: "0" }, { width: "100%", duration: 1.5, ease: "steps(30)" })
+            .to(orderLoader, { 
+                opacity: 0, 
+                duration: 0.5, 
+                onComplete: () => {
+                    // Redirect to dedicated form page
+                    window.location.href = 'form.html';
+                }
+            }, "+=0.3");
+        }
+    </script>
 </body>
 </html>
