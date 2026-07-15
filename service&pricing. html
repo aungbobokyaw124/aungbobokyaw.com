@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NEXORA provides Business Automation, Landing Pages, Google Business Solutions, AI Resources and Digital Knowledge. Together We Grow, Together We Succeed.">
+    <meta name="keywords" content="Business Automation, Landing Page, Google Business, AI, Digital Solutions">
+    <title>Services & Pricing Plans - NEXORA</title>
+
+    <style>
+        :root {
+            --primary: #081b36;
+            --green: #00b878;
+            --white: #ffffff;
+            --bg: #f6f9fc;
+            --text: #222;
+            --gray: #667085;
+            --yellow: #fbbc05;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* PREMIUM PRELOADER */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #081b36;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loader-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #00b878, #081b36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 184, 120, 0.3);
+            transform: scale(0); 
+        }
+
+        .loader-text {
+            color: white;
+            font-size: 28px;
+            letter-spacing: 2px;
+            opacity: 0;
+            margin-bottom: 12px;
+        }
+
+        .loader-text span {
+            color: #00b878;
+        }
+
+        .loader-slogan {
+            color: #8899aa;
+            font-size: 15px;
+            font-weight: 500;
+            min-height: 20px;
+            letter-spacing: 0.5px;
+            border-right: 2px solid transparent;
+            display: inline-block;
+        }
+
+        /* TICKER / MARQUEE */
+        .ticker-wrap {
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 0;
+            overflow: hidden;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-wrap .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 20px;
+            animation: tickerMove 40s linear infinite;
+        }
+
+        .ticker span {
+            margin-right: 60px;
+            display: inline-block;
+        }
+
+        .ticker span em {
+            color: var(--yellow);
+            font-style: normal;
+        }
+
+        @keyframes tickerMove {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* HEADER & DROPDOWN */
+        header {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #00b878, #081b36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand h1 {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .brand span {
+            color: var(--green);
+        }
+
+        .menu {
+            font-size: 28px;
+            color: var(--primary);
+            cursor: pointer;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            border-radius: 14px;
+            padding: 12px 0;
+            z-index: 20;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 22px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg);
+            color: var(--green);
+            padding-left: 26px;
+        }
+
+        .menu:hover .dropdown {
+            display: block;
+        }
+
+        /* SOLUTIONS HERO */
+        .solutions-hero {
+            padding: 60px 25px 40px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(0, 184, 120, .15), transparent 40%);
+        }
+
+        .solutions-hero h2 {
+            font-size: 36px;
+            line-height: 1.4;
+            color: var(--primary);
+            opacity: 0;
+            margin-bottom: 12px;
+        }
+
+        .solutions-hero p {
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+        }
+
+        /* SERVICES NAVIGATION FILTER */
+        .service-filter {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 25px;
+            opacity: 0;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            color: var(--primary);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* SOLUTIONS CONTENT CONTAINER */
+        .services-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 25px 80px;
+        }
+
+        .service-section {
+            margin-bottom: 70px;
+            scroll-margin-top: 100px;
+        }
+
+        .service-header-wrap {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e8ecf1;
+            padding-bottom: 15px;
+        }
+
+        .service-main-title {
+            font-size: 26px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        /* PRICING GRID */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .04);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+        }
+
+        .price-card.popular {
+            border-color: var(--green);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            right: 25px;
+            background: var(--green);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-name {
+            font-size: 15px;
+            color: var(--gray);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 32px;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .plan-price span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.5;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 900;
+        }
+
+        .plan-btn {
+            display: block;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .price-card.popular .plan-btn {
+            background: var(--green);
+        }
+
+        .price-card.popular .plan-btn:hover {
+            background: #009e66;
+        }
+
+        .plan-btn:hover {
+            background: #0d284f;
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            background: white;
+            padding: 70px 25px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e8ecf1;
+            padding: 24px 0;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.7;
+            padding-left: 28px;
+        }
+
+        /* IMPORTANT NOTES */
+        .notes-section {
+            padding: 60px 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .notes-card {
+            background: #f0f4f8;
+            border-left: 5px solid var(--primary);
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .notes-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .notes-list {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .notes-list li {
+            font-size: 14px;
+            color: #4f5b66;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        /* FIXED VIBER BUTTON */
+        .viber-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #7360f2;
+            color: white;
+            height: 50px;
+            padding: 0 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 15px;
+            animation: pulse 2s infinite;
+            transition: transform 0.2s ease;
+        }
+
+        .viber-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .viber-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
+            50% { box-shadow: 0 8px 30px rgba(115, 96, 242, .7); }
+            100% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
+        }
+
+        /* FOOTER */
+        footer {
+            background: #081b36;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        footer .founder {
+            margin-top: 15px;
+            color: var(--green);
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media(max-width:900px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:700px) {
+            .solutions-hero h2 { font-size: 28px; }
+            .brand h1 { font-size: 20px; }
+            .service-main-title { font-size: 22px; }
+            .filter-btn { padding: 10px 16px; font-size: 13px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="logo.png" alt="NEXORA Logo">
+            </div>
+            <h1 class="loader-text">NEX<span>ORA</span></h1>
+            <div class="loader-slogan"></div>
+        </div>
+    </div>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span>သင့်လုပ်ငန်းအတွက် <em>Smart Digital Solutions</em></span>
+            <span><em>Website & Landing Page</em> ဖန်တီးခြင်း</span>
+            <span><em>Business Automation</em> စနစ်တည်ဆောက်ခြင်း</span>
+            <span><em>Google Maps/Business</em> မြင်သာမှု တိုးတက်စေခြင်း</span>
+            <span><em>AI</em> နှင့် <em>Digital Knowledge</em> မျှဝေခြင်း</span>
+            <span>သင့်လုပ်ငန်းအတွက် <em>Smart Digital Solutions</em></span>
+            <span><em>Website & Landing Page</em> ဖန်တီးခြင်း</span>
+            <span><em>Business Automation</em> စနစ်တည်ဆောက်ခြင်း</span>
+            <span><em>Google Maps/Business</em> မြင်သာမှု တိုးတက်စေခြင်း</span>
+            <span><em>AI</em> နှင့် <em>Digital Knowledge</em> မျှဝေခြင်း</span>
+        </div>
+    </div>
+
+    <header>
+        <div class="brand">
+            <div class="logo">
+                <img src="logo.png" alt="NEXORA Logo">
+            </div>
+            <h1>NEX<span>ORA</span></h1>
+        </div>
+        <div class="menu">
+            ☰
+            <div class="dropdown">
+                <a href="index.html">🏠 Home</a>
+                <a href="how-it-works.html">⚙️ How it Works</a>
+                <a href="payment.html">💳 Payment</a>
+                <a href="about.html">ℹ️ About</a>
+                <a href="contact-us.html">📞 Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="solutions-hero">
+        <h2>Services & Pricing Plans</h2>
+        <p>Choose the perfect digital solution for your business. All prices are one-time payments (except Social Media packages which are billed monthly).</p>
+    </section>
+
+    <div class="service-filter">
+        <button class="filter-btn active" data-target="all">🌟 Show All</button>
+        <button class="filter-btn" data-target="landing">🌐 Landing Page</button>
+        <button class="filter-btn" data-target="telegram">🤖 Telegram Bot</button>
+        <button class="filter-btn" data-target="gsheet">📊 Google Sheet</button>
+        <button class="filter-btn" data-target="website">💻 Business Web</button>
+        <button class="filter-btn" data-target="social">🎨 Social Media</button>
+        <button class="filter-btn" data-target="workflow">⚙️ Workflows</button>
+    </div>
+
+    <div class="services-container">
+
+        <section id="landing" class="service-section">
+            <div class="service-header-wrap">
+                <h2 class="service-main-title">🌐 Landing Page Design & Development</h2>
+                <p class="service-desc">Professional, high-converting landing pages designed to turn visitors into customers. Perfect for product launches, lead generation, and marketing campaigns.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Basic Package</div>
+                        <div class="plan-price">150,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>1-Page Landing Page</li>
+                            <li>Mobile Responsive Design</li>
+                            <li>Contact Form Integration</li>
+                            <li>Standard Sections (Hero, Features, CTA)</li>
+                            <li>1 Round of Revision</li>
+                            <li>Delivery: 3-5 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card popular">
+                    <span class="badge">Most Popular</span>
+                    <div>
+                        <div class="plan-name">Standard Package</div>
+                        <div class="plan-price">350,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>3-Page Design (Main + Thank You + 404)</li>
+                            <li>Mobile Responsive Design</li>
+                            <li>Custom Graphics & Icons</li>
+                            <li>Basic SEO Setup (Meta Tags, Open Graph)</li>
+                            <li>Smooth Animations & Transitions</li>
+                            <li>Contact Form with Validation</li>
+                            <li>Social Media Links Integration</li>
+                            <li>2 Rounds of Revisions</li>
+                            <li>Delivery: 7-10 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Premium Package</div>
+                        <div class="plan-price">600,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Up to 5 Pages Design</li>
+                            <li>Advanced Mobile Optimization</li>
+                            <li>Advanced SEO Setup (Schema Markup, Sitemap)</li>
+                            <li>A/B Testing Setup (2 Variants)</li>
+                            <li>Google Analytics Integration</li>
+                            <li>Facebook Pixel Integration</li>
+                            <li>Performance Optimization</li>
+                            <li>Unlimited Revisions</li>
+                            <li>Delivery: 14-21 Days</li>
+                            <li>1 Month Free Support</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="telegram" class="service-section">
+            <div class="service-header-wrap">
+                <h2 class="service-main-title">🤖 Telegram Bot Development</h2>
+                <p class="service-desc">Custom Telegram bots to automate your business operations. From simple command bots to full-featured mini apps with payment integration.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Basic Package</div>
+                        <div class="plan-price">200,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Up to 5 Custom Commands</li>
+                            <li>Simple Menu Navigation</li>
+                            <li>Text & Button Responses</li>
+                            <li>1 Language Support (English or Myanmar)</li>
+                            <li>Basic Error Handling</li>
+                            <li>Delivery: 5-7 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card popular">
+                    <span class="badge">Most Popular</span>
+                    <div>
+                        <div class="plan-name">Standard Package</div>
+                        <div class="plan-price">500,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Up to 20 Custom Commands</li>
+                            <li>Interactive Menu System</li>
+                            <li>Database Integration (Google Sheets / Firebase)</li>
+                            <li>Payment Gateway Integration (KBZ Pay / Wave Pay)</li>
+                            <li>User Registration & Profile</li>
+                            <li>Admin Panel for Management</li>
+                            <li>Broadcast Message Feature</li>
+                            <li>2 Languages Support</li>
+                            <li>Delivery: 14-21 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Premium Package</div>
+                        <div class="plan-price">1,200,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Unlimited Custom Commands</li>
+                            <li>Full Mini App Experience</li>
+                            <li>Advanced Database (PostgreSQL / MongoDB)</li>
+                            <li>Multiple Payment Gateways</li>
+                            <li>API Integration with External Services</li>
+                            <li>User Analytics Dashboard</li>
+                            <li>Multi-language Support (3+ Languages)</li>
+                            <li>File/Media Management System</li>
+                            <li>Custom Admin Dashboard</li>
+                            <li>Delivery: 30-45 Days</li>
+                            <li>2 Months Free Support</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="gsheet" class="service-section">
+            <div class="service-header-wrap">
+                <h2 class="service-main-title">📊 Google Sheet Automation</h2>
+                <p class="service-desc">Turn your spreadsheets into powerful automated systems. From simple formulas to complete business management dashboards.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Basic Package</div>
+                        <div class="plan-price">100,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Professional Template Setup</li>
+                            <li>Basic Formulas & Functions</li>
+                            <li>Data Validation Rules</li>
+                            <li>Conditional Formatting</li>
+                            <li>Simple Data Entry Forms</li>
+                            <li>Delivery: 2-3 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card popular">
+                    <span class="badge">Most Popular</span>
+                    <div>
+                        <div class="plan-name">Standard Package</div>
+                        <div class="plan-price">250,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Custom Apps Script Functions</li>
+                            <li>Automated Data Processing</li>
+                            <li>Interactive Dashboard Setup</li>
+                            <li>Auto Email Reports Generation</li>
+                            <li>Data Import/Export Automation</li>
+                            <li>Charts & Visualization</li>
+                            <li>User Access Control (Basic)</li>
+                            <li>Delivery: 7-10 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Premium Package</div>
+                        <div class="plan-price">500,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Full Business System Setup (CRM, Inventory, Accounting)</li>
+                            <li>Complex Apps Script Development</li>
+                            <li>External API Integration</li>
+                            <li>Multi-user Access with Permissions</li>
+                            <li>Automated Backup System</li>
+                            <li>Real-time Data Sync</li>
+                            <li>Custom Menu & UI</li>
+                            <li>Training & Documentation</li>
+                            <li>Delivery: 14-21 Days</li>
+                            <li>1 Month Free Support</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="website" class="service-section">
+            <div class="service-header-wrap">
+                <h2 class="service-main-title">💻 Business Website Development</h2>
+                <p class="service-desc">Professional multi-page websites for your business, company, or organization. Built with modern CMS for easy content management.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Basic Package</div>
+                        <div class="plan-price">300,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>5 Pages (Home, About, Services, Contact, Blog)</li>
+                            <li>Template-based Design</li>
+                            <li>Mobile Responsive</li>
+                            <li>Contact Form</li>
+                            <li>Basic SEO Setup</li>
+                            <li>Social Media Links</li>
+                            <li>Delivery: 7-10 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card popular">
+                    <span class="badge">Most Popular</span>
+                    <div>
+                        <div class="plan-name">Standard Package</div>
+                        <div class="plan-price">700,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Up to 10 Pages</li>
+                            <li>Custom Design (Figma/Canva)</li>
+                            <li>WordPress CMS Setup</li>
+                            <li>Blog with Categories</li>
+                            <li>Advanced SEO (Yoast/RankMath)</li>
+                            <li>Contact Form with Anti-spam</li>
+                            <li>Google Maps Integration</li>
+                            <li>Image Gallery</li>
+                            <li>2 Rounds of Revisions</li>
+                            <li>Delivery: 14-21 Days</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Premium Package</div>
+                        <div class="plan-price">1,500,000 <span>MMK</span></div>
+                        <ul class="features-list">
+                            <li>Unlimited Pages</li>
+                            <li>Custom CMS or WordPress Advanced</li>
+                            <li>E-commerce Functionality (up to 50 products)</li>
+                            <li>Payment Gateway Integration</li>
+                            <li>Membership/Login System</li>
+                            <li>Advanced Security Setup</li>
+                            <li>Speed Optimization</li>
+                            <li>CDN Setup</li>
+                            <li>Monthly Backup System</li>
+                            <li>Unlimited Revisions</li>
+                            <li>Delivery: 30-45 Days</li>
+                            <li>2 Months Free Support</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="social" class="service-section">
+            <div class="service-header-wrap">
+                <h2 class="service-main-title">🎨 Social Media Content Design</h2>
+                <p class="service-desc">Eye-catching social media content that engages your audience. Monthly subscription packages for consistent brand presence.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Basic Package</div>
+                        <div class="plan-price">150,000 <span>MMK / Mo.</span></div>
+                        <ul class="features-list">
+                            <li>10 Static Posts per Month</li>
+                            <li>Facebook & Instagram Optimized</li>
+                            <li>Basic Brand Colors Applied</li>
+                            <li>Stock Images (Free)</li>
+                            <li>1 Revision per Post</li>
+                            <li>Delivery: 2-3 Days per Batch</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card popular">
+                    <span class="badge">Most Popular</span>
+                    <div>
+                        <div class="plan-name">Standard Package</div>
+                        <div class="plan-price">300,000 <span>MMK / Mo.</span></div>
+                        <ul class="features-list">
+                            <li>20 Static Posts per Month</li>
+                            <li>4 Story Designs per Month</li>
+                            <li>Static & Simple Motion Graphics</li>
+                            <li>Brand Kit Setup (Colors, Fonts, Logo Usage)</li>
+                            <li>Custom Graphics Creation</li>
+                            <li>Content Calendar</li>
+                            <li>2 Revisions per Post</li>
+                            <li>Delivery: Weekly Batches</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+                <div class="price-card">
+                    <div>
+                        <div class="plan-name">Premium Package</div>
+                        <div class="plan-price">500,000 <span>MMK / Mo.</span></div>
+                        <ul class="features-list">
+                            <li>30 Static Posts per Month</li>
+                            <li>8 Story Designs per Month</li>
+                            <li>2 Reel/Short Video Edits per Month</li>
+                            <li>Full Brand Identity Design</li>
+                            <li>Custom Illustrations</li>
+                            <li>Premium Stock Images</li>
+                            <li>Hashtag Research</li>
+                            <li>Competitor Analysis Report</li>
+                            <li>Unlimited Revisions</li>
+                            <li>Priority Support</li>
+                        </ul>
+                    </div>
+                    <a href="https://viber.me/959794848575" target="_blank" class="plan-btn">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        
