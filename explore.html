@@ -42,7 +42,7 @@
             align-items: center;
         }
 
-        /* 2. ORDER PROCESSING DYNAMIC PRELOADER (FOR EXTERNAL REDIRECTION) */
+        /* 2. ORDER PROCESSING REDIRECTION PRELOADER */
         #order-loader {
             position: fixed;
             top: 0;
@@ -51,7 +51,7 @@
             height: 100vh;
             background: rgba(8, 27, 54, 0.98);
             z-index: 99998;
-            display: none; /* JS က လှမ်းဖွင့်ပေးမည် */
+            display: none;
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -258,6 +258,9 @@
             border: 2px solid transparent;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .selector-card.popular-tab {
@@ -313,6 +316,7 @@
             font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 15px;
         }
 
         /* ACTIVE CHOSEN ORDER BUTTON */
@@ -329,44 +333,46 @@
             100% { box-shadow: 0 0 15px rgba(0, 184, 120, 0.4); }
         }
 
-        /* DETAIL PANEL (SLIDE DOWN EFFECT) */
+        /* DETAIL PANEL (SLIDE DOWN EFFECT INSIDE THE CARD) */
         .detail-panel {
-            grid-column: 1 / -1;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02), 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid #e8ecf1;
-            display: none;
-            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0 5px;
+            text-align: left;
+            border: 1px dashed #cbd5e1;
+            display: none; /* Initially hidden */
+            animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scaleY(0.9); }
+            to { opacity: 1; transform: scaleY(1); }
         }
 
         .detail-panel h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 18px;
-            border-bottom: 1px solid #f0f4f8;
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
         }
 
         .detail-list {
             list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .detail-list li {
-            font-size: 14px;
+            font-size: 12px;
             color: #444;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.4;
         }
 
         .detail-list li::before {
@@ -386,12 +392,6 @@
 
         @media (max-width: 900px) {
             .pricing-selector-grid {
-                grid-template-columns: 1fr;
-            }
-            .detail-panel {
-                grid-column: span 1;
-            }
-            .detail-list {
                 grid-template-columns: 1fr;
             }
         }
@@ -451,49 +451,58 @@
                 <p class="service-desc">Professional, high-converting landing pages built to drive growth.</p>
             </div>
             <div class="pricing-selector-grid">
+                
                 <div class="selector-card" onclick="selectPlan('landing', 'basic', this)">
-                    <h4>Basic Plan</h4>
-                    <div class="price">150,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Basic Plan</h4>
+                        <div class="price">150,000 <span>MMK</span></div>
+                    </div>
+                    <div id="landing-basic-detail" class="detail-panel">
+                        <h3>📦 Basic Package Details</h3>
+                        <ul class="detail-list">
+                            <li>1-Page Responsive Landing Page</li>
+                            <li>Contact Form Setup</li>
+                            <li>Basic SEO Configuration</li>
+                            <li>1 Round of Revision</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Basic</button>
                 </div>
+
                 <div class="selector-card popular-tab" onclick="selectPlan('landing', 'standard', this)">
-                    <h4>Standard Plan</h4>
-                    <div class="price">350,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Standard Plan</h4>
+                        <div class="price">350,000 <span>MMK</span></div>
+                    </div>
+                    <div id="landing-standard-detail" class="detail-panel">
+                        <h3>📦 Standard Package Details</h3>
+                        <ul class="detail-list">
+                            <li>3-Page Design (Main + Thanks + 404)</li>
+                            <li>Interactive Animations</li>
+                            <li>Dynamic Lead Forms</li>
+                            <li>2 Rounds of Revisions</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Standard</button>
                 </div>
+
                 <div class="selector-card" onclick="selectPlan('landing', 'premium', this)">
-                    <h4>Premium Plan</h4>
-                    <div class="price">600,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Premium Plan</h4>
+                        <div class="price">600,000 <span>MMK</span></div>
+                    </div>
+                    <div id="landing-premium-detail" class="detail-panel">
+                        <h3>📦 Premium Package Details</h3>
+                        <ul class="detail-list">
+                            <li>Up to 5 Custom Pages</li>
+                            <li>Advanced Speed & SEO Setup</li>
+                            <li>Google Analytics & Facebook Pixel</li>
+                            <li>Unlimited Revisions</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Premium</button>
                 </div>
-                
-                <div id="landing-basic-detail" class="detail-panel">
-                    <h3>📦 Basic Package Details</h3>
-                    <ul class="detail-list">
-                        <li>1-Page Responsive Landing Page</li>
-                        <li>Contact Form Setup</li>
-                        <li>Basic SEO Configuration</li>
-                        <li>1 Round of Revision</li>
-                    </ul>
-                </div>
-                <div id="landing-standard-detail" class="detail-panel">
-                    <h3>📦 Standard Package Details</h3>
-                    <ul class="detail-list">
-                        <li>3-Page Design (Main + Thanks + 404)</li>
-                        <li>Interactive Animations</li>
-                        <li>Dynamic Lead Forms</li>
-                        <li>2 Rounds of Revisions</li>
-                    </ul>
-                </div>
-                <div id="landing-premium-detail" class="detail-panel">
-                    <h3>📦 Premium Package Details</h3>
-                    <ul class="detail-list">
-                        <li>Up to 5 Custom Pages</li>
-                        <li>Advanced Speed & SEO Setup</li>
-                        <li>Google Analytics & Facebook Pixel</li>
-                        <li>Unlimited Revisions</li>
-                    </ul>
-                </div>
+
             </div>
         </section>
 
@@ -503,46 +512,55 @@
                 <p class="service-desc">Integrate smart automated agents to scale operations.</p>
             </div>
             <div class="pricing-selector-grid">
+                
                 <div class="selector-card" onclick="selectPlan('telegram', 'basic', this)">
-                    <h4>Basic Plan</h4>
-                    <div class="price">200,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Basic Plan</h4>
+                        <div class="price">200,000 <span>MMK</span></div>
+                    </div>
+                    <div id="telegram-basic-detail" class="detail-panel">
+                        <h3>📦 Basic Bot Details</h3>
+                        <ul class="detail-list">
+                            <li>Up to 5 Custom Commands</li>
+                            <li>Custom Auto-Replies</li>
+                            <li>Simple Text Formats</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Basic</button>
                 </div>
+
                 <div class="selector-card popular-tab" onclick="selectPlan('telegram', 'standard', this)">
-                    <h4>Standard Plan</h4>
-                    <div class="price">500,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Standard Plan</h4>
+                        <div class="price">500,000 <span>MMK</span></div>
+                    </div>
+                    <div id="telegram-standard-detail" class="detail-panel">
+                        <h3>📦 Standard Bot Details</h3>
+                        <ul class="detail-list">
+                            <li>Database Integration</li>
+                            <li>KPay / Wave Pay Gateway Integration</li>
+                            <li>Broadcasting Tools</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Standard</button>
                 </div>
+
                 <div class="selector-card" onclick="selectPlan('telegram', 'premium', this)">
-                    <h4>Premium Plan</h4>
-                    <div class="price">1,200,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Premium Plan</h4>
+                        <div class="price">1,200,000 <span>MMK</span></div>
+                    </div>
+                    <div id="telegram-premium-detail" class="detail-panel">
+                        <h3>📦 Premium Bot Details</h3>
+                        <ul class="detail-list">
+                            <li>Interactive Web App Experience</li>
+                            <li>Full API System Integration</li>
+                            <li>Multi-language Support</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Premium</button>
                 </div>
 
-                <div id="telegram-basic-detail" class="detail-panel">
-                    <h3>📦 Basic Bot Details</h3>
-                    <ul class="detail-list">
-                        <li>Up to 5 Custom Commands</li>
-                        <li>Custom Auto-Replies</li>
-                        <li>Simple Text Formats</li>
-                    </ul>
-                </div>
-                <div id="telegram-standard-detail" class="detail-panel">
-                    <h3>📦 Standard Bot Details</h3>
-                    <ul class="detail-list">
-                        <li>Database Integration</li>
-                        <li>KPay / Wave Pay Gateway Integration</li>
-                        <li>Broadcasting Tools</li>
-                    </ul>
-                </div>
-                <div id="telegram-premium-detail" class="detail-panel">
-                    <h3>📦 Premium Bot Details</h3>
-                    <ul class="detail-list">
-                        <li>Interactive Web App Experience</li>
-                        <li>Full API System Integration</li>
-                        <li>Multi-language Support</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
@@ -552,46 +570,55 @@
                 <p class="service-desc">Transform raw spreadsheets into structured software databases.</p>
             </div>
             <div class="pricing-selector-grid">
+                
                 <div class="selector-card" onclick="selectPlan('gsheet', 'basic', this)">
-                    <h4>Basic Plan</h4>
-                    <div class="price">100,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Basic Plan</h4>
+                        <div class="price">100,000 <span>MMK</span></div>
+                    </div>
+                    <div id="gsheet-basic-detail" class="detail-panel">
+                        <h3>📦 Basic Setup Details</h3>
+                        <ul class="detail-list">
+                            <li>Custom Clean Formatting</li>
+                            <li>Standard Mathematical Formulations</li>
+                            <li>Data Validation Rules</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Basic</button>
                 </div>
+
                 <div class="selector-card popular-tab" onclick="selectPlan('gsheet', 'standard', this)">
-                    <h4>Standard Plan</h4>
-                    <div class="price">250,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Standard Plan</h4>
+                        <div class="price">250,000 <span>MMK</span></div>
+                    </div>
+                    <div id="gsheet-standard-detail" class="detail-panel">
+                        <h3>📦 Standard Automation Details</h3>
+                        <ul class="detail-list">
+                            <li>Google Apps Script Automations</li>
+                            <li>Interactive Dynamic Dashboards</li>
+                            <li>Automated Email Reports</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Standard</button>
                 </div>
+
                 <div class="selector-card" onclick="selectPlan('gsheet', 'premium', this)">
-                    <h4>Premium Plan</h4>
-                    <div class="price">500,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Premium Plan</h4>
+                        <div class="price">500,000 <span>MMK</span></div>
+                    </div>
+                    <div id="gsheet-premium-detail" class="detail-panel">
+                        <h3>📦 Premium Automation Details</h3>
+                        <ul class="detail-list">
+                            <li>Full Business System Architecture</li>
+                            <li>External API Sync Configs</li>
+                            <li>Multi-user Authorization Dashboard</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Premium</button>
                 </div>
 
-                <div id="gsheet-basic-detail" class="detail-panel">
-                    <h3>📦 Basic Setup Details</h3>
-                    <ul class="detail-list">
-                        <li>Custom Clean Formatting</li>
-                        <li>Standard Mathematical Formulations</li>
-                        <li>Data Validation Rules</li>
-                    </ul>
-                </div>
-                <div id="gsheet-standard-detail" class="detail-panel">
-                    <h3>📦 Standard Automation Details</h3>
-                    <ul class="detail-list">
-                        <li>Google Apps Script Automations</li>
-                        <li>Interactive Dynamic Dashboards</li>
-                        <li>Automated Email Reports</li>
-                    </ul>
-                </div>
-                <div id="gsheet-premium-detail" class="detail-panel">
-                    <h3>📦 Premium Automation Details</h3>
-                    <ul class="detail-list">
-                        <li>Full Business System Architecture</li>
-                        <li>External API Sync Configs</li>
-                        <li>Multi-user Authorization Dashboard</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
@@ -601,46 +628,55 @@
                 <p class="service-desc">Tailor-made multi-page responsive web applications.</p>
             </div>
             <div class="pricing-selector-grid">
+                
                 <div class="selector-card" onclick="selectPlan('website', 'basic', this)">
-                    <h4>Basic Plan</h4>
-                    <div class="price">300,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Basic Plan</h4>
+                        <div class="price">300,000 <span>MMK</span></div>
+                    </div>
+                    <div id="website-basic-detail" class="detail-panel">
+                        <h3>📦 Basic Website Details</h3>
+                        <ul class="detail-list">
+                            <li>Up to 5 Pages</li>
+                            <li>Mobile Responsive Design</li>
+                            <li>Modern UI Theme</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Basic</button>
                 </div>
+
                 <div class="selector-card popular-tab" onclick="selectPlan('website', 'standard', this)">
-                    <h4>Standard Plan</h4>
-                    <div class="price">700,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Standard Plan</h4>
+                        <div class="price">700,000 <span>MMK</span></div>
+                    </div>
+                    <div id="website-standard-detail" class="detail-panel">
+                        <h3>📦 Standard Website Details</h3>
+                        <ul class="detail-list">
+                            <li>WordPress Implementation</li>
+                            <li>Custom Business Blogs & Admin Controls</li>
+                            <li>Advanced SEO Setup</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Standard</button>
                 </div>
+
                 <div class="selector-card" onclick="selectPlan('website', 'premium', this)">
-                    <h4>Premium Plan</h4>
-                    <div class="price">1,500,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Premium Plan</h4>
+                        <div class="price">1,500,000 <span>MMK</span></div>
+                    </div>
+                    <div id="website-premium-detail" class="detail-panel">
+                        <h3>📦 Premium Website Details</h3>
+                        <ul class="detail-list">
+                            <li>E-commerce Integrated Platforms</li>
+                            <li>Automated Backup & Global DNS Optimization</li>
+                            <li>Full-Scale Cybersecurity</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Premium</button>
                 </div>
 
-                <div id="website-basic-detail" class="detail-panel">
-                    <h3>📦 Basic Website Details</h3>
-                    <ul class="detail-list">
-                        <li>Up to 5 Pages</li>
-                        <li>Mobile Responsive Design</li>
-                        <li>Modern UI Theme</li>
-                    </ul>
-                </div>
-                <div id="website-standard-detail" class="detail-panel">
-                    <h3>📦 Standard Website Details</h3>
-                    <ul class="detail-list">
-                        <li>WordPress Advanced Implementation</li>
-                        <li>Custom Business Blogs & Admin Controls</li>
-                        <li>Advanced SEO Setup</li>
-                    </ul>
-                </div>
-                <div id="website-premium-detail" class="detail-panel">
-                    <h3>📦 Premium Website Details</h3>
-                    <ul class="detail-list">
-                        <li>E-commerce Integrated Platforms</li>
-                        <li>Automated Backup & Global DNS Optimization</li>
-                        <li>Full-Scale Cybersecurity configurations</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
@@ -650,45 +686,54 @@
                 <p class="service-desc">Captivating visuals tailored for high-quality engagement.</p>
             </div>
             <div class="pricing-selector-grid">
+                
                 <div class="selector-card" onclick="selectPlan('social', 'basic', this)">
-                    <h4>Basic Plan</h4>
-                    <div class="price">150,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Basic Plan</h4>
+                        <div class="price">150,000 <span>MMK</span></div>
+                    </div>
+                    <div id="social-basic-detail" class="detail-panel">
+                        <h3>📦 Basic Content Details</h3>
+                        <ul class="detail-list">
+                            <li>10 Creative Static Posts/Month</li>
+                            <li>Facebook Size Optimizations</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Basic</button>
                 </div>
+
                 <div class="selector-card popular-tab" onclick="selectPlan('social', 'standard', this)">
-                    <h4>Standard Plan</h4>
-                    <div class="price">300,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Standard Plan</h4>
+                        <div class="price">300,000 <span>MMK</span></div>
+                    </div>
+                    <div id="social-standard-detail" class="detail-panel">
+                        <h3>📦 Standard Content Details</h3>
+                        <ul class="detail-list">
+                            <li>20 Premium Visual Posts/Month</li>
+                            <li>Custom Graphic Brand Elements</li>
+                            <li>Strategic Content Planning Calendar</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Standard</button>
                 </div>
+
                 <div class="selector-card" onclick="selectPlan('social', 'premium', this)">
-                    <h4>Premium Plan</h4>
-                    <div class="price">500,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Premium Plan</h4>
+                        <div class="price">500,000 <span>MMK</span></div>
+                    </div>
+                    <div id="social-premium-detail" class="detail-panel">
+                        <h3>📦 Premium Content Details</h3>
+                        <ul class="detail-list">
+                            <li>30 Multi-tier Post Packs</li>
+                            <li>Advanced Motion Graphic Clips</li>
+                            <li>In-depth Hashtag Competitor Indexing</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Premium</button>
                 </div>
 
-                <div id="social-basic-detail" class="detail-panel">
-                    <h3>📦 Basic Content Details</h3>
-                    <ul class="detail-list">
-                        <li>10 Creative Static Posts/Month</li>
-                        <li>Facebook Size Optimizations</li>
-                    </ul>
-                </div>
-                <div id="social-standard-detail" class="detail-panel">
-                    <h3>📦 Standard Content Details</h3>
-                    <ul class="detail-list">
-                        <li>20 Premium Visual Posts/Month</li>
-                        <li>Custom Graphic Brand Elements</li>
-                        <li>Strategic Content Planning Calendar</li>
-                    </ul>
-                </div>
-                <div id="social-premium-detail" class="detail-panel">
-                    <h3>📦 Premium Content Details</h3>
-                    <ul class="detail-list">
-                        <li>30 Multi-tier Post Packs</li>
-                        <li>Advanced Motion Graphic Clips</li>
-                        <li>In-depth Hashtag Competitor Indexing</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
@@ -698,43 +743,52 @@
                 <p class="service-desc">Synchronize redundant system pipelines effortlessly.</p>
             </div>
             <div class="pricing-selector-grid">
+                
                 <div class="selector-card" onclick="selectPlan('workflow', 'basic', this)">
-                    <h4>Basic Plan</h4>
-                    <div class="price">150,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Basic Plan</h4>
+                        <div class="price">150,000 <span>MMK</span></div>
+                    </div>
+                    <div id="workflow-basic-detail" class="detail-panel">
+                        <h3>📦 Basic Integration Details</h3>
+                        <ul class="detail-list">
+                            <li>1 Dynamic Automated Pipeline</li>
+                            <li>Connect 3 Third-Party Web Apps</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Basic</button>
                 </div>
+
                 <div class="selector-card popular-tab" onclick="selectPlan('workflow', 'standard', this)">
-                    <h4>Standard Plan</h4>
-                    <div class="price">350,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Standard Plan</h4>
+                        <div class="price">350,000 <span>MMK</span></div>
+                    </div>
+                    <div id="workflow-standard-detail" class="detail-panel">
+                        <h3>📦 Standard Automation Details</h3>
+                        <ul class="detail-list">
+                            <li>3 Advanced Logic Pipeline Streams</li>
+                            <li>Error Recovery Setup</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Standard</button>
                 </div>
+
                 <div class="selector-card" onclick="selectPlan('workflow', 'premium', this)">
-                    <h4>Premium Plan</h4>
-                    <div class="price">600,000 <span>MMK</span></div>
+                    <div>
+                        <h4>Premium Plan</h4>
+                        <div class="price">600,000 <span>MMK</span></div>
+                    </div>
+                    <div id="workflow-premium-detail" class="detail-panel">
+                        <h3>📦 Premium Automation Details</h3>
+                        <ul class="detail-list">
+                            <li>Unlimited Deep Webhook Integrations</li>
+                            <li>Tailor-made Enterprise Pipeline Mapping</li>
+                        </ul>
+                    </div>
                     <button class="select-btn">Choose Premium</button>
                 </div>
 
-                <div id="workflow-basic-detail" class="detail-panel">
-                    <h3>📦 Basic Integration Details</h3>
-                    <ul class="detail-list">
-                        <li>1 Dynamic Automated Pipeline</li>
-                        <li>Connect 3 Third-Party Web Apps</li>
-                    </ul>
-                </div>
-                <div id="workflow-standard-detail" class="detail-panel">
-                    <h3>📦 Standard Automation Details</h3>
-                    <ul class="detail-list">
-                        <li>3 Advanced Logic Pipeline Streams</li>
-                        <li>Error Recovery Setup</li>
-                    </ul>
-                </div>
-                <div id="workflow-premium-detail" class="detail-panel">
-                    <h3>📦 Premium Automation Details</h3>
-                    <ul class="detail-list">
-                        <li>Unlimited Deep Webhook Integrations</li>
-                        <li>Tailor-made Enterprise Database Pipeline Mapping</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
@@ -764,6 +818,7 @@
                 sec.classList.remove('active-service');
             });
 
+            // Reset all select buttons & collapse all detail panels
             document.querySelectorAll('.select-btn').forEach(b => {
                 b.textContent = b.getAttribute('data-original') || b.textContent;
                 b.classList.remove('order-active');
@@ -776,8 +831,13 @@
             }
         }
 
-        // DYNAMIC CHOOSE -> DETAIL OPEN -> REDIRECT TO FORM FLOW
+        // DYNAMIC CHOOSE -> DETAIL OPEN (INSIDE THE SELECTED CARD) -> REDIRECT TO FORM FLOW
         function selectPlan(serviceId, planTier, cardElement) {
+            // Prevent dynamic triggers when clicking directly inside the open detail list text
+            if (event.target.closest('.detail-panel')) {
+                return;
+            }
+
             const btn = cardElement.querySelector('.select-btn');
             const targetDetailId = `${serviceId}-${planTier}-detail`;
             const targetDetailPanel = document.getElementById(targetDetailId);
@@ -786,30 +846,33 @@
                 btn.setAttribute('data-original', btn.textContent.trim());
             }
 
-            // If user clicks "ORDER", redirect to form.html with preloader
+            // If user clicks while button is in "ORDER" state
             if (btn.textContent.trim() === 'ORDER') {
                 triggerOrderRedirection();
                 return;
             }
 
-            const parentGrid = cardElement.closest('.pricing-selector-grid');
-            parentGrid.querySelectorAll('.select-btn').forEach(b => {
+            // Reset only other siblings in the active service section
+            const activeSection = cardElement.closest('.service-section');
+            activeSection.querySelectorAll('.select-btn').forEach(b => {
                 b.textContent = b.getAttribute('data-original') || b.textContent;
                 b.classList.remove('order-active');
             });
-            parentGrid.querySelectorAll('.detail-panel').forEach(panel => {
+            activeSection.querySelectorAll('.detail-panel').forEach(panel => {
                 panel.style.display = 'none';
             });
 
+            // Activate current selected button
             btn.textContent = 'ORDER';
             btn.classList.add('order-active');
 
+            // Open detail panel (it is inside the card, above the button)
             if (targetDetailPanel) {
                 targetDetailPanel.style.display = 'block';
             }
         }
 
-        // REDIRECTS TO FORM.HTML
+        // REDIRECTS TO FORM.HTML WITH PRELOADER
         function triggerOrderRedirection() {
             const orderLoader = document.getElementById('order-loader');
             const orderText = document.getElementById('order-loading-text');
@@ -822,7 +885,6 @@
                 opacity: 0, 
                 duration: 0.5, 
                 onComplete: () => {
-                    // Redirect to dedicated form page
                     window.location.href = 'form.html';
                 }
             }, "+=0.3");
