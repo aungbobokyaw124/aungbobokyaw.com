@@ -13,9 +13,24 @@
             --green: #00b878;
             --white: #ffffff;
             --bg: #f6f9fc;
-            --text: #222;
+            --card-bg: #ffffff;
+            --text: #222222;
             --gray: #667085;
-            --yellow: #fbbc05; /* Ticker English text color */
+            --yellow: #fbbc05;
+            --border: #e8ecf1;
+            --viber-color: #7360f2;
+        }
+
+        /* DARK MODE STYLES */
+        [data-theme="dark"] {
+            --primary: #ffffff;
+            --green: #00e699;
+            --white: #0f172a;
+            --bg: #090d16;
+            --card-bg: #131b2e;
+            --text: #e2e8f0;
+            --gray: #94a3b8;
+            --border: #1e293b;
         }
 
         * {
@@ -23,6 +38,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         body {
@@ -31,7 +47,7 @@
             overflow-x: hidden;
         }
 
-        /* PREMIUM PRELOADER & TYPING STYLES */
+        /* PREMIUM PRELOADER */
         #preloader {
             position: fixed;
             top: 0;
@@ -84,7 +100,6 @@
             color: #00b878;
         }
 
-        /* Typing Target Area */
         .loader-slogan {
             color: #8899aa;
             font-size: 15px;
@@ -97,8 +112,8 @@
 
         /* TICKER / MARQUEE */
         .ticker-wrap {
-            background: var(--primary);
-            color: var(--white); /* Default Myanmar Text (White) */
+            background: #081b36;
+            color: #ffffff;
             padding: 12px 0;
             overflow: hidden;
             font-weight: 700;
@@ -106,6 +121,7 @@
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .ticker-wrap .ticker {
@@ -120,7 +136,6 @@
             display: inline-block;
         }
 
-        /* Highlight English text inside Ticker in Yellow */
         .ticker span em {
             color: var(--yellow);
             font-style: normal;
@@ -131,9 +146,9 @@
             100% { transform: translate3d(-50%, 0, 0); }
         }
 
-        /* HEADER & DROPDOWN */
+        /* HEADER & NAVBAR */
         header {
-            background: white;
+            background: var(--card-bg);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -142,6 +157,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+            border-bottom: 1px solid var(--border);
         }
 
         .brand {
@@ -176,6 +192,36 @@
             color: var(--green);
         }
 
+        /* Header Controls (Menu & Dark Mode) */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* DARK MODE TOGGLE BUTTON */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: var(--border);
+        }
+
         .menu {
             font-size: 28px;
             color: var(--primary);
@@ -189,12 +235,13 @@
             position: absolute;
             right: 0;
             top: 100%;
-            background: white;
+            background: var(--card-bg);
             min-width: 220px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
             border-radius: 14px;
             padding: 12px 0;
             z-index: 20;
+            border: 1px solid var(--border);
         }
 
         .dropdown a {
@@ -217,7 +264,7 @@
             display: block;
         }
 
-        /* HERO - INITIAL OPACITY FOR GSAP FADE-IN */
+        /* HERO SECTION */
         .hero {
             padding: 80px 25px 60px;
             text-align: center;
@@ -262,40 +309,91 @@
             font-size: 16px;
         }
 
+        /* HERO BUTTONS (RE-ANIMATED) */
         .hero-buttons {
             margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 15px 35px;
             border-radius: 35px;
             text-decoration: none;
-            margin: 8px;
-            font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-
+        /* Service & Pricing (Pulse/Glow Animation) */
         .btn-main {
-            background: var(--green);
+            background: linear-gradient(135deg, var(--green), #029461);
             color: white;
             box-shadow: 0 5px 15px rgba(0, 184, 120, 0.3);
         }
 
+        .btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #029461, var(--green));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 184, 120, 0.5), 0 0 10px rgba(0, 184, 120, 0.2);
+        }
+
+        .btn-main:hover::before {
+            opacity: 1;
+        }
+
+        /* Knowledge Hub (Outline Shine Animation) */
         .btn-line {
             border: 2px solid var(--primary);
             color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 184, 120, 0.15), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-line:hover {
+            transform: translateY(-4px);
+            border-color: var(--green);
+            color: var(--green);
+            box-shadow: 0 8px 20px rgba(0, 184, 120, 0.1);
+        }
+
+        .btn-line:hover::before {
+            left: 100%;
         }
 
         /* AD SPACE */
         .ad-space {
             max-width: 728px;
             margin: 40px auto;
-            background: white;
+            background: var(--card-bg);
             border: 2px dashed var(--gray);
             border-radius: 16px;
             padding: 30px;
@@ -305,7 +403,7 @@
             letter-spacing: 1px;
         }
 
-        /* SECTIONS - INITIAL OPACITY FOR GSAP SCROLL */
+        /* SECTIONS */
         .section {
             padding: 45px 25px;
             max-width: 1100px;
@@ -314,16 +412,17 @@
 
         .service-card {
             opacity: 0; 
-            background: white;
+            background: var(--card-bg);
             padding: 25px 18px;
             border-radius: 22px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
-            transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .03);
+            border: 1px solid var(--border);
+            transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s ease, background-color 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, .1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
         }
 
         .section-title {
@@ -366,9 +465,10 @@
             margin: 0 auto;
             border-radius: 22px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
-            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            background: var(--card-bg);
             padding: 8px;
+            border: 1px solid var(--border);
         }
 
         .youtube-container iframe {
@@ -381,11 +481,11 @@
 
         /* PARTNER SLIDER */
         .partner-section {
-            background: white;
+            background: var(--card-bg);
             padding: 40px 0;
             text-align: center;
-            border-top: 1px solid #e8ecf1;
-            border-bottom: 1px solid #e8ecf1;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             overflow: hidden;
         }
 
@@ -443,16 +543,16 @@
             white-space: nowrap;
         }
 
-        /* FIXED VIBER BUTTON */
+        /* FIXED VIBER BUTTON (VIBER APP ICON STYLE & GENTLE JUMP ANIMATION) */
         .viber-btn {
             position: fixed;
             right: 20px;
             bottom: 20px;
-            background: #7360f2;
+            background: var(--viber-color);
             color: white;
-            height: 50px;
+            height: 52px;
             padding: 0 24px;
-            border-radius: 25px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
             box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4);
@@ -460,48 +560,83 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 15px;
-            animation: pulse 2s infinite;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: viberJump 3.5s ease-in-out infinite;
         }
 
         .viber-btn:hover {
             transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(115, 96, 242, 0.6);
+        }
+
+        /* Viber App Round Icon */
+        .viber-icon-bg {
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .viber-btn svg {
-            width: 22px;
-            height: 22px;
-            fill: white;
+            width: 18px;
+            height: 18px;
+            fill: var(--viber-color);
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
-            50% { box-shadow: 0 8px 30px rgba(115, 96, 242, .7); }
-            100% { box-shadow: 0 8px 20px rgba(115, 96, 242, .3); }
+        /* Gentle Jumping Animation */
+        @keyframes viberJump {
+            0%, 100% { transform: translateY(0); }
+            10%, 20% { transform: translateY(-8px); }
+            15% { transform: translateY(0); }
+            25% { transform: translateY(-4px); }
+            30% { transform: translateY(0); }
         }
 
-        /* FOOTER */
+        /* FOOTER (REDESIGNED BASED ON REQUIREMENT) */
         footer {
             background: #081b36;
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px 40px;
             line-height: 1.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         footer h3 {
-            margin-bottom: 10px;
-            font-size: 22px;
+            margin-bottom: 8px;
+            font-size: 26px;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        footer h3 span {
+            color: #00b878;
+        }
+
+        footer .slogan {
+            font-size: 15px;
+            color: #94a3b8;
+            margin-bottom: 25px;
         }
 
         footer .founder {
-            margin-top: 15px;
-            color: var(--green);
+            margin-top: 10px;
+            color: #00b878;
             font-weight: 600;
             font-size: 14px;
             letter-spacing: 0.5px;
+        }
+
+        footer .copyright {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #64748b;
         }
 
         /* MOBILE RESPONSIVE */
@@ -514,6 +649,8 @@
             .partner-logo { width: 80px; }
             .partner-logo svg { width: 36px; height: 36px; }
             .partner-slider-track { gap: 40px; }
+            .hero-buttons { flex-direction: column; width: 100%; padding: 0 20px; }
+            .btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -552,14 +689,21 @@
             </div>
             <h1>NEX<span>ORA</span></h1>
         </div>
-        <div class="menu">
-            ☰
-            <div class="dropdown">
-                <a href="index.html">🏠 Home</a>
-                <a href="how-it-works.html">⚙️ How it Works</a>
-                <a href="payment.html">💳 Payment</a>
-                <a href="about.html">ℹ️ About</a>
-                <a href="contact-us.html">📞 Contact Us</a>
+        
+        <div class="header-controls">
+            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                🌙
+            </button>
+
+            <div class="menu">
+                ☰
+                <div class="dropdown">
+                    <a href="index.html">🏠 Home</a>
+                    <a href="how-it-works.html">⚙️ How it Works</a>
+                    <a href="payment.html">💳 Payment</a>
+                    <a href="about.html">ℹ️ About</a>
+                    <a href="contact-us.html">📞 Contact Us</a>
+                </div>
             </div>
         </div>
     </header>
@@ -715,17 +859,19 @@
     </section>
 
     <a href="https://viber.me/959794848575" class="viber-btn" target="_blank">
-        <svg viewBox="0 0 24 24">
-            <path d="M19.92 11.24a4.12 4.12 0 0 0-1.09-2.73 4.16 4.16 0 0 0-2.74-1.1h-.22c-.62 0-1.03.35-1.03.86 0 .47.36.83.91.85h.2c1.78.06 2.32.61 2.38 2.39v.2c.02.55.38.91.85.91.51 0 .86-.41.86-1.03v-.35zm2.93.02c.01-1.57-.38-2.95-1.19-4.14a8.288 8.288 0 0 0-3.95-3.08A8.69 8.69 0 0 0 14.53 3.5h-.26c-.63 0-1.02.37-1.02.87 0 .48.37.84.92.86h.18c4 .17 5.17 1.33 5.34 5.34v.18c.02.55.38.92.86.92.5 0 .87-.39.87-1.02v-.37v.01zm-7.6 4.88c-.62-.51-1.34-1.04-2.12-1.63-.44-.33-.6-.88-.36-1.38.31-.63.78-1.57.85-1.74.22-.53.07-1.12-.39-1.46L11 8.22c-.44-.33-1.03-.31-1.44.06-.51.46-1.4 1.35-1.51 2.22-.24 1.95.53 4.29 2.34 6.84 2.1 2.97 4.54 4.39 6.57 4.17.88-.1 1.68-1.07 2.11-1.6.34-.43.32-1.02-.04-1.43l-1.73-1.67c-.33-.47-.93-.61-1.45-.37-.16.07-1.03.52-1.62.83-.55.28-1.15.08-1.48-.36l-.01.01z"/>
-        </svg>
+        <span class="viber-icon-bg">
+            <svg viewBox="0 0 24 24">
+                <path d="M19.92 11.24a4.12 4.12 0 0 0-1.09-2.73 4.16 4.16 0 0 0-2.74-1.1h-.22c-.62 0-1.03.35-1.03.86 0 .47.36.83.91.85h.2c1.78.06 2.32.61 2.38 2.39v.2c.02.55.38.91.85.91.51 0 .86-.41.86-1.03v-.35zm2.93.02c.01-1.57-.38-2.95-1.19-4.14a8.288 8.288 0 0 0-3.95-3.08A8.69 8.69 0 0 0 14.53 3.5h-.26c-.63 0-1.02.37-1.02.87 0 .48.37.84.92.86h.18c4 .17 5.17 1.33 5.34 5.34v.18c.02.55.38.92.86.92.5 0 .87-.39.87-1.02v-.37v.01zm-7.6 4.88c-.62-.51-1.34-1.04-2.12-1.63-.44-.33-.6-.88-.36-1.38.31-.63.78-1.57.85-1.74.22-.53.07-1.12-.39-1.46L11 8.22c-.44-.33-1.03-.31-1.44.06-.51.46-1.4 1.35-1.51 2.22-.24 1.95.53 4.29 2.34 6.84 2.1 2.97 4.54 4.39 6.57 4.17.88-.1 1.68-1.07 2.11-1.6.34-.43.32-1.02-.04-1.43l-1.73-1.67c-.33-.47-.93-.61-1.45-.37-.16.07-1.03.52-1.62.83-.55.28-1.15.08-1.48-.36l-.01.01z"/>
+            </svg>
+        </span>
         💬 Chat
     </a>
 
     <footer>
         <h3>NEXORA</h3>
-        <p>Together We Grow.<br>Together We Succeed.</p>
+        <p class="slogan">Together We Grow. Together We Succeed.</p>
         <p class="founder">Founded by Aung Bo Bo Kyaw</p>
-        <p style="margin-top:20px; font-size:13px; color:#8899aa;">© 2026 NEXORA. All Rights Reserved.</p>
+        <p class="copyright">© 2026 NEXORA. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -733,37 +879,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
     <script>
-        // GSAP Plugins Activation
+        // REGISTER GSAP PLUGINS
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-        // WHEN CONTENT IS FULLY LOADED
+        // DARK MODE CONTROLLER WITH LOCALSTORAGE
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        
+        // Check Saved Theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeBtn.innerText = savedTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Toggle Theme Event
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = 'light';
+            
+            if (!currentTheme || currentTheme === 'light') {
+                newTheme = 'dark';
+                themeBtn.innerText = '☀️';
+            } else {
+                newTheme = 'light';
+                themeBtn.innerText = '🌙';
+            }
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // PRELOADER & GSAP TIMELINE
         window.addEventListener('load', () => {
             
             const masterTl = gsap.timeline();
 
-            // 1. Loader Content Sequence
             masterTl.to(".loader-logo", { scale: 1, duration: 0.7, ease: "back.out(1.7)" })
                     .to(".loader-text", { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
-                    
-                    // Typing Effect for Slogan
                     .to(".loader-slogan", { 
                         text: "Together We Grow, Together We Succeed", 
                         duration: 1.8, 
                         ease: "none",
-                        style: { borderRight: "2px solid #00b878" } // Cursor Line
+                        style: { borderRight: "2px solid #00b878" }
                     })
-                    
-                    // Blinking Cursor Dynamic Effect
                     .to(".loader-slogan", { borderRightColor: "transparent", repeat: 3, duration: 0.25, ease: "steps(1)" })
-                    
-                    // 2. Preloader Slides Up to Reveal Content
                     .to("#preloader", { 
                         yPercent: -100, 
                         duration: 0.9, 
                         ease: "power4.inOut" 
                     })
-                    
-                    // 3. Hero Sections Smooth Fade-in
                     .to(".hero h2", { opacity: 1, y: 0, duration: 0.9, ease: "power4.out" }, "-=0.2")
                     .to(".hero .hero-question", { opacity: 1, y: 0, duration: 0.7 }, "-=0.7")
                     .to(".hero p", { opacity: 1, y: 0, duration: 0.7 }, "-=0.7")
@@ -771,7 +935,7 @@
                     .to(".hero-buttons", { opacity: 1, y: 0, duration: 0.7 }, "-=0.7");
         });
 
-        // SOLUTIONS GRID SCROLLTRIGGER
+        // GSAP ScrollTrigger Solutions Section
         gsap.to(".solutions-section .service-card", {
             scrollTrigger: {
                 trigger: ".solutions-section",
@@ -785,7 +949,7 @@
             ease: "power2.out"
         });
 
-        // KNOWLEDGE GRID SCROLLTRIGGER
+        // GSAP ScrollTrigger Knowledge Section
         gsap.to(".knowledge-section .service-card", {
             scrollTrigger: {
                 trigger: ".knowledge-section",
