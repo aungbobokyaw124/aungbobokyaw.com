@@ -71,21 +71,23 @@
         .loader-logo {
             width: 80px;
             height: 80px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #00b878, #081b36);
+            /* Remove background gradient and box-shadow */
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 184, 120, 0.3);
+            /* Box-shadow could be kept if it looks good, but let's make it subtle or remove it for a clean look with transparent background.
+               If you want a subtle glow, you can change the color below to be white or transparent and decrease opacity. */
+            box-shadow: none; 
             transform: scale(0); 
         }
 
         .loader-logo img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* object-fit: contain works well for logos on transparent backgrounds */
         }
 
         .loader-text {
@@ -169,8 +171,10 @@
         .logo {
             width: 45px;
             height: 45px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #00b878, #081b36);
+            /* Remove background gradient and potentially border-radius if the new logo isn't square.
+               Using object-fit: contain makes it adapt to non-square shapes too. */
+            background: transparent;
+            border-radius: 0; /* Or keep some border radius if you prefer, but often cleaner without for a floating logo */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -180,7 +184,7 @@
         .logo img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .brand h1 {
