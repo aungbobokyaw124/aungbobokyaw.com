@@ -47,7 +47,7 @@
             overflow-x: hidden;
         }
 
-        /* PREMIUM PRELOADER */
+        /* PREMIUM PRELOADER - UPDATED */
         #preloader {
             position: fixed;
             top: 0;
@@ -71,14 +71,13 @@
         .loader-logo {
             width: 80px;
             height: 80px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #00b878, #081b36);
+            background: transparent; /* ပြင်ဆင်ချက်- နောက်ခံဖျောက် */
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 184, 120, 0.3);
+            box-shadow: none; /* ပြင်ဆင်ချက်- Shadow ဖျောက် */
             transform: scale(0); 
         }
 
@@ -146,7 +145,7 @@
             100% { transform: translate3d(-50%, 0, 0); }
         }
 
-        /* HEADER & NAVBAR */
+        /* HEADER & NAVBAR - UPDATED LOGO */
         header {
             background: var(--card-bg);
             display: flex;
@@ -169,8 +168,8 @@
         .logo {
             width: 45px;
             height: 45px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #00b878, #081b36);
+            background: transparent; /* ပြင်ဆင်ချက်- နောက်ခံဖျောက် */
+            border-radius: 0; 
             display: flex;
             align-items: center;
             justify-content: center;
