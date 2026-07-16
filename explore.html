@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,24 @@
             --green: #00b878;
             --white: #ffffff;
             --bg: #f6f9fc;
-            --text: #222;
+            --card-bg: #ffffff;
+            --text: #222222;
             --gray: #667085;
             --yellow: #fbbc05;
+            --border: #e8ecf1;
+            --viber-color: #7360f2;
+        }
+
+        /* DARK MODE STYLES */
+        [data-theme="dark"] {
+            --primary: #ffffff;
+            --green: #00e699;
+            --white: #0f172a;
+            --bg: #090d16;
+            --card-bg: #131b2e;
+            --text: #e2e8f0;
+            --gray: #94a3b8;
+            --border: #1e293b;
         }
 
         * {
@@ -20,6 +35,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Inter", "Noto Sans Myanmar", Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         body {
@@ -82,7 +98,7 @@
 
         /* HEADER & DROPDOWN */
         header {
-            background: white;
+            background: var(--card-bg);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -91,6 +107,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+            border-bottom: 1px solid var(--border);
         }
 
         .brand {
@@ -102,8 +119,8 @@
         .logo {
             width: 45px;
             height: 45px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #00b878, #081b36);
+            background: transparent;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -125,6 +142,34 @@
             color: var(--green);
         }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: var(--border);
+        }
+
         .menu {
             font-size: 28px;
             color: var(--primary);
@@ -138,12 +183,13 @@
             position: absolute;
             right: 0;
             top: 100%;
-            background: white;
+            background: var(--card-bg);
             min-width: 220px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
             border-radius: 14px;
             padding: 12px 0;
             z-index: 20;
+            border: 1px solid var(--border);
         }
 
         .dropdown a {
@@ -190,8 +236,8 @@
         }
 
         .filter-btn {
-            background: white;
-            border: 1px solid rgba(0,0,0,0.08);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             color: var(--primary);
             padding: 12px 20px;
             border-radius: 30px;
@@ -225,7 +271,7 @@
 
         .service-header-wrap {
             margin-bottom: 30px;
-            border-bottom: 2px solid #e8ecf1;
+            border-bottom: 2px solid var(--border);
             padding-bottom: 15px;
             text-align: center;
         }
@@ -250,7 +296,7 @@
         }
 
         .selector-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 20px;
             padding: 25px;
             text-align: center;
@@ -265,7 +311,7 @@
 
         .selector-card.popular-tab {
             border-color: #ffe0b2;
-            background: linear-gradient(180deg, #ffffff, #fffdfa);
+            background: linear-gradient(180deg, var(--card-bg), #1a1a2e);
         }
 
         .selector-card.popular-tab::before {
@@ -335,13 +381,13 @@
 
         /* DETAIL PANEL (SLIDE DOWN EFFECT INSIDE THE CARD) */
         .detail-panel {
-            background: #f8fafc;
+            background: var(--bg);
             border-radius: 12px;
             padding: 15px;
             margin: 15px 0 5px;
             text-align: left;
-            border: 1px dashed #cbd5e1;
-            display: none; /* Initially hidden */
+            border: 1px dashed var(--border);
+            display: none;
             animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
@@ -355,7 +401,7 @@
             margin-bottom: 10px;
             font-size: 14px;
             font-weight: 700;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border);
             padding-bottom: 5px;
         }
 
@@ -368,7 +414,7 @@
 
         .detail-list li {
             font-size: 12px;
-            color: #444;
+            color: var(--text);
             display: flex;
             align-items: flex-start;
             gap: 8px;
@@ -381,6 +427,59 @@
             font-weight: 900;
         }
 
+        /* FIXED VIBER BUTTON */
+        .viber-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: var(--viber-color);
+            color: white;
+            height: 52px;
+            padding: 0 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 15px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: viberJump 3.5s ease-in-out infinite;
+        }
+
+        .viber-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(115, 96, 242, 0.6);
+        }
+
+        .viber-icon-bg {
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .viber-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--viber-color);
+        }
+
+        @keyframes viberJump {
+            0%, 100% { transform: translateY(0); }
+            10%, 20% { transform: translateY(-8px); }
+            15% { transform: translateY(0); }
+            25% { transform: translateY(-4px); }
+            30% { transform: translateY(0); }
+        }
+
         /* FOOTER */
         footer {
             background: #081b36;
@@ -388,6 +487,19 @@
             text-align: center;
             padding: 40px 20px;
             line-height: 1.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer h3 {
+            color: #ffffff;
+        }
+
+        footer h3 span {
+            color: #00b878;
+        }
+
+        footer p {
+            color: #94a3b8;
         }
 
         @media (max-width: 900px) {
@@ -418,14 +530,19 @@
             </div>
             <h1>NEX<span>ORA</span></h1>
         </div>
-        <div class="menu">
-            ☰
-            <div class="dropdown">
-                <a href="index.html">🏠 Home</a>
-                <a href="how-it-works.html">⚙️ How it Works</a>
-                <a href="payment.html">💳 Payment</a>
-                <a href="about.html">ℹ️ About</a>
-                <a href="contact-us.html">📞 Contact Us</a>
+        <div class="header-controls">
+            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                ☀️
+            </button>
+            <div class="menu">
+                ☰
+                <div class="dropdown">
+                    <a href="index.html">🏠 Home</a>
+                    <a href="how-it-works.html">⚙️ How it Works</a>
+                    <a href="payment.html">💳 Payment</a>
+                    <a href="about.html">ℹ️ About</a>
+                    <a href="contact-us.html">📞 Contact Us</a>
+                </div>
             </div>
         </div>
     </header>
@@ -794,14 +911,48 @@
 
     </div>
 
+    <a href="https://viber.me/959794848575" class="viber-btn" target="_blank">
+        <span class="viber-icon-bg">
+            <svg viewBox="0 0 24 24">
+                <path d="M19.92 11.24a4.12 4.12 0 0 0-1.09-2.73 4.16 4.16 0 0 0-2.74-1.1h-.22c-.62 0-1.03.35-1.03.86 0 .47.36.83.91.85h.2c1.78.06 2.32.61 2.38 2.39v.2c.02.55.38.91.85.91.51 0 .86-.41.86-1.03v-.35zm2.93.02c.01-1.57-.38-2.95-1.19-4.14a8.288 8.288 0 0 0-3.95-3.08A8.69 8.69 0 0 0 14.53 3.5h-.26c-.63 0-1.02.37-1.02.87 0 .48.37.84.92.86h.18c4 .17 5.17 1.33 5.34 5.34v.18c.02.55.38.92.86.92.5 0 .87-.39.87-1.02v-.37v.01zm-7.6 4.88c-.62-.51-1.34-1.04-2.12-1.63-.44-.33-.6-.88-.36-1.38.31-.63.78-1.57.85-1.74.22-.53.07-1.12-.39-1.46L11 8.22c-.44-.33-1.03-.31-1.44.06-.51.46-1.4 1.35-1.51 2.22-.24 1.95.53 4.29 2.34 6.84 2.1 2.97 4.54 4.39 6.57 4.17.88-.1 1.68-1.07 2.11-1.6.34-.43.32-1.02-.04-1.43l-1.73-1.67c-.33-.47-.93-.61-1.45-.37-.16.07-1.03.52-1.62.83-.55.28-1.15.08-1.48-.36l-.01.01z"/>
+            </svg>
+        </span>
+        💬 Chat
+    </a>
+
     <footer>
         <h3>NEXORA</h3>
-        <p style="margin-top:10px; font-size:13px; color:#8899aa;">© 2026 NEXORA. All Rights Reserved.</p>
+        <p style="margin-top:10px; font-size:13px;">© 2026 NEXORA. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <script>
+        // DARK MODE CONTROLLER WITH LOCALSTORAGE
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeBtn.innerText = savedTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = 'light';
+            
+            if (!currentTheme || currentTheme === 'light') {
+                newTheme = 'dark';
+                themeBtn.innerText = '☀️';
+            } else {
+                newTheme = 'light';
+                themeBtn.innerText = '🌙';
+            }
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
         // PAGE INITIAL LOAD ANIMATION
         window.addEventListener('load', () => {
             gsap.timeline()
