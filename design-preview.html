@@ -1,366 +1,909 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NEXORA Design Preview</title>
-
-<style>
-
-:root{
-    --bg:#07111f;
-    --card:#101d30;
-    --text:#ffffff;
-    --muted:#b8c2d1;
-    --primary:#00d084;
-    --accent:#00ff99;
-}
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-}
-
-
-/* Announcement */
-
-.announcement{
-    background:#050b14;
-    overflow:hidden;
-    white-space:nowrap;
-    padding:12px;
-}
-
-.announcement span{
-    display:inline-block;
-    animation:move 15s linear infinite;
-    color:var(--accent);
-}
-
-@keyframes move{
-    from{
-        transform:translateX(100%);
-    }
-    to{
-        transform:translateX(-100%);
-    }
-}
-
-
-/* Header */
-
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:25px 8%;
-}
-
-
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:var(--primary);
-}
-
-
-.toggle{
-    background:var(--primary);
-    border:none;
-    padding:10px 20px;
-    border-radius:30px;
-}
-
-
-/* Hero */
-
-.hero{
-    text-align:center;
-    padding:80px 20px;
-}
-
-
-.hero h1{
-    font-size:55px;
-}
-
-
-.typing{
-    color:var(--accent);
-    font-size:25px;
-}
-
-
-/* Buttons */
-
-.btn{
-    display:inline-block;
-    margin:15px;
-    padding:15px 30px;
-    border-radius:30px;
-    text-decoration:none;
-    background:var(--primary);
-    color:#001;
-    font-weight:bold;
-}
-
-
-.btn:hover{
-    background:var(--accent);
-}
-
-
-/* Cards */
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-}
-
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-}
-
-
-.card{
-
-    background:var(--card);
-    padding:30px;
-    border-radius:20px;
-}
-
-
-.card h3{
-    color:var(--primary);
-}
-
-
-
-/* Partner */
-
-.partners{
-    margin-top:80px;
-    padding:40px;
-    overflow:hidden;
-}
-
-
-.partner-text{
-    animation:move 18s linear infinite;
-    color:var(--muted);
-}
-
-
-/* Viber */
-
-.viber{
-
-position:fixed;
-right:25px;
-bottom:25px;
-
-background:#7360f2;
-color:white;
-
-width:60px;
-height:60px;
-
-border-radius:50%;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-font-size:30px;
-
-}
-
-
-/* Footer */
-
-footer{
-
-margin-top:60px;
-padding:40px;
-text-align:center;
-background:#050b14;
-
-}
-
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:35px;
-}
-
-
-.cards{
-grid-template-columns:1fr;
-}
-
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA - Complete Premium Design Preview</title>
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM & VARIABLES
+           ========================================================================== */
+        :root[data-theme="dark"] {
+            --primary: #00D084;        /* Emerald Green */
+            --secondary: #07111F;      /* Deep Navy */
+            --accent: #2563EB;         /* Electric Blue */
+            --bg-main: #0B1426;        /* Darker Navy variant for depth */
+            --bg-card: #132238;        /* Card background */
+            --text-main: #FFFFFF;
+            --text-muted: #CBD5E1;     /* Silver Gray */
+            --border: #1E293B;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        :root[data-theme="light"] {
+            --primary: #00D084;
+            --secondary: #FFFFFF;
+            --accent: #2563EB;
+            --bg-main: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #07111F;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --shadow: rgba(7, 17, 31, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================================================
+           1. BRAND PRELOADER
+           ========================================================================== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #07111F;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .preloader-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            animation: pulseLogo 2s infinite ease-in-out;
+        }
+
+        .preloader-title {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .typing-container {
+            font-size: 1.1rem;
+            color: #CBD5E1;
+            height: 24px;
+            border-right: 2px solid var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blinkCursor 0.75s step-end infinite;
+        }
+
+        @keyframes pulseLogo {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary); }
+        }
+
+        /* ==========================================================================
+           2. ANNOUNCEMENT MOVING BAR
+           ========================================================================== */
+        .announcement-bar {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .announcement-track {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* ==========================================================================
+           3. HEADER & NAVIGATION
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 35px; /* Directly below announcement bar */
+            left: 0;
+            width: 100%;
+            background-color: rgba(var(--bg-card), 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        /* ==========================================================================
+           4. PAGE CONTENT & HERO SECTION
+           ========================================================================== */
+        main {
+            margin-top: 95px; /* Offset for sticky bars */
+        }
+
+        .hero {
+            min-height: calc(85vh - 95px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 4rem 2rem;
+            background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.08), transparent 60%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #07111F;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           SERVICES SECTION (CARDS)
+           ========================================================================== */
+        .services-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px var(--shadow);
+            border-color: rgba(0, 208, 132, 0.3);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(0, 208, 132, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           5. PARTNER LOGO SLIDER
+           ========================================================================== */
+        .partners-section {
+            background-color: rgba(var(--bg-card), 0.4);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 0;
+            overflow: hidden;
+        }
+
+        .partner-slider-track {
+            display: flex;
+            width: calc(250px * 10);
+            animation: infiniteScroll 20s linear infinite;
+        }
+
+        .partner-item {
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .partner-item:hover {
+            opacity: 1;
+        }
+
+        .partner-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: rgba(203, 213, 225, 0.2);
+            font-size: 0.75rem;
+        }
+
+        @keyframes infiniteScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 5)); }
+        }
+
+        /* ==========================================================================
+           6. FOOTER
+           ========================================================================== */
+        footer {
+            background-color: #07111F;
+            color: #FFFFFF;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 5rem 2rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .footer-brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+        }
+
+        .footer-tagline {
+            color: #CBD5E1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-col-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-link {
+            color: #CBD5E1;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            padding-left: 2px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #CBD5E1;
+        }
+
+        .founder-credit {
+            font-weight: 500;
+        }
+
+        .founder-credit span {
+            color: var(--primary);
+        }
+
+        /* ==========================================================================
+           7. FLOATING VIBER BUTTON & FUTURE ENGINE PLACEHOLDERS
+           ========================================================================== */
+        .viber-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #73448C; /* Official Viber Purple */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(115, 68, 140, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+            line-height: 1.2;
+            animation: pulseViber 2s infinite;
+        }
+
+        @keyframes pulseViber {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(115, 68, 140, 0.6); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(115, 68, 140, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(115, 68, 140, 0); }
+        }
+
+        /* Tech Foundation Blueprint Meta-Comments Layer (Hidden but present in DOM) */
+        .architecture-blueprint {
+            display: none;
+            content: "ENGINE STUBS: client-dashboard, backend-db-pool, chatbot-ai-v1, payment-gateways";
+        }
+
+        /* ==========================================================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 968px) {
+            .nav-menu {
+                position: fixed;
+                top: 95px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 95px);
+                background-color: var(--bg-main);
+                flex-direction: column;
+                padding-top: 3rem;
+                gap: 2rem;
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-top: 1px solid var(--border);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title { font-size: 2.5rem; }
+            .btn-group { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
-
-
 <body>
 
-
-<div class="announcement">
-
-<span>
-NEXORA | Website Development • Business Automation • AI Solutions
-</span>
-
-</div>
-
-
-<header>
-
-<div class="logo">
-NEXORA
-</div>
-
-
-<button class="toggle">
-Dark ☾
-</button>
-
-
-</header>
-
-
-
-<section class="hero">
-
-<h1>
-Together We Grow,
-<br>
-Together We Succeed.
-</h1>
-
-
-<div class="typing">
-Digital Solutions For Future Business
-</div>
-
-
-<a class="btn">
-Start Project
-</a>
-
-
-<a class="btn">
-View Services
-</a>
-
-
-</section>
-
-
-
-<section class="container">
-
-<h2>
-Services Preview
-</h2>
-
-
-<div class="cards">
-
-
-<div class="card">
-<h3>
-Website Development
-</h3>
-
-<p>
-Modern responsive website solutions.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-Business Automation
-</h3>
-
-<p>
-Reduce manual work with smart systems.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-AI Solutions
-</h3>
-
-<p>
-Technology for future growth.
-</p>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<section class="partners">
-
-<div class="partner-text">
-
-OpenAI • ChatGPT • Google • GitHub • Vercel • Future Partners
-
-</div>
-
-</section>
-
-
-
-<div class="viber">
-V
-</div>
-
-
-
-<footer>
-
-NEXORA
-
-<br>
-
-Together We Grow, Together We Succeed
-
-<br><br>
-
-© Aung Bo Bo Kyaw
-
-</footer>
-
-
-
+    <div id="preloader">
+        <img src="assets/images/logo.webp" alt="[NEXORA]" class="preloader-logo" onerror="this.style.display='none';">
+        <div class="preloader-title">NEXORA</div>
+        <div class="typing-container" id="typing-text"></div>
+    </div>
+
+    <div class="announcement-bar">
+        <div class="announcement-track">
+            NEXORA | Website Development • Business Automation • AI Solutions &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NEXORA | Website Development • Business Automation • AI Solutions &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-wrapper">
+                <img src="assets/images/logo.webp" alt="[Logo]" class="logo-img" onerror="this.style.display='none';">
+                <span class="brand-name">NEXORA</span>
+            </div>
+
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#" class="nav-link active">Home</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li><a href="#" class="nav-link">Services</a></li>
+                    <li><a href="#" class="nav-link">Portfolio</a></li>
+                    <li><a href="#" class="nav-link">Resources</a></li>
+                    <li><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="action-btn" id="langToggle" title="Switch Language">EN | MM</button>
+                <button class="action-btn" id="themeToggle" title="Toggle Theme">🌓</button>
+                <button class="hamburger" id="hamburgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-badge">NEXORA</span>
+                <h1 class="hero-title">Together We Grow,<br>Together We Succeed.</h1>
+                <p class="hero-subtitle">Digital Solutions for Future Business</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary">Start Project</button>
+                    <button class="btn btn-secondary">View Services</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <div class="section-header">
+                <h2 class="section-title">Our Solutions</h2>
+                <p class="section-desc">Premium future-oriented technology tailored to accelerate infrastructure scaling and growth.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-icon">&lt;/&gt;</div>
+                    <h3 class="card-title">Website Development</h3>
+                    <p class="card-desc">High performance, clean-architected semantic corporate applications designed for flawless scaling.</p>
+                </div>
+                <div class="service-card">
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Business Automation</h3>
+                    <p class="card-desc">Eliminate human error and bottlenecks with integrated system automation and workflow engines.</p>
+                </div>
+                <div class="service-card">
+                    <div class="card-icon">G</div>
+                    <h3 class="card-title">Google Business Solutions</h3>
+                    <p class="card-desc">Maximize workspace optimization, analytical presence, and discoverability rankings across maps and search tools.</p>
+                </div>
+                <div class="service-card">
+                    <div class="card-icon">🧠</div>
+                    <h3 class="card-title">AI Solutions</h3>
+                    <p class="card-desc">Incorporate custom intelligence matrices, cognitive automation tools, and native dynamic linguistic interfaces.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="partners-section">
+            <div class="partner-slider-track">
+                <div class="partner-item"><span class="partner-icon">◈</span> OpenAI</div>
+                <div class="partner-item"><span class="partner-icon">G</span> Google</div>
+                <div class="partner-item"><span class="partner-icon">🛆</span> GitHub</div>
+                <div class="partner-item"><span class="partner-icon">▲</span> Vercel</div>
+                <div class="partner-item"><span class="partner-icon">🔥</span> Firebase</div>
+                <div class="partner-item"><span class="partner-icon">◈</span> OpenAI</div>
+                <div class="partner-item"><span class="partner-icon">G</span> Google</div>
+                <div class="partner-item"><span class="partner-icon">🛆</span> GitHub</div>
+                <div class="partner-item"><span class="partner-icon">▲</span> Vercel</div>
+                <div class="partner-item"><span class="partner-icon">🔥</span> Firebase</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="footer-brand-name">NEXORA</div>
+                <p class="footer-tagline">Together We Grow,<br>Together We Succeed.</p>
+            </div>
+            
+            <div>
+                <h4 class="footer-col-title">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">About</a></li>
+                    <li><a href="#" class="footer-link">Founder</a></li>
+                    <li><a href="#" class="footer-link">Mission</a></li>
+                    <li><a href="#" class="footer-link">Vision</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Website Development</a></li>
+                    <li><a href="#" class="footer-link">Business Automation</a></li>
+                    <li><a href="#" class="footer-link">AI Solutions</a></li>
+                    <li><a href="#" class="footer-link">Google Business</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                    <li><a href="#" class="footer-link">Tutorials</a></li>
+                    <li><a href="#" class="footer-link">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">Trust & Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+                    <li><a href="#" class="footer-link">Cookie Policy</a></li>
+                    <li><a href="#" class="footer-link">Disclaimer</a></li>
+                    <li><a href="#" class="footer-link">Security</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                &copy; 2025 NEXORA. All Rights Reserved.
+            </div>
+            <div class="founder-credit">
+                Founded by <span>Aung Bo Bo Kyaw</span>.
+            </div>
+            <div>
+                Contact: <a href="#" class="footer-link">Viber</a> &bull; <a href="mailto:info@nexora.com" class="footer-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="viber-float" title="Chat on Viber" aria-label="Viber Link">
+        Viber
+    </a>
+
+    <div class="architecture-blueprint"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. TYPING ANIMATION (PRELOADER)
+            const phrases = ["Together We Grow,", "Together We Succeed."];
+            let currentPhraseIndex = 0;
+            let currentCharIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const erasingSpeed = 50;
+            const delayBetweenPhrases = 1500;
+            const typingTextElement = document.getElementById('typing-text');
+
+            function typeAnimation() {
+                const currentPhrase = phrases[currentPhraseIndex];
+                
+                if (isDeleting) {
+                    typingTextElement.textContent = currentPhrase.substring(0, currentCharIndex - 1);
+                    currentCharIndex--;
+                } else {
+                    typingTextElement.textContent = currentPhrase.substring(0, currentCharIndex + 1);
+                    currentCharIndex++;
+                }
+
+                if (!isDeleting && currentCharIndex === currentPhrase.length) {
+                    // Whole phrase typed. Hold, then check if we clear or finish preloader
+                    if (currentPhraseIndex === phrases.length - 1) {
+                        setTimeout(() => {
+                            // Fade out preloader completely once text cycles finish smoothly
+                            const preloader = document.getElementById('preloader');
+                            preloader.style.transition = 'opacity 0.5s ease';
+                            preloader.style.opacity = '0';
+                            setTimeout(() => preloader.style.display = 'none', 500);
+                        }, delayBetweenPhrases);
+                        return;
+                    }
+                    setTimeout(() => isDeleting = true, delayBetweenPhrases);
+                } else if (isDeleting && currentCharIndex === 0) {
+                    isDeleting = false;
+                    currentPhraseIndex++;
+                }
+
+                setTimeout(typeAnimation, isDeleting ? erasingSpeed : typingSpeed);
+            }
+
+            // Fire preloader initiation string processing matrix
+            typeAnimation();
+
+            // 2. THEME CONTROLLER ENGINE
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const rootElement = document.documentElement;
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = rootElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                rootElement.setAttribute('data-theme', newTheme);
+            });
+
+            // 3. LANGUAGE SWAP INTERFACE SIMULATION
+            const langToggleBtn = document.getElementById('langToggle');
+            let currentLang = 'EN';
+            langToggleBtn.addEventListener('click', () => {
+                currentLang = currentLang === 'EN' ? 'MM' : 'EN';
+                langToggleBtn.textContent = currentLang === 'EN' ? 'EN | MM' : 'MM | EN';
+                // Future localized language hook mapping logic injection node
+            });
+
+            // 4. RESPONSIVE MOBILE NAVIGATION TOGGLE
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburgerMenu.addEventListener('click', () => {
+                hamburgerMenu.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close responsive container when clicking any navigation link node
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
