@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA Design Preview</title>
+
+<style>
+
+:root{
+    --bg:#07111f;
+    --card:#101d30;
+    --text:#ffffff;
+    --muted:#b8c2d1;
+    --primary:#00d084;
+    --accent:#00ff99;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+
+/* Announcement */
+
+.announcement{
+    background:#050b14;
+    overflow:hidden;
+    white-space:nowrap;
+    padding:12px;
+}
+
+.announcement span{
+    display:inline-block;
+    animation:move 15s linear infinite;
+    color:var(--accent);
+}
+
+@keyframes move{
+    from{
+        transform:translateX(100%);
+    }
+    to{
+        transform:translateX(-100%);
+    }
+}
+
+
+/* Header */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 8%;
+}
+
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+
+.toggle{
+    background:var(--primary);
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+}
+
+
+/* Hero */
+
+.hero{
+    text-align:center;
+    padding:80px 20px;
+}
+
+
+.hero h1{
+    font-size:55px;
+}
+
+
+.typing{
+    color:var(--accent);
+    font-size:25px;
+}
+
+
+/* Buttons */
+
+.btn{
+    display:inline-block;
+    margin:15px;
+    padding:15px 30px;
+    border-radius:30px;
+    text-decoration:none;
+    background:var(--primary);
+    color:#001;
+    font-weight:bold;
+}
+
+
+.btn:hover{
+    background:var(--accent);
+}
+
+
+/* Cards */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+
+.card{
+
+    background:var(--card);
+    padding:30px;
+    border-radius:20px;
+}
+
+
+.card h3{
+    color:var(--primary);
+}
+
+
+
+/* Partner */
+
+.partners{
+    margin-top:80px;
+    padding:40px;
+    overflow:hidden;
+}
+
+
+.partner-text{
+    animation:move 18s linear infinite;
+    color:var(--muted);
+}
+
+
+/* Viber */
+
+.viber{
+
+position:fixed;
+right:25px;
+bottom:25px;
+
+background:#7360f2;
+color:white;
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:30px;
+
+}
+
+
+/* Footer */
+
+footer{
+
+margin-top:60px;
+padding:40px;
+text-align:center;
+background:#050b14;
+
+}
+
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:35px;
+}
+
+
+.cards{
+grid-template-columns:1fr;
+}
+
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="announcement">
+
+<span>
+NEXORA | Website Development • Business Automation • AI Solutions
+</span>
+
+</div>
+
+
+<header>
+
+<div class="logo">
+NEXORA
+</div>
+
+
+<button class="toggle">
+Dark ☾
+</button>
+
+
+</header>
+
+
+
+<section class="hero">
+
+<h1>
+Together We Grow,
+<br>
+Together We Succeed.
+</h1>
+
+
+<div class="typing">
+Digital Solutions For Future Business
+</div>
+
+
+<a class="btn">
+Start Project
+</a>
+
+
+<a class="btn">
+View Services
+</a>
+
+
+</section>
+
+
+
+<section class="container">
+
+<h2>
+Services Preview
+</h2>
+
+
+<div class="cards">
+
+
+<div class="card">
+<h3>
+Website Development
+</h3>
+
+<p>
+Modern responsive website solutions.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Business Automation
+</h3>
+
+<p>
+Reduce manual work with smart systems.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+AI Solutions
+</h3>
+
+<p>
+Technology for future growth.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="partners">
+
+<div class="partner-text">
+
+OpenAI • ChatGPT • Google • GitHub • Vercel • Future Partners
+
+</div>
+
+</section>
+
+
+
+<div class="viber">
+V
+</div>
+
+
+
+<footer>
+
+NEXORA
+
+<br>
+
+Together We Grow, Together We Succeed
+
+<br><br>
+
+© Aung Bo Bo Kyaw
+
+</footer>
+
+
+
+</body>
+</html>
